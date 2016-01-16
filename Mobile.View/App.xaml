@@ -1,0 +1,14 @@
+﻿<Application
+    x:Class="Mobile.View.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:view="using:Mobile.View"
+    xmlns:config="using:Mobile.View.Config"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <config:ViewModelLocator
+            x:Key="ViewModelLocator" />
+    </Application.Resources>
+
+</Application>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f88b61db-88a1-4f79-a839-d135a5e093c3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:24462/Services/CustomerAuthenticationService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CustomerAuthenticationService.xsd" MetadataType="Schema" ID="8c6d1e82-2153-4301-858b-5264985b619a" SourceId="1" SourceUrl="http://localhost:24462/Services/CustomerAuthenticationService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AuthenticationCustomerManager.wsdl" MetadataType="Wsdl" ID="aae61aec-4700-462b-bc3b-fed808b7e55f" SourceId="1" SourceUrl="http://localhost:24462/Services/CustomerAuthenticationService.svc?wsdl" />
+    <MetadataFile FileName="CustomerAuthenticationService1.xsd" MetadataType="Schema" ID="7380b5b6-080e-47af-812e-5a1f6b421b99" SourceId="1" SourceUrl="http://localhost:24462/Services/CustomerAuthenticationService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CustomerAuthenticationService.disco" MetadataType="Disco" ID="fa9589c0-6dac-4dea-bf14-1b674ddeeae3" SourceId="1" SourceUrl="http://localhost:24462/Services/CustomerAuthenticationService.svc?disco" />
+    <MetadataFile FileName="CustomerAuthenticationService2.xsd" MetadataType="Schema" ID="5377ace1-9a2b-450f-a219-a317964d0d49" SourceId="1" SourceUrl="http://localhost:24462/Services/CustomerAuthenticationService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

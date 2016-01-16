@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="Mobile.View.View.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:Mobile.View.UserControls"
+    mc:Ignorable="d"
+    DataContext="{Binding Login, Source={StaticResource ViewModelLocator}}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Pivot>
+            <PivotItem Header="Login">
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Text="E-mail"/>
+                        <TextBox Text="{Binding Path=LoginEmail, Mode=TwoWay}"/>
+                        <TextBlock Text="Password" />
+                        <userControls:PasswordGuardianControl x:Name="LoginPasswordBox"/>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox/>
+                            <TextBlock Text="Remember me"/>
+                        </StackPanel>
+                        <Button Content="Log me" 
+                                Command="{Binding LogUser}"
+                                CommandParameter="{Binding ElementName=LoginPasswordBox}"/>
+                    </StackPanel>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Register">
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Text="Email"/>
+                        <TextBox Text="{Binding RegisterEmail}"/>
+                        <TextBlock Text="Password"/>
+                        <userControls:PasswordGuardianControl x:Name="RegisterPasswordBox"/>
+                        <Button Content="Register" 
+                                Command="{Binding RegisterUser}"
+                                CommandParameter="{Binding ElementName=RegisterPasswordBox}"/>
+                        <Button Content="Use without logging"
+                                Command="{Binding NavigateToMainMenu}"/>
+                    </StackPanel>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

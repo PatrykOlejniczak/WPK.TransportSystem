@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="Mobile.View.View.MainMenuView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Mobile.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding MainMenu, Source={StaticResource ViewModelLocator}}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Margin="40,40,0,0">
+            <StackPanel>
+                <Button Content="Buy ticket"
+                                    Command="{Binding NavigateToBuyTicket}"/>
+                <Button Content="Boost account"
+                                        Command="{Binding NavigateToBoostAccount}"/>
+                <Button Content="Purchase history"
+                                        Command="{Binding NavigateToPurchaseHistory}"/>
+                <Button Content="Timetable"
+                                        Command="{Binding NavigateToTimetable}"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Logged user:"></TextBlock>
+                <TextBlock Text="{Binding Customer.Email}"/>
+                <TextBlock Text="Account ballance:"/>
+                <TextBlock Text="{Binding Customer.AccountBalance}"/>
+            </StackPanel>
+            <Grid>
+                    <ListBox                       
+                        ItemsSource="{Binding ActivePurchaseTickets}"
+                        DisplayMemberPath="DateOfPurchase">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

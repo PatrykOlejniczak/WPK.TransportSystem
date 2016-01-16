@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:24462/Services/CustomerOperationService.svc?xsd=xsd2" namespace="Wpk.Entities" />
+  <xs:element name="GetAllBoostAccount">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllBoostAccountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="Wpk.Entities" minOccurs="0" name="GetAllBoostAccountResult" nillable="true" type="q1:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllPurchaseTicket">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllPurchaseTicketResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="Wpk.Entities" minOccurs="0" name="GetAllPurchaseTicketResult" nillable="true" type="q2:ArrayOfPurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActivePurchaseTicket">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="deviceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActivePurchaseTicketResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="Wpk.Entities" minOccurs="0" name="GetActivePurchaseTicketResult" nillable="true" type="q3:ArrayOfPurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCustomerEmail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCustomerEmailResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCustomerPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="newPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="oldPassword" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCustomerPasswordResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewBoostAccount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewBoostAccountResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewPurchaseTicket">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="Wpk.Entities" minOccurs="0" name="purchaseTicket" nillable="true" type="q4:PurchaseTicket" />
+        <xs:element minOccurs="0" name="howManyTickets" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewPurchaseTicketResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
