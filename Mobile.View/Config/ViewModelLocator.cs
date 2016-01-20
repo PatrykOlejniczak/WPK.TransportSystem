@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.Linq.Expressions;
+using System.ServiceModel;
 using Windows.UI.Xaml;
 using Autofac;
 using GalaSoft.MvvmLight;
@@ -19,6 +20,15 @@ namespace Mobile.View.Config
 
         private readonly IContainer _container;
 
+        public LoginPanelViewModel LoginPanel
+            => _container.Resolve<LoginPanelViewModel>();
+
+        public FinalizationTransactionViewModel FinalizationTransaction
+            => _container.Resolve<FinalizationTransactionViewModel>();
+
+        public BuyTicketCountViewModel BuyTicketCount
+            => _container.Resolve<BuyTicketCountViewModel>();
+
         public BoostAccountViewModel BoostAccount
             => _container.Resolve<BoostAccountViewModel>();
 
@@ -32,7 +42,12 @@ namespace Mobile.View.Config
             => _container.Resolve<MainMenuViewModel>();
 
         public PurchaseHistoryViewModel PurchaseHistory
-            => _container.Resolve<PurchaseHistoryViewModel>();
+        {
+            get
+            {
+                return _container.Resolve<PurchaseHistoryViewModel>();
+            }
+        }
 
         public TimetableViewModel Timetable
             => _container.Resolve<TimetableViewModel>();
@@ -63,20 +78,20 @@ namespace Mobile.View.Config
 
             }
             
-            builder.RegisterType<BoostAccountViewModel>();
-            builder.RegisterType<ChooseTicketTypeViewModel>();
-            builder.RegisterType<LoginViewModel>();
-            builder.RegisterType<MainMenuViewModel>();
-            builder.RegisterType<PurchaseHistoryViewModel>();
-            builder.RegisterType<TimetableViewModel>();
+            builder.RegisterType<BoostAccountViewModel>().SingleInstance();
+            builder.RegisterType<ChooseTicketTypeViewModel>().SingleInstance();
+            builder.RegisterType<LoginViewModel>().SingleInstance();
+            builder.RegisterType<MainMenuViewModel>().SingleInstance();
+            builder.RegisterType<PurchaseHistoryViewModel>().SingleInstance();
+            builder.RegisterType<TimetableViewModel>().SingleInstance();
+            builder.RegisterType<BuyTicketCountViewModel>().SingleInstance();
+            builder.RegisterType<FinalizationTransactionViewModel>().SingleInstance();
+            builder.RegisterType<LoginPanelViewModel>().SingleInstance();
 
             _container = builder.Build();
-        }
 
-        private async void Test(CustomerOperationServiceClient c)
-        {
-            var w = await c.GetAllPurchaseTicketAsync();
-
+            var test = LoginPanel;
+            var test2 = FinalizationTransaction;
         }
 
         private IExpandedNavigation CreateNavigationService()
@@ -89,6 +104,9 @@ namespace Mobile.View.Config
             navigationService.Configure("MainMenuView", typeof(View.MainMenuView));
             navigationService.Configure("PurchaseHistoryView", typeof(View.PurchaseHistoryView));
             navigationService.Configure("TimetableView", typeof(View.TimetableView));
+            navigationService.Configure("BuyTicketCountView", typeof(View.BuyTicketCountView));
+            navigationService.Configure("FinalizationTransactionView", typeof(View.FinalizationTransactionView));
+
 
             return navigationService;
         }

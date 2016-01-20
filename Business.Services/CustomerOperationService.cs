@@ -50,16 +50,19 @@ namespace Business.Services
             return ConvertToReturn(customerPurchaseTickets);
         }
 
-        public IEnumerable<PurchaseTicket> GetAllPurchaseTicket(string userName, string password)
+        public IEnumerable<ExpandedPurchaseTicket> GetAllPurchaseTicket(string userName, string password)
         {
             FindCustomer(userName, password);
 
             _purchaseTicketRepository.EnrollUnitOfWork(_unitOfWork);
 
             var customerPurchaseTickets = _purchaseTicketRepository
-                .FindBy(p => p.Customer?.Email == _actualLoggedCustomer.Email, "Customer");
+                .FindBy(p => p.CustomerId == _actualLoggedCustomer.Id, "Ticket");
 
-            return ConvertToReturn(customerPurchaseTickets);
+            AutoMapper.Mapper.CreateMap<Data.Entities.PurchaseTicket, ExpandedPurchaseTicket>()
+                .ForMember(e => e.TicketName, p => p.MapFrom(t => t.Ticket.Name));
+
+            return AutoMapper.Mapper.Map<IEnumerable<ExpandedPurchaseTicket>>(customerPurchaseTickets);
         }
 
         public IEnumerable<PurchaseTicket> GetActivePurchaseTicket(string userName, string password, string deviceId)
@@ -74,6 +77,13 @@ namespace Business.Services
                 .FindBy(p => p.Customer?.Email == _actualLoggedCustomer.Email && p.DateOfPurchase < DateTime.Now, "Customer");
 
             return ConvertToReturn(customerPurchaseTickets);
+        }
+
+        public double GetAccountBallance(string userName, string password)
+        {
+            FindCustomer(userName, password);
+
+            return _actualLoggedCustomer.AccountBallance;
         }
 
         public void UpdateCustomerEmail(string userName, string password, string email)
@@ -227,8 +237,10 @@ namespace Business.Services
         private void PayForTickets(double price)
         {
             _customerRepository.EnrollUnitOfWork(_unitOfWork);
+            
+            var actualLoggedCustomer = _customerRepository.FindBy(c => c.Id == _actualLoggedCustomer.Id).First();
 
-            _actualLoggedCustomer.AccountBallance -= price;
+            actualLoggedCustomer.AccountBallance -= price;
 
             _unitOfWork.Commit();
         }
@@ -255,11 +267,16 @@ namespace Business.Services
         private double GetDiscountPercent()
         {
             _discountRepository.EnrollUnitOfWork(_unitOfWork);
-
-            var  discountPrice =
+            try
+            {
+                var discountPrice =
                     _discountRepository.FindBy(d => d.Id == _purchaseTicket.DiscountId && !d.IsDeleted).First().Percent;
-
-            return discountPrice/100;
+                return discountPrice / 100;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
         }
 
         private double GetTicketPrice()

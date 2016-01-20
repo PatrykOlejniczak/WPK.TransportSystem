@@ -1,6 +1,5 @@
 ﻿using System.ServiceModel;
 using Mobile.Helper.Services.CustomerOperationService;
-using Mobile.Helper.Services.InjectProviders;
 using Mobile.ViewModel.Helpers;
 
 namespace Mobile.Helper.Services.ServiceConfiguration
@@ -14,26 +13,11 @@ namespace Mobile.Helper.Services.ServiceConfiguration
         public CustomerOperationServiceConfiguration(IAccountManager accountManager)
         {
             _accountManager = accountManager;
-            BasicHttpBinding httpBinding = new BasicHttpBinding()
-            {
-                Security =
-                {
-                    Mode = BasicHttpSecurityMode.TransportWithMessageCredential,
-                }
-            };
+            BasicHttpBinding httpBinding = new BasicHttpBinding();
 
             CustomerOperationServiceClient =
                 new CustomerOperationServiceClient(httpBinding, EndPoints.CustomerOperation);
-        }
 
-        public void SetCredentials()
-        {
-            CustomerOperationServiceClient.ClientCredentials.UserName.UserName =
-                _accountManager.ActualLoggedUser.Email;
-
-            CustomerOperationServiceClient.ClientCredentials.UserName.Password =
-                _accountManager.ActualLoggedUser.Password;
-        }
-         
+        }         
     }
 }

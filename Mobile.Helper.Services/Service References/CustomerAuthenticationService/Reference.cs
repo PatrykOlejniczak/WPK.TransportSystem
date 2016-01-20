@@ -20,25 +20,25 @@ namespace Mobile.Helper.Services.CustomerAuthenticationService {
     [System.Runtime.Serialization.DataContractAttribute(Name="Customer", Namespace="Wpk.Entities")]
     public partial class Customer : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private double AccountBalanceField;
+        private double AccountBallanceField;
         
         private string EmailField;
         
         private string HashPasswordField;
         
-        private int IdField;
+        private System.Nullable<int> IdField;
         
         private bool IsDeletedField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double AccountBalance {
+        public double AccountBallance {
             get {
-                return this.AccountBalanceField;
+                return this.AccountBallanceField;
             }
             set {
-                if ((this.AccountBalanceField.Equals(value) != true)) {
-                    this.AccountBalanceField = value;
-                    this.RaisePropertyChanged("AccountBalance");
+                if ((this.AccountBallanceField.Equals(value) != true)) {
+                    this.AccountBallanceField = value;
+                    this.RaisePropertyChanged("AccountBallance");
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace Mobile.Helper.Services.CustomerAuthenticationService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
+        public System.Nullable<int> Id {
             get {
                 return this.IdField;
             }
@@ -109,15 +109,15 @@ namespace Mobile.Helper.Services.CustomerAuthenticationService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CustomerAuthenticationService.ICustomerAuthenticationService")]
     public interface ICustomerAuthenticationService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerAuthenticationService/GetCustomerInfo", ReplyAction="http://tempuri.org/ICustomerAuthenticationService/GetCustomerInfoResponse")]
-        System.Threading.Tasks.Task<Mobile.Helper.Services.CustomerAuthenticationService.Customer> GetCustomerInfoAsync(string email, string password);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerAuthenticationService/IsCustomerExists", ReplyAction="http://tempuri.org/ICustomerAuthenticationService/IsCustomerExistsResponse")]
         System.Threading.Tasks.Task<bool> IsCustomerExistsAsync(string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerAuthenticationService/IsCorrectCredentialsCorrect", ReplyAction="http://tempuri.org/ICustomerAuthenticationService/IsCorrectCredentialsCorrectResp" +
             "onse")]
         System.Threading.Tasks.Task<bool> IsCorrectCredentialsCorrectAsync(string email, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerAuthenticationService/GetInfoAboutCustomer", ReplyAction="http://tempuri.org/ICustomerAuthenticationService/GetInfoAboutCustomerResponse")]
+        System.Threading.Tasks.Task<Mobile.Helper.Services.CustomerAuthenticationService.Customer> GetInfoAboutCustomerAsync(string email, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerAuthenticationService/Register", ReplyAction="http://tempuri.org/ICustomerAuthenticationService/RegisterResponse")]
         System.Threading.Tasks.Task<bool> RegisterAsync(string email, string password);
@@ -169,16 +169,16 @@ namespace Mobile.Helper.Services.CustomerAuthenticationService {
                 base(binding, remoteAddress) {
         }
         
-        public System.Threading.Tasks.Task<Mobile.Helper.Services.CustomerAuthenticationService.Customer> GetCustomerInfoAsync(string email, string password) {
-            return base.Channel.GetCustomerInfoAsync(email, password);
-        }
-        
         public System.Threading.Tasks.Task<bool> IsCustomerExistsAsync(string email) {
             return base.Channel.IsCustomerExistsAsync(email);
         }
         
         public System.Threading.Tasks.Task<bool> IsCorrectCredentialsCorrectAsync(string email, string password) {
             return base.Channel.IsCorrectCredentialsCorrectAsync(email, password);
+        }
+        
+        public System.Threading.Tasks.Task<Mobile.Helper.Services.CustomerAuthenticationService.Customer> GetInfoAboutCustomerAsync(string email, string password) {
+            return base.Channel.GetInfoAboutCustomerAsync(email, password);
         }
         
         public System.Threading.Tasks.Task<bool> RegisterAsync(string email, string password) {

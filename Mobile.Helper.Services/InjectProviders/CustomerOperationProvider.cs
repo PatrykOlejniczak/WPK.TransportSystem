@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ServiceModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Mobile.Helper.Services.CustomerOperationService;
 using Mobile.Helper.Services.ServiceConfiguration;
@@ -15,6 +15,7 @@ namespace Mobile.Helper.Services.InjectProviders
         private readonly IAccountManager _accountManager;
         private readonly CustomerOperationServiceClient _customerOperationServiceClient;
         private CustomerOperationServiceConfiguration config;
+
         public CustomerOperationProvider(IAccountManager accountManager)
         {
             _accountManager = accountManager;
@@ -23,37 +24,26 @@ namespace Mobile.Helper.Services.InjectProviders
             _customerOperationServiceClient = config.CustomerOperationServiceClient;
         }
 
-        public Task<ObservableCollection<BoostAccount>> GetAllBoostAccountAsync()
+        public async Task<ObservableCollection<BoostAccount>> GetAllBoostAccountAsync()
         {
-            throw new System.NotImplementedException();
+            var boostAccount = await _customerOperationServiceClient
+                .GetAllBoostAccountAsync("basia.kowalska@onet.eu", "kowalska");
+
+            AutoMapper.Mapper.CreateMap<BoostAccount, CustomerOperationService.BoostAccount>();
+            AutoMapper.Mapper.CreateMap<CustomerOperationService.BoostAccount, BoostAccount>();
+
+            return new ObservableCollection<BoostAccount>(AutoMapper.Mapper.Map<IEnumerable<BoostAccount>>(boostAccount));
         }
 
         public async Task<ObservableCollection<PurchaseTicket>> GetAllPurchaseTicketAsync()
         {
+            var purchaseTickets = await _customerOperationServiceClient
+                                    .GetAllPurchaseTicketAsync("basia.kowalska@onet.eu", "kowalska");
 
-            //config.SetCredentials();
-            //var f = await _customerOperationServiceClient.GetAllPurchaseTicketAsync();
-
-            //AutoMapper.Mapper.CreateMap<CustomerOperationService.PurchaseTicket, PurchaseTicket>();
-            //AutoMapper.Mapper.CreateMap<PurchaseTicket, CustomerOperationService.PurchaseTicket>();
-            //var converted = AutoMapper.Mapper.Map<IEnumerable<PurchaseTicket>>(f);
-
-            BasicHttpBinding httpBinding = new BasicHttpBinding()
-            {
-                Security =
-                {
-                    Mode = BasicHttpSecurityMode.TransportWithMessageCredential,
-                }
-            };
-            var address = new EndpointAddress("https://localhost:44300/Services/CustomerOperationService.svc/basicHttp");
-            var customerOperationService =
-                new CustomerOperationServiceClient(httpBinding, address);
-
-            customerOperationService.ClientCredentials.UserName.UserName = "basia.kowalska@onet.eu";
-            customerOperationService.ClientCredentials.UserName.Password = "kowalska";
-            var w = await customerOperationService.GetAllPurchaseTicketAsync();
-
-            return new ObservableCollection<PurchaseTicket>(null);
+            AutoMapper.Mapper.CreateMap<PurchaseTicket, CustomerOperationService.ExpandedPurchaseTicket>();
+            AutoMapper.Mapper.CreateMap<CustomerOperationService.ExpandedPurchaseTicket, PurchaseTicket>();
+       
+            return new ObservableCollection<PurchaseTicket>(AutoMapper.Mapper.Map<IEnumerable<PurchaseTicket>>(purchaseTickets.OrderByDescending(p => p.DateOfPurchase)));
         }
 
         public Task UpdateCustomerEmail(string email)
@@ -66,9 +56,21 @@ namespace Mobile.Helper.Services.InjectProviders
             throw new System.NotImplementedException();
         }
 
-        public Task CreateNewPurchaseTicket(PurchaseTicket purchaseTicket, int howManyTickets)
+        public async Task CreateNewPurchaseTicket(PurchaseTicket purchaseTicket, int howManyTickets)
         {
-            throw new System.NotImplementedException();
+            var w = await _customerOperationServiceClient
+                .GetAllPurchaseTicketAsync("basia.kowalska@onet.eu", "kowalska");
+
+            AutoMapper.Mapper.CreateMap<PurchaseTicket, CustomerOperationService.PurchaseTicket>();
+
+            await _customerOperationServiceClient
+                .CreateNewPurchaseTicketAsync(
+                "basia.kowalska@onet.eu", "kowalska", 
+                AutoMapper.Mapper.Map<CustomerOperationService.PurchaseTicket>(purchaseTicket), 
+                howManyTickets);
+
+            var w2 = await _customerOperationServiceClient
+                .GetAllPurchaseTicketAsync("basia.kowalska@onet.eu", "kowalska");
         }
     }
 }

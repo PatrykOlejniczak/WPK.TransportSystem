@@ -28,7 +28,7 @@
     <MetadataFile FileName="AuthenticationCustomerManager.wsdl" MetadataType="Wsdl" ID="aae61aec-4700-462b-bc3b-fed808b7e55f" SourceId="1" SourceUrl="http://localhost:24462/Services/CustomerAuthenticationService.svc?wsdl" />
     <MetadataFile FileName="CustomerAuthenticationService1.xsd" MetadataType="Schema" ID="7380b5b6-080e-47af-812e-5a1f6b421b99" SourceId="1" SourceUrl="http://localhost:24462/Services/CustomerAuthenticationService.svc?xsd=xsd1" />
     <MetadataFile FileName="CustomerAuthenticationService.disco" MetadataType="Disco" ID="fa9589c0-6dac-4dea-bf14-1b674ddeeae3" SourceId="1" SourceUrl="http://localhost:24462/Services/CustomerAuthenticationService.svc?disco" />
-    <MetadataFile FileName="CustomerAuthenticationService2.xsd" MetadataType="Schema" ID="5377ace1-9a2b-450f-a219-a317964d0d49" SourceId="1" SourceUrl="http://localhost:24462/Services/CustomerAuthenticationService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CustomerAuthenticationService2.xsd" MetadataType="Schema" ID="27521f23-95a8-4690-acff-e346b4d4594a" SourceId="1" SourceUrl="http://localhost:24462/Services/CustomerAuthenticationService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

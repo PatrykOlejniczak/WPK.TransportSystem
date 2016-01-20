@@ -132,6 +132,9 @@
     <None Include="Service References\CustomerOperationService\Mobile.Helper.Services.CustomerOperationService.BoostAccount.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\CustomerOperationService\Mobile.Helper.Services.CustomerOperationService.ExpandedPurchaseTicket.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\CustomerOperationService\Mobile.Helper.Services.CustomerOperationService.PurchaseTicket.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

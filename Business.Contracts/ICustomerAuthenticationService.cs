@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using Business.Entities;
 
 namespace Business.Contracts
 {
@@ -10,6 +11,9 @@ namespace Business.Contracts
 
         [OperationContract]
         bool IsCorrectCredentialsCorrect(string email, string password);
+
+        [OperationContract]
+        Customer GetInfoAboutCustomer(string email, string password);
 
         [OperationContract]
         bool Register(string email, string password);

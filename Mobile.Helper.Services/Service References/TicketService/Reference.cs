@@ -22,7 +22,7 @@ namespace Mobile.Helper.Services.TicketService {
         
         private System.TimeSpan DurationField;
         
-        private int IdField;
+        private System.Nullable<int> IdField;
         
         private bool IsDeletedField;
         
@@ -46,7 +46,7 @@ namespace Mobile.Helper.Services.TicketService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
+        public System.Nullable<int> Id {
             get {
                 return this.IdField;
             }
@@ -117,6 +117,117 @@ namespace Mobile.Helper.Services.TicketService {
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TicketService.ITicketSecureService")]
+    public interface ITicketSecureService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSecureService/Create", ReplyAction="http://tempuri.org/ITicketSecureService/CreateResponse")]
+        System.Threading.Tasks.Task CreateAsync(Mobile.Helper.Services.TicketService.Ticket ticket);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSecureService/Update", ReplyAction="http://tempuri.org/ITicketSecureService/UpdateResponse")]
+        System.Threading.Tasks.Task UpdateAsync(Mobile.Helper.Services.TicketService.Ticket ticket);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSecureService/DeleteById", ReplyAction="http://tempuri.org/ITicketSecureService/DeleteByIdResponse")]
+        System.Threading.Tasks.Task DeleteByIdAsync(int id);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ITicketSecureServiceChannel : Mobile.Helper.Services.TicketService.ITicketSecureService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class TicketSecureServiceClient : System.ServiceModel.ClientBase<Mobile.Helper.Services.TicketService.ITicketSecureService>, Mobile.Helper.Services.TicketService.ITicketSecureService {
+        
+        /// <summary>
+        /// Implement this partial method to configure the service endpoint.
+        /// </summary>
+        /// <param name="serviceEndpoint">The endpoint to configure</param>
+        /// <param name="clientCredentials">The client credentials</param>
+        static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
+        
+        public TicketSecureServiceClient() : 
+                base(TicketSecureServiceClient.GetDefaultBinding(), TicketSecureServiceClient.GetDefaultEndpointAddress()) {
+            this.Endpoint.Name = EndpointConfiguration.BasicHttpBinding_ITicketSecureService.ToString();
+            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
+        }
+        
+        public TicketSecureServiceClient(EndpointConfiguration endpointConfiguration) : 
+                base(TicketSecureServiceClient.GetBindingForEndpoint(endpointConfiguration), TicketSecureServiceClient.GetEndpointAddress(endpointConfiguration)) {
+            this.Endpoint.Name = endpointConfiguration.ToString();
+            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
+        }
+        
+        public TicketSecureServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+                base(TicketSecureServiceClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress)) {
+            this.Endpoint.Name = endpointConfiguration.ToString();
+            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
+        }
+        
+        public TicketSecureServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(TicketSecureServiceClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress) {
+            this.Endpoint.Name = endpointConfiguration.ToString();
+            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
+        }
+        
+        public TicketSecureServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public System.Threading.Tasks.Task CreateAsync(Mobile.Helper.Services.TicketService.Ticket ticket) {
+            return base.Channel.CreateAsync(ticket);
+        }
+        
+        public System.Threading.Tasks.Task UpdateAsync(Mobile.Helper.Services.TicketService.Ticket ticket) {
+            return base.Channel.UpdateAsync(ticket);
+        }
+        
+        public System.Threading.Tasks.Task DeleteByIdAsync(int id) {
+            return base.Channel.DeleteByIdAsync(id);
+        }
+        
+        public virtual System.Threading.Tasks.Task OpenAsync() {
+            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
+        }
+        
+        public virtual System.Threading.Tasks.Task CloseAsync() {
+            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
+        }
+        
+        private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration) {
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ITicketSecureService)) {
+                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
+                result.MaxBufferSize = int.MaxValue;
+                result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
+                result.MaxReceivedMessageSize = int.MaxValue;
+                result.AllowCookies = true;
+                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.TransportWithMessageCredential;
+                return result;
+            }
+            throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
+        }
+        
+        private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ITicketSecureService)) {
+                return new System.ServiceModel.EndpointAddress("https://localhost:44300/Services/TicketService.svc/secure");
+            }
+            throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
+        }
+        
+        private static System.ServiceModel.Channels.Binding GetDefaultBinding() {
+            return TicketSecureServiceClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_ITicketSecureService);
+        }
+        
+        private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress() {
+            return TicketSecureServiceClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_ITicketSecureService);
+        }
+        
+        public enum EndpointConfiguration {
+            
+            BasicHttpBinding_ITicketSecureService,
         }
     }
     
@@ -248,53 +359,6 @@ namespace Mobile.Helper.Services.TicketService {
         public enum EndpointConfiguration {
             
             BasicHttpBinding_ITicketService,
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TicketService.ITicketSecureService")]
-    public interface ITicketSecureService {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSecureService/Create", ReplyAction="http://tempuri.org/ITicketSecureService/CreateResponse")]
-        System.Threading.Tasks.Task CreateAsync(Mobile.Helper.Services.TicketService.Ticket ticket);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSecureService/Update", ReplyAction="http://tempuri.org/ITicketSecureService/UpdateResponse")]
-        System.Threading.Tasks.Task UpdateAsync(Mobile.Helper.Services.TicketService.Ticket ticket);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSecureService/DeleteById", ReplyAction="http://tempuri.org/ITicketSecureService/DeleteByIdResponse")]
-        System.Threading.Tasks.Task DeleteByIdAsync(int id);
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITicketSecureServiceChannel : Mobile.Helper.Services.TicketService.ITicketSecureService, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TicketSecureServiceClient : System.ServiceModel.ClientBase<Mobile.Helper.Services.TicketService.ITicketSecureService>, Mobile.Helper.Services.TicketService.ITicketSecureService {
-        
-        public TicketSecureServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
-        }
-        
-        public System.Threading.Tasks.Task CreateAsync(Mobile.Helper.Services.TicketService.Ticket ticket) {
-            return base.Channel.CreateAsync(ticket);
-        }
-        
-        public System.Threading.Tasks.Task UpdateAsync(Mobile.Helper.Services.TicketService.Ticket ticket) {
-            return base.Channel.UpdateAsync(ticket);
-        }
-        
-        public System.Threading.Tasks.Task DeleteByIdAsync(int id) {
-            return base.Channel.DeleteByIdAsync(id);
-        }
-        
-        public virtual System.Threading.Tasks.Task OpenAsync() {
-            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
-        }
-        
-        public virtual System.Threading.Tasks.Task CloseAsync() {
-            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
         }
     }
 }

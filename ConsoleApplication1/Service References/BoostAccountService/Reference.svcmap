@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cb2b48c0-e5de-4cc8-81da-3514223a4fe1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:24462/Services/BoostAccountSecureService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BoostAccountSecureService.disco" MetadataType="Disco" ID="4f012e80-422e-4866-a62c-3f90c48c8014" SourceId="1" SourceUrl="http://localhost:24462/Services/BoostAccountSecureService.svc?disco" />
+    <MetadataFile FileName="BoostAccountSecureService.xsd" MetadataType="Schema" ID="c5cd05ae-59fa-4a86-9ae8-2fa0523ca79f" SourceId="1" SourceUrl="http://localhost:24462/Services/BoostAccountSecureService.svc?xsd=xsd0" />
+    <MetadataFile FileName="BoostAccountSecureService1.xsd" MetadataType="Schema" ID="d5157944-3487-4f11-a27c-aca620450bdd" SourceId="1" SourceUrl="http://localhost:24462/Services/BoostAccountSecureService.svc?xsd=xsd2" />
+    <MetadataFile FileName="BoostAccountSecureService2.xsd" MetadataType="Schema" ID="c39a0b5e-7330-41f2-9fea-f3ee2274d418" SourceId="1" SourceUrl="http://localhost:24462/Services/BoostAccountSecureService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BoostAccountManager.wsdl" MetadataType="Wsdl" ID="034dbe19-1808-4011-a574-6a5c33192d16" SourceId="1" SourceUrl="http://localhost:24462/Services/BoostAccountSecureService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

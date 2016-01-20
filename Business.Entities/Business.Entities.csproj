@@ -65,6 +65,7 @@
     <Compile Include="Discount.cs" />
     <Compile Include="DistanceBetweenStops.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="ExpandedPurchaseTicket.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="News.cs" />
     <Compile Include="Photo.cs" />

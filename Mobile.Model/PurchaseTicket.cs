@@ -9,6 +9,7 @@ namespace Mobile.Model
         public string DeviceId { get; set; }
         public string FirstNameTicketOwner { get; set; }
         public string LastNameTicketOwner { get; set; }
+        public string TicketName { get; set; }
         public int TicketId { get; set; }
         public int? DiscountId { get; set; }
         public int CustomerId { get; set; }

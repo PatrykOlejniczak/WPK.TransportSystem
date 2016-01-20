@@ -1,5 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Mobile.Model;
 using Mobile.ViewModel.Helpers;
 
@@ -7,6 +10,7 @@ namespace Mobile.ViewModel
 {
     public class ChooseTicketTypeViewModel : ViewModelBase
     {
+        public IAccountManager AccountManager { get; private set; }
         public IExpandedNavigation NavigationService { get; private set; }
         public ITicketProvider TicketProvider { get; private set; }
 
@@ -16,7 +20,7 @@ namespace Mobile.ViewModel
             get { return _oneTimeTickets; }
             set
             {
-                if (_oneTimeTickets != null && _oneTimeTickets != value)
+                if (value != null && _oneTimeTickets != value)
                 {
                     _oneTimeTickets = value;
                 }
@@ -32,7 +36,7 @@ namespace Mobile.ViewModel
             get { return _seasonTickets; }
             set
             {
-                if (_seasonTickets != null && _seasonTickets != value)
+                if (value != null && _seasonTickets != value)
                 {
                     _seasonTickets = value;
                 }
@@ -41,19 +45,33 @@ namespace Mobile.ViewModel
             }
         }
 
-        private ObservableCollection<Ticket> _downloadedTickets; 
+        private Ticket _selectedTicket;
+        public Ticket SelectedTicket
+        {
+            get
+            {
+                return _selectedTicket;
+            }
+            set
+            {
+                _selectedTicket = value;
+                Messenger.Default.Send(_selectedTicket);
+                RaisePropertyChanged();
+                NavigateToBuyTicketCount.Execute(null);
+            }
+        }
 
+        private ObservableCollection<Ticket> _downloadedTickets;
+        public ICommand NavigateToBuyTicketCount { get; private set; }
         public ChooseTicketTypeViewModel(
-            IExpandedNavigation navigationService, ITicketProvider ticketProvider)
+            IExpandedNavigation navigationService, ITicketProvider ticketProvider, IAccountManager accountManager)
         {
             NavigationService = navigationService;
             TicketProvider = ticketProvider;
-            
-            OneTimeTickets = new ObservableCollection<Ticket>();
-            SeasonTickets = new ObservableCollection<Ticket>();
+            AccountManager = accountManager;
 
-            SeasonTickets = new ObservableCollection<Ticket>();
             OneTimeTickets = new ObservableCollection<Ticket>();
+            SeasonTickets = new ObservableCollection<Ticket>();
 
             DownloadTickets();
         }
@@ -66,6 +84,14 @@ namespace Mobile.ViewModel
             {
                 SeparateToGroups();
             }
+
+            NavigateToBuyTicketCount
+                = new RelayCommand(ExecuteNavigateToBuyTicketCount);
+        }
+
+        private void ExecuteNavigateToBuyTicketCount()
+        {
+            NavigationService.NavigateTo("BuyTicketCountView");
         }
 
         private void SeparateToGroups()

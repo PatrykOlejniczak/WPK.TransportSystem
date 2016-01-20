@@ -7,8 +7,10 @@
     RequestedTheme="Light">
 
     <Application.Resources>
+
         <config:ViewModelLocator
             x:Key="ViewModelLocator" />
+        
     </Application.Resources>
 
 </Application>

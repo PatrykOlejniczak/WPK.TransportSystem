@@ -5,40 +5,79 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:Mobile.View.UserControls"
+    xmlns:converters="using:Mobile.View.Converters"
     mc:Ignorable="d"
     DataContext="{Binding Login, Source={StaticResource ViewModelLocator}}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot>
-            <PivotItem Header="Login">
+    <Page.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Page.Resources>
+    
+    <Grid Background="#5CA595">
+        <Pivot Margin="10, 40, 0, 0">
+            <PivotItem>
+                <PivotItem.Header >
+                    <TextBlock Text="login" Foreground="White" FontSize="40"/>
+                </PivotItem.Header>
                 <Grid>
-                    <StackPanel>
-                        <TextBlock Text="E-mail"/>
-                        <TextBox Text="{Binding Path=LoginEmail, Mode=TwoWay}"/>
-                        <TextBlock Text="Password" />
-                        <userControls:PasswordGuardianControl x:Name="LoginPasswordBox"/>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox/>
-                            <TextBlock Text="Remember me"/>
-                        </StackPanel>
-                        <Button Content="Log me" 
+                    <StackPanel Margin="30">
+                        <Image Source="../Images/Logo.png" Margin="30"/>
+                        <TextBox Text="{Binding Path=LoginEmail, Mode=TwoWay}" Margin="0, 10, 0, 10" Height="45"/>
+                        <userControls:PasswordGuardianControl x:Name="LoginPasswordBox" Margin="0, 10, 0, 10" Height="45"/>
+                        <Button Content="Sign me"
+                                FontWeight="Light"
+                                FontSize="40"
+                                Margin="0, 20, 0, 0"
+                                Foreground="White"
                                 Command="{Binding LogUser}"
-                                CommandParameter="{Binding ElementName=LoginPasswordBox}"/>
+                                CommandParameter="{Binding ElementName=LoginPasswordBox}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <TextBlock Text="{TemplateBinding Content}" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
                     </StackPanel>
                 </Grid>
             </PivotItem>
-            <PivotItem Header="Register">
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="register" Foreground="White" FontSize="40"/>
+                </PivotItem.Header>
                 <Grid>
-                    <StackPanel>
-                        <TextBlock Text="Email"/>
-                        <TextBox Text="{Binding RegisterEmail}"/>
-                        <TextBlock Text="Password"/>
-                        <userControls:PasswordGuardianControl x:Name="RegisterPasswordBox"/>
-                        <Button Content="Register" 
+                    <StackPanel Margin="30">
+                        <TextBox Text="{Binding RegisterEmail}"
+                                 Margin="0, 50, 0, 10"
+                                 Height="45"/>
+                        <userControls:PasswordGuardianControl x:Name="RegisterPasswordBox"
+                                                              Margin="0, 10, 0, 10"
+                                                              Height="45"/>
+                        <Button Content="Register"
+                                FontWeight="Light"
+                                FontSize="40"
+                                Margin="0, 0, 0, 0"
+                                Foreground="White"
                                 Command="{Binding RegisterUser}"
-                                CommandParameter="{Binding ElementName=RegisterPasswordBox}"/>
-                        <Button Content="Use without logging"
-                                Command="{Binding NavigateToMainMenu}"/>
+                                CommandParameter="{Binding ElementName=RegisterPasswordBox}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <TextBlock Text="{TemplateBinding Content}" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Content="forgot your password?"
+                                FontWeight="Light"
+                                FontSize="25"
+                                Margin="0, 60, 0, 0"
+                                Foreground="White"
+                                Command="{Binding NavigateToMainMenu}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <TextBlock Text="{TemplateBinding Content}" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Image Source="../Images/CirclePanel.png" Height="100" Margin="0, 100, 0, 0"/>
                     </StackPanel>
                 </Grid>
             </PivotItem>

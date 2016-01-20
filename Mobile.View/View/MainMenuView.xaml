@@ -5,37 +5,126 @@
     xmlns:local="using:Mobile.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interop="using:Windows.UI.Xaml.Interop"
+    xmlns:converters="using:Mobile.View.Converters"
+    xmlns:userControls="using:Mobile.View.UserControls"
     mc:Ignorable="d"
     DataContext="{Binding MainMenu, Source={StaticResource ViewModelLocator}}">
+<Page.Resources>
+        <converters:EmptyListToVisibityConverter x:Key="EmptyListToVisibilityConverter"/>
 
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="40,40,0,0">
-            <StackPanel>
-                <Button Content="Buy ticket"
-                                    Command="{Binding NavigateToBuyTicket}"/>
-                <Button Content="Boost account"
-                                        Command="{Binding NavigateToBoostAccount}"/>
-                <Button Content="Purchase history"
-                                        Command="{Binding NavigateToPurchaseHistory}"/>
-                <Button Content="Timetable"
-                                        Command="{Binding NavigateToTimetable}"/>
-            </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Logged user:"></TextBlock>
-                <TextBlock Text="{Binding Customer.Email}"/>
-                <TextBlock Text="Account ballance:"/>
-                <TextBlock Text="{Binding Customer.AccountBalance}"/>
-            </StackPanel>
+        <StackPanel Margin="20,40,20,0">
+            <userControls:LoginPanel />
             <Grid>
-                    <ListBox                       
-                        ItemsSource="{Binding ActivePurchaseTickets}"
-                        DisplayMemberPath="DateOfPurchase">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                    </ListBox>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#5CA595"
+                        Grid.Column="0"
+                        Margin="5"
+                        Grid.Row="0"
+                        Command="{Binding NavigateToBuyTicket}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="../Images/bilet.png" Margin="10"/>
+                        <TextBlock Text="Buy Ticket" Grid.Column="1" Foreground="White" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+                <Button HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#5CA595"
+                        Grid.Column="0"
+                        Margin="5"
+                        Grid.Row="1"
+                        Command="{Binding NavigateToBoostAccount}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="../Images/wallet.png" Margin="10"/>
+                        <TextBlock Text="Boost account" Grid.Column="1" Foreground="White" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+                <Button HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#5CA595"
+                        Grid.Column="1"
+                        Margin="5"
+                        Grid.Row="0"
+                        Command="{Binding NavigateToPurchaseHistory}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="../Images/historia.png" Margin="10"/>
+                        <TextBlock Text="Purchase history" Grid.Column="1" Foreground="White" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+                <Button HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#5CA595"
+                        Grid.Column="1"
+                        Margin="5"
+                        Grid.Row="1"
+                        Command="{Binding NavigateToTimetable}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="../Images/tram.png" Margin="10"/>
+                        <TextBlock Text="Timetable" Grid.Column="1" Foreground="White" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </Grid>
+            <Grid Height="150">
+                <ListBox                       
+                    ItemsSource="{Binding FavouriteLines}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+                <Grid Margin="0, 20, 0, 0" Visibility="{Binding FavouriteLines, Converter={StaticResource EmptyListToVisibilityConverter}}">
+                    <StackPanel Height="150">
+                        <TextBlock Text ="Favorite lines"/>
+                        <Image Source="../Images/brak.png" Height="70" Margin="0, 5, 0, 5"/>
+                        <TextBlock Text ="No favorite lines" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Height="150">
+                <ListBox                       
+                    ItemsSource="{Binding ActivePurchaseTickets}"
+                    DisplayMemberPath="DateOfPurchase">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+                <Grid Visibility="{Binding FavouriteLines, Converter={StaticResource EmptyListToVisibilityConverter}}">
+                    <StackPanel Height="150">
+                        <TextBlock Text ="Active tickets"/>
+                        <Image Source="../Images/brak.png" Height="70" Margin="0, 5, 0, 5"/>
+                        <TextBlock Text ="No active lines" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
             </Grid>
         </StackPanel>
     </Grid>

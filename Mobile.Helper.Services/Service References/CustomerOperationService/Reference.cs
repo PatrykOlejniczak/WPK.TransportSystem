@@ -30,7 +30,7 @@ namespace Mobile.Helper.Services.CustomerOperationService {
         
         private System.DateTime GeneratedDateTimeField;
         
-        private int IdField;
+        private System.Nullable<int> IdField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public double Amount {
@@ -98,7 +98,7 @@ namespace Mobile.Helper.Services.CustomerOperationService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
+        public System.Nullable<int> Id {
             get {
                 return this.IdField;
             }
@@ -122,7 +122,29 @@ namespace Mobile.Helper.Services.CustomerOperationService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ExpandedPurchaseTicket", Namespace="Wpk.Entities")]
+    public partial class ExpandedPurchaseTicket : Mobile.Helper.Services.CustomerOperationService.PurchaseTicket {
+        
+        private string TicketNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TicketName {
+            get {
+                return this.TicketNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TicketNameField, value) != true)) {
+                    this.TicketNameField = value;
+                    this.RaisePropertyChanged("TicketName");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="PurchaseTicket", Namespace="Wpk.Entities")]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Mobile.Helper.Services.CustomerOperationService.ExpandedPurchaseTicket))]
     public partial class PurchaseTicket : object, System.ComponentModel.INotifyPropertyChanged {
         
         private int CustomerIdField;
@@ -133,9 +155,11 @@ namespace Mobile.Helper.Services.CustomerOperationService {
         
         private System.Nullable<int> DiscountIdField;
         
+        private string DocumentIdentificationNumberField;
+        
         private string FirstNameTicketOwnerField;
         
-        private int IdField;
+        private System.Nullable<int> IdField;
         
         private string LastNameTicketOwnerField;
         
@@ -194,6 +218,19 @@ namespace Mobile.Helper.Services.CustomerOperationService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DocumentIdentificationNumber {
+            get {
+                return this.DocumentIdentificationNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocumentIdentificationNumberField, value) != true)) {
+                    this.DocumentIdentificationNumberField = value;
+                    this.RaisePropertyChanged("DocumentIdentificationNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string FirstNameTicketOwner {
             get {
                 return this.FirstNameTicketOwnerField;
@@ -207,7 +244,7 @@ namespace Mobile.Helper.Services.CustomerOperationService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
+        public System.Nullable<int> Id {
             get {
                 return this.IdField;
             }
@@ -260,25 +297,28 @@ namespace Mobile.Helper.Services.CustomerOperationService {
     public interface ICustomerOperationService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetAllBoostAccount", ReplyAction="http://tempuri.org/ICustomerOperationService/GetAllBoostAccountResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.BoostAccount>> GetAllBoostAccountAsync();
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.BoostAccount>> GetAllBoostAccountAsync(string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetAllPurchaseTicket", ReplyAction="http://tempuri.org/ICustomerOperationService/GetAllPurchaseTicketResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.PurchaseTicket>> GetAllPurchaseTicketAsync();
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.ExpandedPurchaseTicket>> GetAllPurchaseTicketAsync(string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetActivePurchaseTicket", ReplyAction="http://tempuri.org/ICustomerOperationService/GetActivePurchaseTicketResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.PurchaseTicket>> GetActivePurchaseTicketAsync(string deviceId);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.PurchaseTicket>> GetActivePurchaseTicketAsync(string userName, string password, string deviceId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetAccountBallance", ReplyAction="http://tempuri.org/ICustomerOperationService/GetAccountBallanceResponse")]
+        System.Threading.Tasks.Task<double> GetAccountBallanceAsync(string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/UpdateCustomerEmail", ReplyAction="http://tempuri.org/ICustomerOperationService/UpdateCustomerEmailResponse")]
-        System.Threading.Tasks.Task UpdateCustomerEmailAsync(string email);
+        System.Threading.Tasks.Task UpdateCustomerEmailAsync(string userName, string password, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/UpdateCustomerPassword", ReplyAction="http://tempuri.org/ICustomerOperationService/UpdateCustomerPasswordResponse")]
-        System.Threading.Tasks.Task UpdateCustomerPasswordAsync(string newPassword, string oldPassword);
+        System.Threading.Tasks.Task UpdateCustomerPasswordAsync(string userName, string password, string newPassword);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/CreateNewBoostAccount", ReplyAction="http://tempuri.org/ICustomerOperationService/CreateNewBoostAccountResponse")]
-        System.Threading.Tasks.Task CreateNewBoostAccountAsync(string code);
+        System.Threading.Tasks.Task CreateNewBoostAccountAsync(string userName, string password, string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/CreateNewPurchaseTicket", ReplyAction="http://tempuri.org/ICustomerOperationService/CreateNewPurchaseTicketResponse")]
-        System.Threading.Tasks.Task CreateNewPurchaseTicketAsync(Mobile.Helper.Services.CustomerOperationService.PurchaseTicket purchaseTicket, int howManyTickets);
+        System.Threading.Tasks.Task CreateNewPurchaseTicketAsync(string userName, string password, Mobile.Helper.Services.CustomerOperationService.PurchaseTicket purchaseTicket, int howManyTickets);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -324,32 +364,36 @@ namespace Mobile.Helper.Services.CustomerOperationService {
                 base(binding, remoteAddress) {
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.BoostAccount>> GetAllBoostAccountAsync() {
-            return base.Channel.GetAllBoostAccountAsync();
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.BoostAccount>> GetAllBoostAccountAsync(string userName, string password) {
+            return base.Channel.GetAllBoostAccountAsync(userName, password);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.PurchaseTicket>> GetAllPurchaseTicketAsync() {
-            return base.Channel.GetAllPurchaseTicketAsync();
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.ExpandedPurchaseTicket>> GetAllPurchaseTicketAsync(string userName, string password) {
+            return base.Channel.GetAllPurchaseTicketAsync(userName, password);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.PurchaseTicket>> GetActivePurchaseTicketAsync(string deviceId) {
-            return base.Channel.GetActivePurchaseTicketAsync(deviceId);
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.PurchaseTicket>> GetActivePurchaseTicketAsync(string userName, string password, string deviceId) {
+            return base.Channel.GetActivePurchaseTicketAsync(userName, password, deviceId);
         }
         
-        public System.Threading.Tasks.Task UpdateCustomerEmailAsync(string email) {
-            return base.Channel.UpdateCustomerEmailAsync(email);
+        public System.Threading.Tasks.Task<double> GetAccountBallanceAsync(string userName, string password) {
+            return base.Channel.GetAccountBallanceAsync(userName, password);
         }
         
-        public System.Threading.Tasks.Task UpdateCustomerPasswordAsync(string newPassword, string oldPassword) {
-            return base.Channel.UpdateCustomerPasswordAsync(newPassword, oldPassword);
+        public System.Threading.Tasks.Task UpdateCustomerEmailAsync(string userName, string password, string email) {
+            return base.Channel.UpdateCustomerEmailAsync(userName, password, email);
         }
         
-        public System.Threading.Tasks.Task CreateNewBoostAccountAsync(string code) {
-            return base.Channel.CreateNewBoostAccountAsync(code);
+        public System.Threading.Tasks.Task UpdateCustomerPasswordAsync(string userName, string password, string newPassword) {
+            return base.Channel.UpdateCustomerPasswordAsync(userName, password, newPassword);
         }
         
-        public System.Threading.Tasks.Task CreateNewPurchaseTicketAsync(Mobile.Helper.Services.CustomerOperationService.PurchaseTicket purchaseTicket, int howManyTickets) {
-            return base.Channel.CreateNewPurchaseTicketAsync(purchaseTicket, howManyTickets);
+        public System.Threading.Tasks.Task CreateNewBoostAccountAsync(string userName, string password, string code) {
+            return base.Channel.CreateNewBoostAccountAsync(userName, password, code);
+        }
+        
+        public System.Threading.Tasks.Task CreateNewPurchaseTicketAsync(string userName, string password, Mobile.Helper.Services.CustomerOperationService.PurchaseTicket purchaseTicket, int howManyTickets) {
+            return base.Channel.CreateNewPurchaseTicketAsync(userName, password, purchaseTicket, howManyTickets);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {
@@ -367,7 +411,6 @@ namespace Mobile.Helper.Services.CustomerOperationService {
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
                 result.AllowCookies = true;
-                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.TransportWithMessageCredential;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
@@ -375,7 +418,7 @@ namespace Mobile.Helper.Services.CustomerOperationService {
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ICustomerOperationService)) {
-                return new System.ServiceModel.EndpointAddress("https://localhost:44300/Services/CustomerOperationService.svc/basicHttp");
+                return new System.ServiceModel.EndpointAddress("http://localhost:24462/Services/CustomerOperationService.svc/basicHttp");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }

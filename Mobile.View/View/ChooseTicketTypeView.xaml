@@ -5,25 +5,31 @@
     xmlns:local="using:Mobile.View.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:Mobile.View.UserControls"
     mc:Ignorable="d"
     DataContext="{Binding ChooseTicketType, Source={StaticResource ViewModelLocator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot>
+        <StackPanel>
+            <userControls:LoginPanel />
+            <Pivot>
             <PivotItem Header="OneTime">
                 <Grid>
                     <ListBox
                         ItemsSource="{Binding OneTimeTickets}"
-                        DisplayMemberPath="Name" />
+                        DisplayMemberPath="Name"
+                        SelectedItem="{Binding SelectedTicket, Mode=TwoWay}"/>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Season">
                 <Grid>
                     <ListBox
                         ItemsSource="{Binding SeasonTickets}"
-                        DisplayMemberPath="Name" />
+                        DisplayMemberPath="Name"
+                        SelectedItem="{Binding OneTimeTickets, Mode=TwoWay}"/>
                 </Grid>
             </PivotItem>
         </Pivot>
+        </StackPanel>
     </Grid>
 </Page>

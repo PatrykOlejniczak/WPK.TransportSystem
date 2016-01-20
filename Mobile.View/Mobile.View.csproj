@@ -99,16 +99,30 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Config\ViewModelLocator.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\DiscountToTextConverter.cs" />
+    <Compile Include="Converters\EmptyListToVisibityConverter.cs" />
+    <Compile Include="Converters\ListElementToBackground.cs" />
+    <Compile Include="Converters\TextInputToVisibilityConverter.cs" />
     <Compile Include="Helpers\ExpandedNavigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\LoginPanel.xaml.cs">
+      <DependentUpon>LoginPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PasswordGuardianControl.xaml.cs">
       <DependentUpon>PasswordGuardianControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BoostAccountView.xaml.cs">
       <DependentUpon>BoostAccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BuyTicketCountView.xaml.cs">
+      <DependentUpon>BuyTicketCountView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ChooseTicketTypeView.xaml.cs">
       <DependentUpon>ChooseTicketTypeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FinalizationTransactionView.xaml.cs">
+      <DependentUpon>FinalizationTransactionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -130,6 +144,16 @@
     <None Include="TransportSupport.View_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\bilet.png" />
+    <Content Include="Images\brak.png" />
+    <Content Include="Images\CirclePanel.png" />
+    <Content Include="Images\historia.png" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\logout.png" />
+    <Content Include="Images\qrcode.jpg" />
+    <Content Include="Images\tram.png" />
+    <Content Include="Images\ulu.png" />
+    <Content Include="Images\wallet.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -144,6 +168,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Styles\PivotHeaderColorStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\LoginPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\PasswordGuardianControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,7 +184,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\BuyTicketCountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ChooseTicketTypeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FinalizationTransactionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +223,7 @@
       <Name>Mobile.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

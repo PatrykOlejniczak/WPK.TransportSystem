@@ -2,6 +2,7 @@
 using System.Linq;
 using System.ServiceModel;
 using Business.Contracts;
+using Business.Entities;
 using Core.Common.Secure;
 using Data.Core.Repository;
 using Data.Core.UnitOfWork;
@@ -37,6 +38,14 @@ namespace Business.Services
             return result.Any();
         }
 
+        public Customer GetInfoAboutCustomer(string email, string password)
+        {
+            var result = _customerRepository
+                .FindBy(c => c.Email == email && PasswordHash.ValidatePassword(password, c.HashPassword));
+
+            return ConvertToReturn(result.First());
+        }
+
         public bool Register(string email, string password)
         {
             bool returnValue = false;
@@ -70,5 +79,11 @@ namespace Business.Services
         {
             //TODO
         }
+
+        private Customer ConvertToReturn(Data.Entities.Customer customer)
+        {
+            return AutoMapper.Mapper.Map<Customer>(customer);
+        }
+
     }
 }

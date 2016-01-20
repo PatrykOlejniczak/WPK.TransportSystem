@@ -9,21 +9,6 @@ namespace Mobile.ViewModel
 {
     public class MainMenuViewModel : ViewModelBase
     {
-        private Customer _customer;
-        public Customer Customer
-        {
-            get { return _customer; }
-            private set
-            {
-                if (_customer != value)
-                {
-                    _customer = value;
-                }
-                DownloadActiveTickets();
-                RaisePropertyChanged();
-            }
-        }
-
         private ObservableCollection<PurchaseTicket> _activePurchaseTickets;
 
         public ObservableCollection<PurchaseTicket> ActivePurchaseTickets
@@ -40,6 +25,22 @@ namespace Mobile.ViewModel
             }
         }
 
+        private ObservableCollection<string> _favouriteLines;
+
+        public ObservableCollection<string> FavouriteLines
+        {
+            get { return _favouriteLines; }
+            private set
+            {
+                if (_favouriteLines != value)
+                {
+                    _favouriteLines = value;
+                }
+
+                RaisePropertyChanged();
+            }
+        }
+
         public ICommand NavigateToPurchaseHistory { get; private set; }
         public ICommand NavigateToTimetable { get; private set; }
         public ICommand NavigateToBuyTicket { get; private set; }
@@ -48,7 +49,6 @@ namespace Mobile.ViewModel
         private readonly IExpandedNavigation _navigationService;
         private readonly IAccountManager _accountManager;
         private readonly ICustomerOperationProvider _customerOperationProvider;
-
 
         public MainMenuViewModel(
             IExpandedNavigation navigationService, ICustomerOperationProvider customerOperationProvider, IAccountManager accountManager)
@@ -70,8 +70,6 @@ namespace Mobile.ViewModel
                 = new RelayCommand(ExecuteNavigateToTimetable);
 
             ActivePurchaseTickets = new ObservableCollection<PurchaseTicket>();
-
-            MessengerInstance.Register<Customer>(this, customer => Customer = customer);
         }
 
         private void ExecuteNavigateToPurchaseHistory()
@@ -96,7 +94,7 @@ namespace Mobile.ViewModel
 
         private async void DownloadActiveTickets()
         {
-            ActivePurchaseTickets = await _customerOperationProvider.GetAllPurchaseTicketAsync();
+            //ActivePurchaseTickets = await _customerOperationProvider.GetAllPurchaseTicketAsync();
         }
     }
 }

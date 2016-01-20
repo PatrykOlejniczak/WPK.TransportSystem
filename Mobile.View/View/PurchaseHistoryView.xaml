@@ -5,10 +5,48 @@
     xmlns:local="using:Mobile.View.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:Mobile.View.UserControls"
+    xmlns:interop="using:Windows.UI.Xaml.Interop"
+    xmlns:converters="using:Mobile.View.Converters"
     mc:Ignorable="d"
     DataContext="{Binding PurchaseHistory, Source={StaticResource ViewModelLocator}}">
-
+    <Page.Resources>
+        <converters:DiscountToTextConverter x:Key="DiscountToTextConverter"/>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <userControls:LoginPanel Margin="0, 0, 0, 30" Grid.Row="0"/>
 
+            <TextBlock Text="purchase history" FontSize="30" Margin="0, 0, 0, 10" Grid.Row="1"/>
+            <ListView Grid.Row="2" 
+                      SelectionMode="None"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      ItemsSource="{Binding PurchaseTicketsTask.Result}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0, 10, 0, 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="../Images/qrcode.jpg"
+                                       Grid.Column="0"/>
+
+                            <StackPanel Grid.Column="1" Margin="50, 0, 0, 0">
+                                <TextBlock Text="{Binding TicketName}" FontSize="25"/>
+                                <TextBlock Text="{Binding DateOfPurchase}" FontSize="25"/>
+                                <TextBlock Text="{Binding DiscountId, Converter={StaticResource DiscountToTextConverter}}" FontSize="25"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </Grid>
 </Page>

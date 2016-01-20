@@ -108,13 +108,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoostAccountViewModel.cs" />
+    <Compile Include="BuyTicketCountViewModel.cs" />
+    <Compile Include="BuyTicketViewModel.cs" />
     <Compile Include="ChooseTicketTypeViewModel.cs" />
+    <Compile Include="FinalizationTransactionViewModel.cs" />
     <Compile Include="Helpers\ICustomerOperationProvider.cs" />
     <Compile Include="Helpers\IExpandedNavigation.cs" />
     <Compile Include="Helpers\IPasswordGuardian.cs" />
     <Compile Include="Helpers\IAccountManager.cs" />
     <Compile Include="Helpers\ITicketProvider.cs" />
     <Compile Include="Helpers\ITimetableProvider.cs" />
+    <Compile Include="Helpers\NotifyTaskCompletion.cs" />
+    <Compile Include="LoginPanelViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="MainMenuViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

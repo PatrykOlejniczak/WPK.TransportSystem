@@ -2,14 +2,25 @@
 using Mobile.Helper.Services.CustomerAuthenticationService;
 using Mobile.Helper.Services.ServiceConfiguration;
 using Mobile.ViewModel.Helpers;
-using Customer = Mobile.Model.Customer;
+using Customer = Mobile.Helper.Services.CustomerAuthenticationService.Customer;
 
 namespace Mobile.Helper.Services.InjectProviders
 {
     public class AccountManager : IAccountManager
     {
         public bool IsUserLogged { get; }
-        public Customer ActualLoggedUser { get; private set; }
+
+        private string _password;
+        private string _login;
+
+        private Model.Customer _actualLoggedUser;
+        public Model.Customer ActualLoggedUser {
+            get
+            {
+                return _actualLoggedUser;
+            }
+            private set { _actualLoggedUser = value; } }
+        public double AccountBallance { get; private set; }
         private readonly CustomerAuthenticationServiceClient _customerAuthenticationService;
 
         public AccountManager()
@@ -22,19 +33,27 @@ namespace Mobile.Helper.Services.InjectProviders
             if (await _customerAuthenticationService.IsCorrectCredentialsCorrectAsync(login, password))
             {
                 await GetInfo(login, password);
-
+                _password = password;
+                _login = login;
                 return true;
             }
             return false;
+        }  
+
+        public async Task RefreshCustomerAccount()
+        {
+            var converted = await _customerAuthenticationService.GetInfoAboutCustomerAsync(_login, _password);
+
+            ActualLoggedUser = AutoMapper.Mapper.Map<Mobile.Model.Customer>(converted);
         }
+
         public async Task GetInfo(string login, string password)
         {
-            var customer =  await _customerAuthenticationService.GetCustomerInfoAsync(login, password);
-            AutoMapper.Mapper.CreateMap<CustomerAuthenticationService.Customer, Customer>();
-            
+            AutoMapper.Mapper.CreateMap<CustomerAuthenticationService.Customer, Mobile.Model.Customer>();
+            AutoMapper.Mapper.CreateMap<Mobile.Model.Customer, Customer>();
+            var converted = await _customerAuthenticationService.GetInfoAboutCustomerAsync(login, password);
 
-            ActualLoggedUser = AutoMapper.Mapper.Map<Customer>(customer);
-            ActualLoggedUser.Password = password;
+            ActualLoggedUser =  AutoMapper.Mapper.Map<Mobile.Model.Customer>(converted);
         }
 
         public async Task RegisterUser(string login, string password)

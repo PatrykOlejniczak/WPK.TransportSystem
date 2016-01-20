@@ -11,10 +11,13 @@ namespace Business.Contracts
         IEnumerable<BoostAccount> GetAllBoostAccount(string userName, string password);
 
         [OperationContract]
-        IEnumerable<PurchaseTicket> GetAllPurchaseTicket(string userName, string password);
+        IEnumerable<ExpandedPurchaseTicket> GetAllPurchaseTicket(string userName, string password);
 
         [OperationContract]
         IEnumerable<PurchaseTicket> GetActivePurchaseTicket(string userName, string password, string deviceId);
+
+        [OperationContract]
+        double GetAccountBallance(string userName, string password);
 
         [OperationContract]
         void UpdateCustomerEmail(string userName, string password, string email);

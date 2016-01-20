@@ -75,6 +75,7 @@ namespace Mobile.ViewModel
 
                 bool isCorrect = await _accountManager.LogUser(LoginEmail, password);
                 Messenger.Default.Send((Customer)_accountManager.ActualLoggedUser);
+
                 if (isCorrect)
                 {
                     ExecuteNavigateToMainMenu();

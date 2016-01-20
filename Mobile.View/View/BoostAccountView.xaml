@@ -5,10 +5,42 @@
     xmlns:local="using:Mobile.View.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:Mobile.View.UserControls"
     mc:Ignorable="d"
     DataContext="{Binding BoostAccount, Source={StaticResource ViewModelLocator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <userControls:LoginPanel Margin="0, 0, 0, 30"/>
+                <TextBlock Text="boost account" 
+                           FontSize="30"
+                           Margin="0, 0, 0, 10"/>
+                <Grid Background="#5CA595"
+                      Height="75">
+                    <TextBlock Text="Write code"
+                               Margin="20"
+                               FontSize="25" 
+                               Foreground="White" 
+                               TextAlignment="Center" 
+                               VerticalAlignment="Center"/>
+                </Grid>
+                <TextBox FontSize="30" Margin="0, 50, 0, 0" Text="{Binding Code}"/>
+            </StackPanel>
+            <Button Grid.Row="1" 
+                    VerticalAlignment="Bottom"
+                    Margin="0, 0, 0, 25"
+                    Command="{Binding AcceptBoostAccount}"
+                    HorizontalAlignment="Stretch"
+                    Background="#5CA595" 
+                    Foreground="White"
+                    FontSize="25"
+                    Height="75"
+                    Content="accept" />
+        </Grid>
     </Grid>
 </Page>
