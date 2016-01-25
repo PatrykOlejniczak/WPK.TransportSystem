@@ -15,7 +15,7 @@
 
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="20,40,20,0">
+        <StackPanel Margin="20">
             <userControls:LoginPanel />
             <Grid>
                 <Grid.RowDefinitions>
@@ -39,7 +39,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Source="../Images/bilet.png" Margin="10"/>
-                        <TextBlock Text="Buy Ticket" Grid.Column="1" Foreground="White" VerticalAlignment="Center"/>
+                        <TextBlock Margin="5" Text="Buy Ticket" Grid.Column="1" Foreground="White" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
                 <Button HorizontalAlignment="Stretch"
@@ -55,7 +55,12 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Source="../Images/wallet.png" Margin="10"/>
-                        <TextBlock Text="Boost account" Grid.Column="1" Foreground="White" VerticalAlignment="Center"/>
+                        <StackPanel Grid.Column="1" 
+                                    Margin="5"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="Boost " Foreground="White" />
+                            <TextBlock Text="account" Foreground="White"/>
+                        </StackPanel>
                     </Grid>
                 </Button>
                 <Button HorizontalAlignment="Stretch"
@@ -71,7 +76,12 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Source="../Images/historia.png" Margin="10"/>
-                        <TextBlock Text="Purchase history" Grid.Column="1" Foreground="White" VerticalAlignment="Center"/>
+                        <StackPanel Grid.Column="1" 
+                                    Margin="5"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="Purchase " Foreground="White" />
+                            <TextBlock Text="history" Foreground="White"/>
+                        </StackPanel>
                     </Grid>
                 </Button>
                 <Button HorizontalAlignment="Stretch"
@@ -87,28 +97,30 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Source="../Images/tram.png" Margin="10"/>
-                        <TextBlock Text="Timetable" Grid.Column="1" Foreground="White" VerticalAlignment="Center"/>
+                        <TextBlock Text="Timetable" Margin="5" Grid.Column="1" Foreground="White" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
             </Grid>
-            <Grid Height="150">
-                <ListBox                       
-                    ItemsSource="{Binding FavouriteLines}">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
-                <Grid Margin="0, 20, 0, 0" Visibility="{Binding FavouriteLines, Converter={StaticResource EmptyListToVisibilityConverter}}">
-                    <StackPanel Height="150">
-                        <TextBlock Text ="Favorite lines"/>
-                        <Image Source="../Images/brak.png" Height="70" Margin="0, 5, 0, 5"/>
-                        <TextBlock Text ="No favorite lines" HorizontalAlignment="Center" />
-                    </StackPanel>
+            <Grid Height="150" Margin="-20, 25, -20, 0" Background="#BFDADB"  >
+                <Grid Margin="20, -10, 20, 0">
+                    <ListBox Background="Transparent"        
+                        ItemsSource="{Binding FavouriteLines}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                    <Grid Margin="0, 20, 0, 0" Visibility="{Binding FavouriteLines, Converter={StaticResource EmptyListToVisibilityConverter}}">
+                        <StackPanel Height="150">
+                            <TextBlock Text ="Favorite lines"/>
+                            <Image Source="../Images/brak.png" Height="70" Margin="0, 5, 0, 5"/>
+                            <TextBlock Text ="No favorite lines" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </Grid>
-            <Grid Height="150">
+            <Grid Height="150" Margin="0, 25, 0, 0">
                 <ListBox                       
                     ItemsSource="{Binding ActivePurchaseTickets}"
                     DisplayMemberPath="DateOfPurchase">

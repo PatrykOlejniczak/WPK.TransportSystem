@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using Mobile.Helper.Services.CustomerOperationService;
 using Mobile.Helper.Services.ServiceConfiguration;
@@ -51,16 +53,18 @@ namespace Mobile.Helper.Services.InjectProviders
             throw new System.NotImplementedException();
         }
 
-        public Task CreateNewBoostAccount(string code)
+        public async Task<bool> CreateNewBoostAccount(string code)
         {
-            throw new System.NotImplementedException();
+
+                await
+                    _customerOperationServiceClient.CreateNewBoostAccountAsync("basia.kowalska@onet.eu", "kowalska",
+                        code);
+
+            return true;
         }
 
         public async Task CreateNewPurchaseTicket(PurchaseTicket purchaseTicket, int howManyTickets)
         {
-            var w = await _customerOperationServiceClient
-                .GetAllPurchaseTicketAsync("basia.kowalska@onet.eu", "kowalska");
-
             AutoMapper.Mapper.CreateMap<PurchaseTicket, CustomerOperationService.PurchaseTicket>();
 
             await _customerOperationServiceClient
@@ -68,9 +72,6 @@ namespace Mobile.Helper.Services.InjectProviders
                 "basia.kowalska@onet.eu", "kowalska", 
                 AutoMapper.Mapper.Map<CustomerOperationService.PurchaseTicket>(purchaseTicket), 
                 howManyTickets);
-
-            var w2 = await _customerOperationServiceClient
-                .GetAllPurchaseTicketAsync("basia.kowalska@onet.eu", "kowalska");
         }
     }
 }

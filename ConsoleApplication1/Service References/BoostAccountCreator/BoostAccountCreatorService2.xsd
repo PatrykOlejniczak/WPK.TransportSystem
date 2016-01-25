@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:24462/Services/BoostAccountCreatorService.svc?xsd=xsd2" namespace="Wpk.Entities" />
+  <xs:element name="GetNewCodeFor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="amount" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNewCodeForResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNewCodeForResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAll">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="Wpk.Entities" minOccurs="0" name="GetAllResult" nillable="true" type="q1:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="number" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="Wpk.Entities" minOccurs="0" name="GetLastestResult" nillable="true" type="q2:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActivatedAfterDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActivatedAfterDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="Wpk.Entities" minOccurs="0" name="GetActivatedAfterDateResult" nillable="true" type="q3:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActivatedToDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActivatedToDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="Wpk.Entities" minOccurs="0" name="GetActivatedToDateResult" nillable="true" type="q4:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWithUsedCode">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWithUsedCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="Wpk.Entities" minOccurs="0" name="GetWithUsedCodeResult" nillable="true" type="q5:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWithNotUsedCode">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWithNotUsedCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="Wpk.Entities" minOccurs="0" name="GetWithNotUsedCodeResult" nillable="true" type="q6:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneratedAfterDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneratedAfterDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="Wpk.Entities" minOccurs="0" name="GetGeneratedAfterDateResult" nillable="true" type="q7:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneratedToDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneratedToDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="Wpk.Entities" minOccurs="0" name="GetGeneratedToDateResult" nillable="true" type="q8:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWhereAmountMoreThan">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="amount" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWhereAmountMoreThanResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="Wpk.Entities" minOccurs="0" name="GetWhereAmountMoreThanResult" nillable="true" type="q9:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWhereAmountLessThan">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="amount" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWhereAmountLessThanResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="Wpk.Entities" minOccurs="0" name="GetWhereAmountLessThanResult" nillable="true" type="q10:ArrayOfBoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="Wpk.Entities" minOccurs="0" name="GetByIdResult" nillable="true" type="q11:BoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cutomerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByCustomerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="Wpk.Entities" minOccurs="0" name="GetByCustomerResult" nillable="true" type="q12:BoostAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -116,6 +116,7 @@
     <Compile Include="Helpers\IExpandedNavigation.cs" />
     <Compile Include="Helpers\IPasswordGuardian.cs" />
     <Compile Include="Helpers\IAccountManager.cs" />
+    <Compile Include="Helpers\ITaskStatus.cs" />
     <Compile Include="Helpers\ITicketProvider.cs" />
     <Compile Include="Helpers\ITimetableProvider.cs" />
     <Compile Include="Helpers\NotifyTaskCompletion.cs" />

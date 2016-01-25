@@ -10,9 +10,9 @@
     DataContext="{Binding FinalizationTransaction, Source={StaticResource ViewModelLocator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
+        <StackPanel Margin="20">
             <userControls:LoginPanel />
-            <Grid>
+            <Grid Margin="0, 30, 0, 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -23,53 +23,74 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
+                <Grid Background="#5CA595"
+                      Margin="20"
+                      Grid.ColumnSpan="2"
+                      Grid.Column="0"
+                      BorderThickness="4"
+                      BorderBrush="Black"
+                      Height="70">
+                    <TextBlock FontSize="20"
+                                 Foreground="White"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Text="{Binding Ticket.Name}"/>
+                </Grid>
                 <TextBlock Text="detailed information" 
+                           Grid.Column="0"
                            Grid.ColumnSpan="2" 
-                           Grid.Row="0"
+                           Grid.Row="1"
                            TextAlignment="Center" 
                            Foreground="Gray" 
-                           FontSize="20"/>
-                <TextBlock Grid.Column="0"
-                           Grid.Row="1"
-                           Text="Count"
-                           TextAlignment="Center"
-                           FontSize="20"/>
-                <TextBlock Grid.Column="1"
-                           Grid.Row="1"
-                           Text="Discount"
-                           TextAlignment="Center"
-                           FontSize="20"/>
+                           Margin="20"
+                           FontSize="25"/>
                 <TextBlock Grid.Column="0"
                            Grid.Row="2"
-                           Text="{Binding Count, Mode=TwoWay}"
+                           Text="count"
                            TextAlignment="Center"
-                           FontSize="20"/>
+                           FontSize="26"/>
+                <TextBlock Grid.Column="1"
+                           Grid.Row="2"
+                           Text="discount"
+                           TextAlignment="Center"
+                           FontSize="26"/>
                 <TextBlock Grid.Column="0"
                            Grid.Row="3"
+                           Text="{Binding Count, Mode=TwoWay}"
+                           TextAlignment="Center"
+                           FontSize="26"/>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="4"
                            Text="price"
                            TextAlignment="Center"
-                           FontSize="20"/>
+                           FontSize="26"/>
                 <CheckBox  Grid.Column="1"
                            IsChecked="{Binding Discount, Mode=TwoWay}"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Grid.Row="2"/>
+                           Grid.Row="5"
+                           Margin="60, -150, 0, 0">
+                    <CheckBox.RenderTransform>
+                        <CompositeTransform ScaleX="1.5" ScaleY="1.5" TranslateX="16.98" TranslateY="-0.208"/>
+                    </CheckBox.RenderTransform>
+                </CheckBox>
                 <TextBlock Grid.Column="1"
-                           Grid.Row="3"
+                           Grid.Row="4"
                            Text="Account ballance"
                            TextAlignment="Center"
-                           FontSize="20"/>
+                           FontSize="26"/>
                 <TextBlock Grid.Column="0"
-                           Grid.Row="4"
+                           Grid.Row="5"
                            Text="{Binding Price, Mode=TwoWay}"
                            TextAlignment="Center"
-                           FontSize="20"/>
+                           FontSize="26"/>
                 <TextBlock Grid.Column="1"
-                           Grid.Row="4"
+                           Grid.Row="5"
                            Text="{Binding BallanceAfterTransaction, Mode=TwoWay}"
                            TextAlignment="Center"
-                           FontSize="20"/>
+                           FontSize="26"/>
             </Grid>
             <Button HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"

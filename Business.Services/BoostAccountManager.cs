@@ -33,7 +33,7 @@ namespace Business.Services
                 {
                     Amount = amount,
                     GeneratedDateTime = DateTime.Now,
-                    Code = Guid.NewGuid().ToString()
+                    Code = Guid.NewGuid().ToString().Substring(0, 5)
                 };
 
                 _boostAccountRepository.Add(newBoostAccount);

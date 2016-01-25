@@ -9,8 +9,8 @@ namespace Mobile.ViewModel
 {
     public class BuyTicketCountViewModel : ViewModelBase
     {
-        public IExpandedNavigation NavigationService { get; private set; }
-
+        public ICommand NavigateToFinalizationTransaction { get; private set; }
+        
         private ObservableCollection<int> _ticketCounts;
 
         public ObservableCollection<int> TicketCounts
@@ -36,15 +36,15 @@ namespace Mobile.ViewModel
                 _selectedItem = value;
                 RaisePropertyChanged();
                 Messenger.Default.Send(_selectedItem);
-                NavigateToFinalizationTransaction.Execute(null);
+                ExecuteNavigateToFinalizationTransaction();
             }
         }
 
-        public ICommand NavigateToFinalizationTransaction { get; private set; }
+        private readonly IExpandedNavigation _navigationService;
 
         public BuyTicketCountViewModel(IExpandedNavigation navigationService)
         {
-            NavigationService = navigationService;
+            _navigationService = navigationService;
             TicketCounts = new ObservableCollection<int>();
             for (int i = 1; i < 10; i++)
             {
@@ -52,12 +52,12 @@ namespace Mobile.ViewModel
             }
 
             NavigateToFinalizationTransaction
-                    = new RelayCommand(ExecuteNavigateToPurchaseHistory);
+                    = new RelayCommand(ExecuteNavigateToFinalizationTransaction);
         }
 
-        private void ExecuteNavigateToPurchaseHistory()
+        private void ExecuteNavigateToFinalizationTransaction()
         {
-            NavigationService.NavigateTo("FinalizationTransactionView");
+            _navigationService.NavigateTo("FinalizationTransactionView");
         }
     }
 }

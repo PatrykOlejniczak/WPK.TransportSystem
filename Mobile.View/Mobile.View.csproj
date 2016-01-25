@@ -103,6 +103,7 @@
     <Compile Include="Converters\DiscountToTextConverter.cs" />
     <Compile Include="Converters\EmptyListToVisibityConverter.cs" />
     <Compile Include="Converters\ListElementToBackground.cs" />
+    <Compile Include="Converters\NotifyTaskToVisibilityConverter.cs" />
     <Compile Include="Converters\TextInputToVisibilityConverter.cs" />
     <Compile Include="Helpers\ExpandedNavigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

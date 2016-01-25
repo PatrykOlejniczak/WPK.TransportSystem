@@ -47,6 +47,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\BoostAccountCreator\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\BoostAccountService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -70,6 +75,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Service References\BoostAccountCreator\BoostAccountCreatorService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BoostAccountCreator\BoostAccountCreatorService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BoostAccountCreator\BoostAccountCreatorService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BoostAccountCreator\BoostAccountManager.wsdl" />
+    <None Include="Service References\BoostAccountCreator\ConsoleApplication1.BoostAccountCreator.BoostAccount.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\BoostAccountService\BoostAccountManager.wsdl" />
     <None Include="Service References\BoostAccountService\BoostAccountSecureService.xsd">
       <SubType>Designer</SubType>
@@ -133,6 +151,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\BoostAccountCreator\" />
     <WCFMetadataStorage Include="Service References\BoostAccountService\" />
     <WCFMetadataStorage Include="Service References\BusStopService\" />
     <WCFMetadataStorage Include="Service References\CustomerOperation\" />
@@ -194,6 +213,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\CustomerOperation\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BoostAccountCreator\BoostAccountCreatorService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BoostAccountCreator\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BoostAccountCreator\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BoostAccountCreator\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

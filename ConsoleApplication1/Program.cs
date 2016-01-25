@@ -10,12 +10,12 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            var test = new CustomerOperation.CustomerOperationServiceClient();
+            var test = new BoostAccountCreator.BoostAccountCreatorServiceClient();
 
 
 
 
-            var k = test.GetAllPurchaseTicketAsync("basia.kowalska@onet.eu", "kowalska").Result;
+            var k = test.GetNewCodeFor(10.0);
 
 
         }

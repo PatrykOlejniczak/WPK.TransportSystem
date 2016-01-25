@@ -12,7 +12,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <StackPanel Margin="20">
             <userControls:LoginPanel Margin="0, 0, 0, 30"/>
-            <TextBlock Text="choose count" FontSize="30" Margin="0, 0, 0, 10"/>
+            <TextBlock Text="choose count" FontSize="40" Margin="0, 0, 0, 10"/>
             <GridView ItemsSource="{Binding TicketCounts}"
                       SelectedItem="{Binding SelectedCount, Mode=TwoWay}">
                     <GridView.ItemsPanel>

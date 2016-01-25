@@ -16,6 +16,23 @@ namespace Mobile.ViewModel
         private readonly IExpandedNavigation _navigationService;
         private readonly IAccountManager _accountManager;
 
+        private bool _isLoginError;
+        public bool IsLoginError
+        {
+            get
+            {
+                return _isLoginError;
+            }
+            private set
+            {
+                if (value != _isLoginError)
+                {
+                    _isLoginError = value;
+                }
+                RaisePropertyChanged();
+            }
+        }
+
         private string _loginEmail;
         public string LoginEmail
         {
@@ -79,6 +96,10 @@ namespace Mobile.ViewModel
                 if (isCorrect)
                 {
                     ExecuteNavigateToMainMenu();
+                }
+                else
+                {
+                    IsLoginError = true;
                 }
             }
         }

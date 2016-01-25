@@ -2,17 +2,18 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
+
 namespace Mobile.View.Converters
 {
-    public class BooleanToVisibilityConverter : IValueConverter
+    public class NotifyTaskToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var val = value is bool;
-
+            
             if (val)
             {
-                if ((bool)value)
+                if ((bool) value)
                 {
                     return Visibility.Visible;
                 }

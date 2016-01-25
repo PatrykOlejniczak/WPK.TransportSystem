@@ -134,7 +134,7 @@ namespace Business.Services
             _boostAccountRepository.EnrollUnitOfWork(_unitOfWork);
 
             var boostAccount = _boostAccountRepository
-                .FindBy(b => b.Code == code, "Customer").FirstOrDefault();
+                .FindBy(b => b.Code.Substring(0, 5) == code).FirstOrDefault();
 
             if (boostAccount == null)
             {

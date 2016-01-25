@@ -1,16 +1,18 @@
-﻿namespace Mobile.ViewModel.Helpers
+﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
+
+namespace Mobile.ViewModel.Helpers
 {
-    using System;
-    using System.ComponentModel;
-    using System.Threading.Tasks;
-    public sealed class NotifyTaskCompletion<TResult> : INotifyPropertyChanged
+    public sealed class NotifyTaskCompletion<TResult> : INotifyPropertyChanged, ITaskStatus
     {
         public NotifyTaskCompletion(Task<TResult> task)
         {
             Task = task;
             if (!task.IsCompleted)
             {
-                var _ = WatchTaskAsync(task);
+                var runningTask = WatchTaskAsync(task);
             }
         }
         private async Task WatchTaskAsync(Task task)
@@ -19,8 +21,9 @@
             {
                 await task;
             }
-            catch
+            catch(Exception exception)
             {
+                Debug.WriteLine(exception.Message);
             }
             var propertyChanged = PropertyChanged;
 
