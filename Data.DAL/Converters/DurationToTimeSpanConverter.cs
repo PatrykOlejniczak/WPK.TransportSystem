@@ -10,5 +10,10 @@ namespace Data.Core.Converters
         {
             return new TimeSpan(duration.Days, duration.Hours, duration.Minutes, 0);
         }
+
+        public TimeSpan Convert(Duration duration)
+        {
+            return ConvertCore(duration);
+        }
     }
 }

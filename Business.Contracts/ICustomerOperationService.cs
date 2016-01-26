@@ -14,7 +14,7 @@ namespace Business.Contracts
         IEnumerable<ExpandedPurchaseTicket> GetAllPurchaseTicket(string userName, string password);
 
         [OperationContract]
-        IEnumerable<PurchaseTicket> GetActivePurchaseTicket(string userName, string password, string deviceId);
+        IEnumerable<ExpandedPurchaseTicket> GetActivePurchaseTicket(string userName, string password, string deviceId);
 
         [OperationContract]
         double GetAccountBallance(string userName, string password);

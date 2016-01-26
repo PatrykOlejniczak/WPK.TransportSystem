@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace Business.Entities
 {
@@ -7,5 +8,8 @@ namespace Business.Entities
     {
         [DataMember]
         public string TicketName { get; set; }
+
+        [DataMember]
+        public DateTime ExpireDateTime { get; set; }
     }
 }

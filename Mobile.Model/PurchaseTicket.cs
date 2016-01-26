@@ -6,6 +6,7 @@ namespace Mobile.Model
     {
         public int Id { get; set; }
         public DateTime DateOfPurchase { get; set; }
+        public DateTime ExpireDateTime { get; set; }
         public string DeviceId { get; set; }
         public string FirstNameTicketOwner { get; set; }
         public string LastNameTicketOwner { get; set; }

@@ -43,7 +43,7 @@
   <xs:element name="GetActivePurchaseTicketResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="Wpk.Entities" minOccurs="0" name="GetActivePurchaseTicketResult" nillable="true" type="q3:ArrayOfPurchaseTicket" />
+        <xs:element xmlns:q3="Wpk.Entities" minOccurs="0" name="GetActivePurchaseTicketResult" nillable="true" type="q3:ArrayOfExpandedPurchaseTicket" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

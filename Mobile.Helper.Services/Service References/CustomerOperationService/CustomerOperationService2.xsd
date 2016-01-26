@@ -27,6 +27,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:PurchaseTicket">
         <xs:sequence>
+          <xs:element minOccurs="0" name="ExpireDateTime" type="xs:dateTime" />
           <xs:element minOccurs="0" name="TicketName" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
@@ -47,10 +48,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PurchaseTicket" nillable="true" type="tns:PurchaseTicket" />
-  <xs:complexType name="ArrayOfPurchaseTicket">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="PurchaseTicket" nillable="true" type="tns:PurchaseTicket" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPurchaseTicket" nillable="true" type="tns:ArrayOfPurchaseTicket" />
 </xs:schema>

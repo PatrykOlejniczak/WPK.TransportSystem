@@ -1,7 +1,13 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.System.Threading;
+using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Threading;
 using Mobile.Model;
 using Mobile.ViewModel.Helpers;
 
@@ -13,7 +19,10 @@ namespace Mobile.ViewModel
 
         public ObservableCollection<PurchaseTicket> ActivePurchaseTickets
         {
-            get { return _activePurchaseTickets; }
+            get
+            {               
+                return _activePurchaseTickets;
+            }
             private set
             {
                 if (_activePurchaseTickets != value)
@@ -69,7 +78,10 @@ namespace Mobile.ViewModel
             NavigateToTimetable
                 = new RelayCommand(ExecuteNavigateToTimetable);
 
-            ActivePurchaseTickets = new ObservableCollection<PurchaseTicket>();
+            if (ActivePurchaseTickets == null)
+            {
+                test();
+            }
         }
 
         private void ExecuteNavigateToPurchaseHistory()
@@ -94,7 +106,24 @@ namespace Mobile.ViewModel
 
         private async void DownloadActiveTickets()
         {
-            //ActivePurchaseTickets = await _customerOperationProvider.GetAllPurchaseTicketAsync();
+            _activePurchaseTickets = await _customerOperationProvider.GetActivePurchaseTicketsAsync();
+        }
+
+        private void test()
+        {
+            Task k =
+                new Task(
+                    async () =>
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            var z = await _customerOperationProvider.GetActivePurchaseTicketsAsync();
+                            DispatcherHelper.CheckBeginInvokeOnUI(() => ActivePurchaseTickets = z);
+                            await Task.Delay(new TimeSpan(0, 0, 0, 2));
+                        }
+                    });
+            k.Start();
+
         }
     }
 }

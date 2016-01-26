@@ -8,26 +8,29 @@ namespace Mobile.ViewModel
     public class LoginPanelViewModel : ViewModelBase
     {
         private readonly IExpandedNavigation _navigationService;
+        private readonly IAccountManager _accountManager;
 
         private Customer _customer;
         public Customer Customer
         {
-            get { return _customer; }
-            private set
+            get
             {
-                if (_customer != value)
-                {
-                    _customer = value;
-                }
-                RaisePropertyChanged();
+                RefreshCustomer();
+                return _customer;
             }
         }
 
-        public LoginPanelViewModel(IExpandedNavigation navigationService)
+        public LoginPanelViewModel(IExpandedNavigation navigationService, 
+            IAccountManager accountManager)
         {
+            _accountManager = accountManager;
             _navigationService = navigationService;
+        }
 
-            Messenger.Default.Register<Customer>(this, (action) => Customer = action);
+        private void RefreshCustomer()
+        {
+            _accountManager.RefreshCustomerAccount();
+            _customer = _accountManager.ActualLoggedUser;
         }
     }
 }

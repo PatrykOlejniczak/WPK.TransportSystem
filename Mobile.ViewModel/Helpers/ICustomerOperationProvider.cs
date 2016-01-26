@@ -8,6 +8,7 @@ namespace Mobile.ViewModel.Helpers
     {
         Task<ObservableCollection<BoostAccount>> GetAllBoostAccountAsync();
         Task<ObservableCollection<PurchaseTicket>> GetAllPurchaseTicketAsync();
+        Task<ObservableCollection<PurchaseTicket>> GetActivePurchaseTicketsAsync();
         Task UpdateCustomerEmail(string email);
         Task<bool> CreateNewBoostAccount(string code);
         Task CreateNewPurchaseTicket(PurchaseTicket purchaseTicket, int howManyTickets);

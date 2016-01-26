@@ -5,6 +5,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using GalaSoft.MvvmLight.Threading;
 
 namespace Mobile.View
 {
@@ -33,7 +34,7 @@ namespace Mobile.View
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
+            DispatcherHelper.Initialize();
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {

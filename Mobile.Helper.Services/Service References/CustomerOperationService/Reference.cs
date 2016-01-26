@@ -125,7 +125,22 @@ namespace Mobile.Helper.Services.CustomerOperationService {
     [System.Runtime.Serialization.DataContractAttribute(Name="ExpandedPurchaseTicket", Namespace="Wpk.Entities")]
     public partial class ExpandedPurchaseTicket : Mobile.Helper.Services.CustomerOperationService.PurchaseTicket {
         
+        private System.DateTime ExpireDateTimeField;
+        
         private string TicketNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ExpireDateTime {
+            get {
+                return this.ExpireDateTimeField;
+            }
+            set {
+                if ((this.ExpireDateTimeField.Equals(value) != true)) {
+                    this.ExpireDateTimeField = value;
+                    this.RaisePropertyChanged("ExpireDateTime");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string TicketName {
@@ -303,7 +318,7 @@ namespace Mobile.Helper.Services.CustomerOperationService {
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.ExpandedPurchaseTicket>> GetAllPurchaseTicketAsync(string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetActivePurchaseTicket", ReplyAction="http://tempuri.org/ICustomerOperationService/GetActivePurchaseTicketResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.PurchaseTicket>> GetActivePurchaseTicketAsync(string userName, string password, string deviceId);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.ExpandedPurchaseTicket>> GetActivePurchaseTicketAsync(string userName, string password, string deviceId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetAccountBallance", ReplyAction="http://tempuri.org/ICustomerOperationService/GetAccountBallanceResponse")]
         System.Threading.Tasks.Task<double> GetAccountBallanceAsync(string userName, string password);
@@ -372,7 +387,7 @@ namespace Mobile.Helper.Services.CustomerOperationService {
             return base.Channel.GetAllPurchaseTicketAsync(userName, password);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.PurchaseTicket>> GetActivePurchaseTicketAsync(string userName, string password, string deviceId) {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.CustomerOperationService.ExpandedPurchaseTicket>> GetActivePurchaseTicketAsync(string userName, string password, string deviceId) {
             return base.Channel.GetActivePurchaseTicketAsync(userName, password, deviceId);
         }
         

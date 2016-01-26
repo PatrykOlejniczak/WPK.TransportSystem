@@ -11,12 +11,12 @@ namespace Mobile.View.Converters
         {
             var v = value as ICollection;
 
-            if (v?.Count != 0 && v != null)
+            if (v?.Count != 0)
             {
-                return Visibility.Collapsed;
+                return Visibility.Visible;
             }
 
-            return Visibility.Visible;
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

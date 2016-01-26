@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.ServiceModel;
 using System.Threading.Tasks;
 using Mobile.Helper.Services.CustomerOperationService;
 using Mobile.Helper.Services.ServiceConfiguration;
@@ -46,6 +44,18 @@ namespace Mobile.Helper.Services.InjectProviders
             AutoMapper.Mapper.CreateMap<CustomerOperationService.ExpandedPurchaseTicket, PurchaseTicket>();
        
             return new ObservableCollection<PurchaseTicket>(AutoMapper.Mapper.Map<IEnumerable<PurchaseTicket>>(purchaseTickets.OrderByDescending(p => p.DateOfPurchase)));
+        }
+
+        public async Task<ObservableCollection<PurchaseTicket>> GetActivePurchaseTicketsAsync()
+        {
+            var purchaseTickets = await _customerOperationServiceClient
+                        .GetActivePurchaseTicketAsync("basia.kowalska@onet.eu", "kowalska", "hababa");
+
+            AutoMapper.Mapper.CreateMap<PurchaseTicket, CustomerOperationService.ExpandedPurchaseTicket>();
+            AutoMapper.Mapper.CreateMap<CustomerOperationService.ExpandedPurchaseTicket, PurchaseTicket>();
+
+            var collection = new ObservableCollection<PurchaseTicket>(AutoMapper.Mapper.Map<IEnumerable<PurchaseTicket>>(purchaseTickets.OrderByDescending(p => p.DateOfPurchase)));
+            return collection;
         }
 
         public Task UpdateCustomerEmail(string email)

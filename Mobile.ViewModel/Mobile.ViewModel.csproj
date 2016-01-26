@@ -119,10 +119,12 @@
     <Compile Include="Helpers\ITaskStatus.cs" />
     <Compile Include="Helpers\ITicketProvider.cs" />
     <Compile Include="Helpers\ITimetableProvider.cs" />
+    <Compile Include="Helpers\NotifyTask.cs" />
     <Compile Include="Helpers\NotifyTaskCompletion.cs" />
     <Compile Include="LoginPanelViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="MainMenuViewModel.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseHistoryViewModel.cs" />
     <Compile Include="TimetableViewModel.cs" />

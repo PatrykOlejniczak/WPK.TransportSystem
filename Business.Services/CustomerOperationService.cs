@@ -5,6 +5,7 @@ using System.ServiceModel;
 using Business.Contracts;
 using Business.Entities;
 using Core.Common.Secure;
+using Data.Core.Converters;
 using Data.Core.Repository;
 using Data.Core.UnitOfWork;
 
@@ -65,18 +66,22 @@ namespace Business.Services
             return AutoMapper.Mapper.Map<IEnumerable<ExpandedPurchaseTicket>>(customerPurchaseTickets);
         }
 
-        public IEnumerable<PurchaseTicket> GetActivePurchaseTicket(string userName, string password, string deviceId)
+        public IEnumerable<ExpandedPurchaseTicket> GetActivePurchaseTicket(string userName, string password, string deviceId)
         {
             FindCustomer(userName, password);
 
             _purchaseTicketRepository.EnrollUnitOfWork(_unitOfWork);
 
-            //TODO ACTIVE TICKET
+            var converter = new DurationToTimeSpanConverter();
 
             var customerPurchaseTickets = _purchaseTicketRepository
-                .FindBy(p => p.Customer?.Email == _actualLoggedCustomer.Email && p.DateOfPurchase < DateTime.Now, "Customer");
+                .FindBy(p => p.Customer?.Email == _actualLoggedCustomer.Email && p.DateOfPurchase.Add(converter.Convert(p.Ticket.Duration)) > DateTime.UtcNow, "Ticket");
 
-            return ConvertToReturn(customerPurchaseTickets);
+            AutoMapper.Mapper.CreateMap<Data.Entities.PurchaseTicket, ExpandedPurchaseTicket>()
+                .ForMember(e => e.TicketName, p => p.MapFrom(t => t.Ticket.Name))
+                .ForMember(e => e.ExpireDateTime, p => p.MapFrom(t => t.DateOfPurchase.Add(converter.Convert(t.Ticket.Duration))));
+
+            return AutoMapper.Mapper.Map<IEnumerable<ExpandedPurchaseTicket>>(customerPurchaseTickets);
         }
 
         public double GetAccountBallance(string userName, string password)
