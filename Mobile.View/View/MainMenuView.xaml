@@ -15,6 +15,7 @@
 
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
         <StackPanel Margin="20">
             <userControls:LoginPanel />
             <Grid>
@@ -102,7 +103,9 @@
                     </Grid>
                 </Button>
             </Grid>
-            <Grid Height="200" Margin="-20, 25, -20, 0" Background="#BFDADB"  >
+        </StackPanel>
+        <StackPanel>
+            <Grid Height="200" Margin=" 0, 25, 0, 0" Background="#BFDADB"  >
                 <StackPanel>
                     <TextBlock Text ="Favorite lines" Margin="20, 20, 0, 25"/>
                     <Grid Margin="20, -10, 20, 0">
@@ -126,7 +129,7 @@
             </Grid>
             <Grid Height="250" Margin="0, 25, 0, 0" >
                 <StackPanel>
-                    <TextBlock Text ="Active tickets" Margin="0, 0, 0, 25"/>
+                    <TextBlock Text ="Active tickets" Margin="20, 0, 0, 25"/>
                     <ListView                   
                         ItemsSource="{Binding ActivePurchaseTickets}"
                         SelectionMode="None"
@@ -164,6 +167,7 @@
                     </Grid>
                 </StackPanel>
             </Grid>
+        </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

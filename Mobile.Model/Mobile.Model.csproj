@@ -108,8 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoostAccount.cs" />
+    <Compile Include="BusStop.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Discount.cs" />
+    <Compile Include="Line.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseTicket.cs" />
     <Compile Include="Ticket.cs" />

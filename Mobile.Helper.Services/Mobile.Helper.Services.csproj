@@ -152,6 +152,7 @@
   <ItemGroup>
     <Compile Include="InjectProviders\AccountManager.cs" />
     <Compile Include="InjectProviders\CustomerOperationProvider.cs" />
+    <Compile Include="InjectProviders\LineProvider.cs" />
     <Compile Include="InjectProviders\TicketProvider.cs" />
     <Compile Include="InjectProviders\TimetableProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

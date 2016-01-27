@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Mobile.ViewModel.Helpers
 {
-    public sealed class NotifyTaskCompletion<TResult> : INotifyPropertyChanged, ITaskStatus
+    public sealed class NotifyTaskCompletion<TResult> : INotifyPropertyChanged
     {
         public NotifyTaskCompletion(Task<TResult> task)
         {

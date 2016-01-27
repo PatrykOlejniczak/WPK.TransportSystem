@@ -91,7 +91,7 @@ namespace Mobile.ViewModel
 
         private void ExecuteNavigateToTimetable()
         {
-            _navigationService.NavigateTo("TimetableView");
+            _navigationService.NavigateTo("LineDetailsView");
         }
 
         private void ExecuteNavigateToBuyTicket()
@@ -115,11 +115,11 @@ namespace Mobile.ViewModel
                 new Task(
                     async () =>
                     {
-                        for (int i = 0; i < 5; i++)
+                        while(true)
                         {
                             var z = await _customerOperationProvider.GetActivePurchaseTicketsAsync();
                             DispatcherHelper.CheckBeginInvokeOnUI(() => ActivePurchaseTickets = z);
-                            await Task.Delay(new TimeSpan(0, 0, 0, 2));
+                            await Task.Delay(new TimeSpan(0, 0, 0, 15));
                         }
                     });
             k.Start();

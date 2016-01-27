@@ -41,13 +41,11 @@ namespace Mobile.View.Config
         public MainMenuViewModel MainMenu
             => _container.Resolve<MainMenuViewModel>();
 
-        public PurchaseHistoryViewModel PurchaseHistory
-        {
-            get
-            {
-                return _container.Resolve<PurchaseHistoryViewModel>();
-            }
-        }
+        public PurchaseHistoryViewModel PurchaseHistory 
+            => _container.Resolve<PurchaseHistoryViewModel>();
+
+        public LineDetailsViewModel LineDetails
+            => _container.Resolve<LineDetailsViewModel>();
 
         public TimetableViewModel Timetable
             => _container.Resolve<TimetableViewModel>();
@@ -68,6 +66,10 @@ namespace Mobile.View.Config
                 .As<ITimetableProvider>();
             builder.RegisterType<AccountManager>()
                 .As<IAccountManager>().SingleInstance();
+            builder.RegisterType<LineProvider>()
+                .As<ILineProvider>().SingleInstance();
+            builder.RegisterType<DeviceManager>()
+                .As<IDeviceManager>().SingleInstance();
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -87,6 +89,7 @@ namespace Mobile.View.Config
             builder.RegisterType<BuyTicketCountViewModel>().SingleInstance();
             builder.RegisterType<FinalizationTransactionViewModel>().SingleInstance();
             builder.RegisterType<LoginPanelViewModel>().SingleInstance();
+            builder.RegisterType<LineDetailsViewModel>();
 
             _container = builder.Build();
 
@@ -106,7 +109,7 @@ namespace Mobile.View.Config
             navigationService.Configure("TimetableView", typeof(View.TimetableView));
             navigationService.Configure("BuyTicketCountView", typeof(View.BuyTicketCountView));
             navigationService.Configure("FinalizationTransactionView", typeof(View.FinalizationTransactionView));
-
+            navigationService.Configure("LineDetailsView", typeof(View.LineDetailsView));
 
             return navigationService;
         }
