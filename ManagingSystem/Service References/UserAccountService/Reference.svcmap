@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="76a3ab72-5e0c-4194-ae8e-f45869514165" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:24462/Services/UserAccountSecureService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UserAccountSecureService.xsd" MetadataType="Schema" ID="013b158b-b6a3-4262-85a6-b14517327cc7" SourceId="1" SourceUrl="http://localhost:24462/Services/UserAccountSecureService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UserAccountManager.wsdl" MetadataType="Wsdl" ID="443924fa-ed13-46bb-a860-33563636001c" SourceId="1" SourceUrl="http://localhost:24462/Services/UserAccountSecureService.svc?wsdl" />
+    <MetadataFile FileName="UserAccountSecureService.disco" MetadataType="Disco" ID="8ab35ab2-14a8-4bc7-b682-4eccfd4f88f5" SourceId="1" SourceUrl="http://localhost:24462/Services/UserAccountSecureService.svc?disco" />
+    <MetadataFile FileName="UserAccountSecureService1.xsd" MetadataType="Schema" ID="a4655ebc-ec33-423e-9f4e-c2ae288c5acc" SourceId="1" SourceUrl="http://localhost:24462/Services/UserAccountSecureService.svc?xsd=xsd2" />
+    <MetadataFile FileName="UserAccountSecureService2.xsd" MetadataType="Schema" ID="d592c461-ca28-499c-b883-b2eb43069eab" SourceId="1" SourceUrl="http://localhost:24462/Services/UserAccountSecureService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

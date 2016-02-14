@@ -1,0 +1,42 @@
+﻿using ManagingSystem.CustomerSecureService;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace ManagingSystem.Pages.UserControls.DetailsUserControl
+{
+    /// <summary>
+    /// Interaction logic for CustomerDetails.xaml
+    /// </summary>
+    public partial class CustomerDetails : UserControl
+    {
+
+        private Customer customer{ get; set; }
+
+        public CustomerDetails(Customer _customer, System.ServiceModel.Description.ClientCredentials clientCredentials)
+        {
+            InitializeComponent();
+
+            customer = _customer;
+
+            FillLabels();
+        }
+
+        private void FillLabels()
+        {
+            CustomerEmail.Content = customer.Email;
+            
+        }
+    }
+}

@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4095A6D1-373E-4B8F-B135-8552FF77DA3B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ManagingSystem</RootNamespace>
+    <AssemblyName>ManagingSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pages\UserControls\BusSchedule.xaml.cs">
+      <DependentUpon>BusSchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\ClientsControl.xaml.cs">
+      <DependentUpon>ClientsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\BusScheduleDetails.xaml.cs">
+      <DependentUpon>BusScheduleDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\CustomerDetails.xaml.cs">
+      <DependentUpon>CustomerDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\NewEmployee.xaml.cs">
+      <DependentUpon>NewEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\NewsDetails.xaml.cs">
+      <DependentUpon>NewsDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\TicketDetails.xaml.cs">
+      <DependentUpon>TicketDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\TicketsControl.xaml.cs">
+      <DependentUpon>TicketsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\BusStopService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CustomerOperationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CustomerSecureService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\EmployeeAuthenticationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\EmployeeSecureService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\NewsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\TicketService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\TicketTypeService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\UserAccountService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\DatabaseProvider.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Interface\ICustomerProvider.cs" />
+    <Compile Include="Interface\IDatabaseProvider.cs" />
+    <Compile Include="Classes\UserControlManager.cs" />
+    <Compile Include="Interface\IEmployeeProvider.cs" />
+    <Compile Include="Interface\IPlanningProvider.cs" />
+    <Compile Include="Interface\IScheduleProvider.cs" />
+    <Compile Include="Model\Schedule.cs" />
+    <Compile Include="Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\EmployeeDetails.xaml.cs">
+      <DependentUpon>EmployeeDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\EmployeesControl.xaml.cs">
+      <DependentUpon>EmployeesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\NewsControl.xaml.cs">
+      <DependentUpon>NewsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Service References\BusStopService\BusStopManager.wsdl" />
+    <None Include="Service References\BusStopService\BusStopService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BusStopService\BusStopService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BusStopService\BusStopService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BusStopService\ManagingSystem.BusStopService.BusStop.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CustomerOperationService\CustomerOperationService.wsdl" />
+    <None Include="Service References\CustomerOperationService\CustomerOperationService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerOperationService\CustomerOperationService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerOperationService\CustomerOperationService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerOperationService\ManagingSystem.CustomerOperationService.BoostAccount.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CustomerOperationService\ManagingSystem.CustomerOperationService.PurchaseTicket.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CustomerSecureService\CustomerManager.wsdl" />
+    <None Include="Service References\CustomerSecureService\CustomerSecureService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerSecureService\CustomerSecureService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerSecureService\CustomerSecureService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerSecureService\ManagingSystem.CustomerSecureService.Customer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EmployeeAuthenticationService\AuthenticationEmployeeManager.wsdl" />
+    <None Include="Service References\EmployeeAuthenticationService\EmployeeAuthentication.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EmployeeAuthenticationService\EmployeeAuthentication1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EmployeeSecureService\EmployeeManager.wsdl" />
+    <None Include="Service References\EmployeeSecureService\EmployeeSecureService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EmployeeSecureService\EmployeeSecureService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EmployeeSecureService\EmployeeSecureService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EmployeeSecureService\ManagingSystem.EmployeeSecureService.Employee.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NewsService\ManagingSystem.NewsService.News.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NewsService\NewsManager.wsdl" />
+    <None Include="Service References\NewsService\NewsService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\NewsService\NewsService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\NewsService\NewsService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TicketService\ManagingSystem.TicketService.Ticket.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TicketService\TicketManager.wsdl" />
+    <None Include="Service References\TicketService\TicketService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TicketService\TicketService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TicketService\TicketService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TicketTypeService\ManagingSystem.TicketTypeService.TicketType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TicketTypeService\TicketTypeManager.wsdl" />
+    <None Include="Service References\TicketTypeService\TicketTypeService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TicketTypeService\TicketTypeService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TicketTypeService\TicketTypeService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserAccountService\ManagingSystem.UserAccountService.UserAccount.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UserAccountService\UserAccountManager.wsdl" />
+    <None Include="Service References\UserAccountService\UserAccountSecureService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserAccountService\UserAccountSecureService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserAccountService\UserAccountSecureService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\addIcon.png" />
+    <Resource Include="Icons\searchIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\kolazebate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\usrImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\book.png" />
+    <Resource Include="Assets\phone.png" />
+    <Resource Include="Assets\work.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\add.png" />
+    <Resource Include="Assets\bin.png" />
+    <Resource Include="Assets\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Pages\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\UserControls\BusSchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\ClientsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\BusScheduleDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\CustomerDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\EmployeeDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\NewEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\NewsDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\TicketDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\EmployeesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\UserControls\NewsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\UserControls\TicketsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\BusStopService\" />
+    <WCFMetadataStorage Include="Service References\CustomerOperationService\" />
+    <WCFMetadataStorage Include="Service References\CustomerSecureService\" />
+    <WCFMetadataStorage Include="Service References\EmployeeAuthenticationService\" />
+    <WCFMetadataStorage Include="Service References\EmployeeSecureService\" />
+    <WCFMetadataStorage Include="Service References\NewsService\" />
+    <WCFMetadataStorage Include="Service References\TicketService\" />
+    <WCFMetadataStorage Include="Service References\TicketTypeService\" />
+    <WCFMetadataStorage Include="Service References\UserAccountService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeSecureService\EmployeeSecureService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeSecureService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeSecureService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeSecureService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeAuthenticationService\EmployeeAuthentication.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeAuthenticationService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeAuthenticationService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeAuthenticationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserAccountService\UserAccountSecureService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserAccountService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserAccountService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserAccountService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopService\BusStopService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\NewsService\NewsService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\NewsService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\NewsService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\NewsService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TicketTypeService\TicketTypeService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TicketTypeService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TicketTypeService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TicketTypeService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TicketService\TicketService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TicketService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TicketService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TicketService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerSecureService\CustomerSecureService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerSecureService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerSecureService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerSecureService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerOperationService\CustomerOperationService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerOperationService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerOperationService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerOperationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
