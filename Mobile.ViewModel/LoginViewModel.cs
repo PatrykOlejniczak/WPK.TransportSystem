@@ -1,8 +1,9 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using Mobile.Model;
 using Mobile.ViewModel.Helpers;
 
 namespace Mobile.ViewModel
@@ -16,20 +17,20 @@ namespace Mobile.ViewModel
         private readonly IExpandedNavigation _navigationService;
         private readonly IAccountManager _accountManager;
 
-        private bool _isLoginError;
-        public bool IsLoginError
+        private string _loginErrorMessage;
+        public string LoginErrorMessage
         {
             get
             {
-                return _isLoginError;
+                return _loginErrorMessage;
             }
-            private set
+            set
             {
-                if (value != _isLoginError)
+                if (!Equals(value, _loginErrorMessage))
                 {
-                    _isLoginError = value;
+                    _loginErrorMessage = value;
+                    RaisePropertyChanged();
                 }
-                RaisePropertyChanged();
             }
         }
 
@@ -47,16 +48,44 @@ namespace Mobile.ViewModel
             }
         }
 
-        private string _registerEmail;
+        private string _registerErrorMessage;
 
+        public string RegisterErrorMessage
+        {
+            get { return _registerErrorMessage; }
+            set
+            {
+                if (_registerErrorMessage != value)
+                {
+                    _registerErrorMessage = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private string _registerEmail;
         public string RegisterEmail
         {
             get { return _registerEmail; }
-            private set
+            set
             {
                 if (_registerEmail != value)
                 {
                     _registerEmail = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                if (_isLoading != value)
+                {
+                    _isLoading = value;
                     RaisePropertyChanged();
                 }
             }
@@ -83,30 +112,100 @@ namespace Mobile.ViewModel
             _navigationService.NavigateTo("MainMenuView");
         }
 
-        private async void ExecuteLogUser(IPasswordGuardian parameter)
+        private void ExecuteLogUser(IPasswordGuardian parameter)
         {
-            var password = parameter.Password;
+            LoginErrorMessage = null;
+            
+            IsLoginInputCorrect(parameter);
 
-            if (password != null && LoginEmail != null)
+            if (string.IsNullOrEmpty(LoginErrorMessage))
             {
-
-                bool isCorrect = await _accountManager.LogUser(LoginEmail, password);
-                Messenger.Default.Send((Customer)_accountManager.ActualLoggedUser);
-
-                if (isCorrect)
-                {
-                    ExecuteNavigateToMainMenu();
-                }
-                else
-                {
-                    IsLoginError = true;
-                }
+                TryLogUser(parameter);
             }
         }
 
-        private async void ExecuteRegisterUser(IPasswordGuardian parameter)
+        private void IsLoginInputCorrect(IPasswordGuardian parameter)
         {
-            //TODO
+            var password = parameter.Password;
+
+            if (!(password != null && LoginEmail != null && IsCorrectEmailFormat(LoginEmail)))
+            {
+                LoginErrorMessage = "Incorrect username or password format.";
+            }         
+        }
+
+        private bool IsCorrectEmailFormat(string email)
+        {
+            return Regex.IsMatch(
+                email, 
+                @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", 
+                RegexOptions.IgnoreCase);
+        }
+
+        private async void TryLogUser(IPasswordGuardian parameter)
+        {
+            var password = parameter.Password;
+
+            try
+            {
+                IsLoading = true;
+
+                await _accountManager.LogUser(LoginEmail, password);
+
+                ExecuteNavigateToMainMenu();
+            }
+            catch (Exception exception)
+            {
+                LoginErrorMessage = exception.Message;
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        private void ExecuteRegisterUser(IPasswordGuardian parameter)
+        {
+            RegisterErrorMessage = null;
+
+            IsRegisterInputCorrect(parameter);
+
+            if (string.IsNullOrEmpty(RegisterErrorMessage))
+            {
+                TryRegisterCustomer(parameter);
+            }
+        }
+
+        private async void TryRegisterCustomer(IPasswordGuardian parameter)
+        {
+            var password = parameter.Password;
+
+            try
+            {
+                IsLoading = true;
+
+                await _accountManager.RegisterUser(LoginEmail, password);
+
+                ExecuteNavigateToMainMenu();
+            }
+            catch (Exception exception)
+            {
+                LoginErrorMessage = exception.Message;
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        private void IsRegisterInputCorrect(IPasswordGuardian parameter)
+        {
+            var password = parameter.Password;
+
+            if (!(password != null && RegisterEmail != null && IsCorrectEmailFormat(RegisterEmail)))
+            {
+                RegisterErrorMessage = "Incorrect username or password format.";
+            }
         }
     }
 }

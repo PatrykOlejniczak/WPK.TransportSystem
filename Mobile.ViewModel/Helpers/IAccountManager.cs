@@ -6,7 +6,7 @@ namespace Mobile.ViewModel.Helpers
     public interface IAccountManager
     { 
         Customer ActualLoggedUser { get; }
-        Task<bool> LogUser(string login, string password);
+        Task LogUser(string login, string password);
         Task RegisterUser(string login, string password);
 
         Task RefreshCustomerAccount();

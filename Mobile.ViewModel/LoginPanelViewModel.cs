@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
 using Mobile.Model;
 using Mobile.ViewModel.Helpers;
 

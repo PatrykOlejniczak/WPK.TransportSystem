@@ -30,6 +30,9 @@ namespace Business.Contracts
         PurchaseTicket GetById(int id);
 
         [OperationContract]
+        PurchaseTicket GetByCustomerId(int customerId);
+
+        [OperationContract]
         PurchaseTicket GetFromDate(DateTime dateTime);
     }
 }

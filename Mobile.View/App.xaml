@@ -4,12 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:view="using:Mobile.View"
     xmlns:config="using:Mobile.View.Config"
+    xmlns:converters="using:Mobile.View.Converters"
     RequestedTheme="Light">
 
     <Application.Resources>
 
-        <config:ViewModelLocator
-            x:Key="ViewModelLocator" />
+        <config:ViewModelLocator x:Key="ViewModelLocator" />
+        
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
         
     </Application.Resources>
 

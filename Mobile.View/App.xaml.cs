@@ -80,9 +80,7 @@ namespace Mobile.View
                     ev.Handled = true;
                     rootFrame.GoBack();
                 }
-
             };
-
             // Ensure the current window is active
             Window.Current.Activate();
         }

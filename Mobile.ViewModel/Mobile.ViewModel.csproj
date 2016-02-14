@@ -109,12 +109,12 @@
   <ItemGroup>
     <Compile Include="BoostAccountViewModel.cs" />
     <Compile Include="BuyTicketCountViewModel.cs" />
-    <Compile Include="BuyTicketViewModel.cs" />
     <Compile Include="ChooseTicketTypeViewModel.cs" />
     <Compile Include="FinalizationTransactionViewModel.cs" />
     <Compile Include="Helpers\ICustomerOperationProvider.cs" />
     <Compile Include="Helpers\IDeviceManager.cs" />
     <Compile Include="Helpers\IExpandedNavigation.cs" />
+    <Compile Include="Helpers\IInternetConnection.cs" />
     <Compile Include="Helpers\ILineProvider.cs" />
     <Compile Include="Helpers\IPasswordGuardian.cs" />
     <Compile Include="Helpers\IAccountManager.cs" />

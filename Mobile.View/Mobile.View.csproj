@@ -104,6 +104,7 @@
     <Compile Include="Converters\EmptyListToVisibityConverter.cs" />
     <Compile Include="Converters\ListElementToBackground.cs" />
     <Compile Include="Converters\NotifyTaskToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToVisibilityConverter.cs" />
     <Compile Include="Converters\TextInputToVisibilityConverter.cs" />
     <Compile Include="Helpers\DeviceManager.cs" />
     <Compile Include="Helpers\ExpandedNavigation.cs" />
@@ -149,6 +150,10 @@
     <None Include="TransportSupport.View_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ladowaniewiecej.png" />
+    <Content Include="Assets\ladowaniewiecej1.png" />
+    <Content Include="Assets\ladowaniewiecej2.png" />
+    <Content Include="Assets\ladowaniewiecej3.png" />
     <Content Include="Assets\tramwaj.png" />
     <Content Include="Assets\ulu.png" />
     <Content Include="Assets\ulubionedodaj.png" />
@@ -178,7 +183,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Styles\PivotHeaderColorStyle.xaml">
+    <Page Include="Styles\CustomPivotHeaderStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

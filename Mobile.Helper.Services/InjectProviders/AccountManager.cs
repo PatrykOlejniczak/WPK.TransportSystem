@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Mobile.Helper.Services.CustomerAuthenticationService;
 using Mobile.Helper.Services.ServiceConfiguration;
 using Mobile.ViewModel.Helpers;
@@ -28,16 +29,18 @@ namespace Mobile.Helper.Services.InjectProviders
             _customerAuthenticationService = new CustomerAuthenticationServiceConfiguration().CustomerAuthenticationServiceClient;
         }
 
-        public async Task<bool> LogUser(string login, string password)
+        public async Task LogUser(string login, string password)
         {
             if (await _customerAuthenticationService.IsCorrectCredentialsCorrectAsync(login, password))
             {
                 await GetInfo(login, password);
                 _password = password;
                 _login = login;
-                return true;
             }
-            return false;
+            else
+            {
+                throw new ArgumentException("Incorrect login or password.");
+            }
         }  
 
         public async Task RefreshCustomerAccount()

@@ -77,7 +77,7 @@ namespace Mobile.ViewModel
 
             NavigateToTimetable
                 = new RelayCommand(ExecuteNavigateToTimetable);
-
+            _navigationService.RemoveBackEntry();
             if (ActivePurchaseTickets == null)
             {
                 test();
