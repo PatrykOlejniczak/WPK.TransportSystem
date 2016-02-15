@@ -243,7 +243,7 @@
     <None Include="Service References\CustomerOperationService\ManagingSystem.CustomerOperationService.BoostAccount.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\CustomerOperationService\ManagingSystem.CustomerOperationService.PurchaseTicket.datasource">
+    <None Include="Service References\CustomerOperationService\ManagingSystem.CustomerOperationService.ExpandedPurchaseTicket.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CustomerSecureService\CustomerManager.wsdl" />

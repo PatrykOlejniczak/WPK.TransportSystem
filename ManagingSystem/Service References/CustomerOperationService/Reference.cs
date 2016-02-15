@@ -140,8 +140,48 @@ namespace ManagingSystem.CustomerOperationService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ExpandedPurchaseTicket", Namespace="Wpk.Entities")]
+    [System.SerializableAttribute()]
+    public partial class ExpandedPurchaseTicket : ManagingSystem.CustomerOperationService.PurchaseTicket {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime ExpireDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TicketNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ExpireDateTime {
+            get {
+                return this.ExpireDateTimeField;
+            }
+            set {
+                if ((this.ExpireDateTimeField.Equals(value) != true)) {
+                    this.ExpireDateTimeField = value;
+                    this.RaisePropertyChanged("ExpireDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TicketName {
+            get {
+                return this.TicketNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TicketNameField, value) != true)) {
+                    this.TicketNameField = value;
+                    this.RaisePropertyChanged("TicketName");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="PurchaseTicket", Namespace="Wpk.Entities")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ManagingSystem.CustomerOperationService.ExpandedPurchaseTicket))]
     public partial class PurchaseTicket : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -322,16 +362,22 @@ namespace ManagingSystem.CustomerOperationService {
         System.Threading.Tasks.Task<ManagingSystem.CustomerOperationService.BoostAccount[]> GetAllBoostAccountAsync(string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetAllPurchaseTicket", ReplyAction="http://tempuri.org/ICustomerOperationService/GetAllPurchaseTicketResponse")]
-        ManagingSystem.CustomerOperationService.PurchaseTicket[] GetAllPurchaseTicket(string userName, string password);
+        ManagingSystem.CustomerOperationService.ExpandedPurchaseTicket[] GetAllPurchaseTicket(string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetAllPurchaseTicket", ReplyAction="http://tempuri.org/ICustomerOperationService/GetAllPurchaseTicketResponse")]
-        System.Threading.Tasks.Task<ManagingSystem.CustomerOperationService.PurchaseTicket[]> GetAllPurchaseTicketAsync(string userName, string password);
+        System.Threading.Tasks.Task<ManagingSystem.CustomerOperationService.ExpandedPurchaseTicket[]> GetAllPurchaseTicketAsync(string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetActivePurchaseTicket", ReplyAction="http://tempuri.org/ICustomerOperationService/GetActivePurchaseTicketResponse")]
-        ManagingSystem.CustomerOperationService.PurchaseTicket[] GetActivePurchaseTicket(string userName, string password, string deviceId);
+        ManagingSystem.CustomerOperationService.ExpandedPurchaseTicket[] GetActivePurchaseTicket(string userName, string password, string deviceId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetActivePurchaseTicket", ReplyAction="http://tempuri.org/ICustomerOperationService/GetActivePurchaseTicketResponse")]
-        System.Threading.Tasks.Task<ManagingSystem.CustomerOperationService.PurchaseTicket[]> GetActivePurchaseTicketAsync(string userName, string password, string deviceId);
+        System.Threading.Tasks.Task<ManagingSystem.CustomerOperationService.ExpandedPurchaseTicket[]> GetActivePurchaseTicketAsync(string userName, string password, string deviceId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetAccountBallance", ReplyAction="http://tempuri.org/ICustomerOperationService/GetAccountBallanceResponse")]
+        double GetAccountBallance(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/GetAccountBallance", ReplyAction="http://tempuri.org/ICustomerOperationService/GetAccountBallanceResponse")]
+        System.Threading.Tasks.Task<double> GetAccountBallanceAsync(string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerOperationService/UpdateCustomerEmail", ReplyAction="http://tempuri.org/ICustomerOperationService/UpdateCustomerEmailResponse")]
         void UpdateCustomerEmail(string userName, string password, string email);
@@ -393,20 +439,28 @@ namespace ManagingSystem.CustomerOperationService {
             return base.Channel.GetAllBoostAccountAsync(userName, password);
         }
         
-        public ManagingSystem.CustomerOperationService.PurchaseTicket[] GetAllPurchaseTicket(string userName, string password) {
+        public ManagingSystem.CustomerOperationService.ExpandedPurchaseTicket[] GetAllPurchaseTicket(string userName, string password) {
             return base.Channel.GetAllPurchaseTicket(userName, password);
         }
         
-        public System.Threading.Tasks.Task<ManagingSystem.CustomerOperationService.PurchaseTicket[]> GetAllPurchaseTicketAsync(string userName, string password) {
+        public System.Threading.Tasks.Task<ManagingSystem.CustomerOperationService.ExpandedPurchaseTicket[]> GetAllPurchaseTicketAsync(string userName, string password) {
             return base.Channel.GetAllPurchaseTicketAsync(userName, password);
         }
         
-        public ManagingSystem.CustomerOperationService.PurchaseTicket[] GetActivePurchaseTicket(string userName, string password, string deviceId) {
+        public ManagingSystem.CustomerOperationService.ExpandedPurchaseTicket[] GetActivePurchaseTicket(string userName, string password, string deviceId) {
             return base.Channel.GetActivePurchaseTicket(userName, password, deviceId);
         }
         
-        public System.Threading.Tasks.Task<ManagingSystem.CustomerOperationService.PurchaseTicket[]> GetActivePurchaseTicketAsync(string userName, string password, string deviceId) {
+        public System.Threading.Tasks.Task<ManagingSystem.CustomerOperationService.ExpandedPurchaseTicket[]> GetActivePurchaseTicketAsync(string userName, string password, string deviceId) {
             return base.Channel.GetActivePurchaseTicketAsync(userName, password, deviceId);
+        }
+        
+        public double GetAccountBallance(string userName, string password) {
+            return base.Channel.GetAccountBallance(userName, password);
+        }
+        
+        public System.Threading.Tasks.Task<double> GetAccountBallanceAsync(string userName, string password) {
+            return base.Channel.GetAccountBallanceAsync(userName, password);
         }
         
         public void UpdateCustomerEmail(string userName, string password, string email) {

@@ -27,7 +27,7 @@
   <xs:element name="GetAllPurchaseTicketResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="Wpk.Entities" minOccurs="0" name="GetAllPurchaseTicketResult" nillable="true" type="q2:ArrayOfPurchaseTicket" />
+        <xs:element xmlns:q2="Wpk.Entities" minOccurs="0" name="GetAllPurchaseTicketResult" nillable="true" type="q2:ArrayOfExpandedPurchaseTicket" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -43,7 +43,22 @@
   <xs:element name="GetActivePurchaseTicketResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="Wpk.Entities" minOccurs="0" name="GetActivePurchaseTicketResult" nillable="true" type="q3:ArrayOfPurchaseTicket" />
+        <xs:element xmlns:q3="Wpk.Entities" minOccurs="0" name="GetActivePurchaseTicketResult" nillable="true" type="q3:ArrayOfExpandedPurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccountBallance">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccountBallanceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAccountBallanceResult" type="xs:double" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

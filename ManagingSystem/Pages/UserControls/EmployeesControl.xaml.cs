@@ -38,29 +38,29 @@ namespace ManagingSystem.Pages.UserControls
 
         public void UpdateUserCredentials(string userName, string userPassword)
         {
-            try
-            {
-                employeeService.ClientCredentials.UserName.UserName = userName;
-                employeeService.ClientCredentials.UserName.Password = userPassword;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
-            }
+            //try
+            //{
+            //    employeeService.ClientCredentials.UserName.UserName = userName;
+            //    employeeService.ClientCredentials.UserName.Password = userPassword;
+            //}
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
+            //}
             
         }
 
         public void FillData()
         {
-            try
-            {
+            //try
+            //{
                 EmployeesList = employeeService.GetAll();
                 EmployeesListBox.ItemsSource = EmployeesList;
-            }
-            catch(Exception ex)
-            {
-                //TODO
-            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
+            //}
 
         }
 

@@ -24,5 +24,10 @@ namespace ManagingSystem.Pages.UserControls
         {
             InitializeComponent();
         }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
