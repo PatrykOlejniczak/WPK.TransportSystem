@@ -43,7 +43,7 @@ namespace ManagingSystem.Pages
 
         private void ScheduleButton_Click(object sender, RoutedEventArgs e)
         {
-            this.MainContentControl.Content = ucm.Schedule;
+            this.MainContentControl.Content = ucm.BusSchedule;
         }
 
         private void EmployeesButton_Click(object sender, RoutedEventArgs e)

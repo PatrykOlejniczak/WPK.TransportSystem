@@ -82,11 +82,17 @@
     <Compile Include="Pages\UserControls\BusSchedule.xaml.cs">
       <DependentUpon>BusSchedule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UserControls\CareerUserControl.xaml.cs">
+      <DependentUpon>CareerUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UserControls\ClientsControl.xaml.cs">
       <DependentUpon>ClientsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserControls\DetailsUserControl\BusScheduleDetails.xaml.cs">
       <DependentUpon>BusScheduleDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\CareerDetails.xaml.cs">
+      <DependentUpon>CareerDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserControls\DetailsUserControl\CustomerDetails.xaml.cs">
       <DependentUpon>CustomerDetails.xaml</DependentUpon>
@@ -97,8 +103,20 @@
     <Compile Include="Pages\UserControls\DetailsUserControl\NewsDetails.xaml.cs">
       <DependentUpon>NewsDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\StatisticsDetails.xaml.cs">
+      <DependentUpon>StatisticsDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\SurveyDetails.xaml.cs">
+      <DependentUpon>SurveyDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UserControls\DetailsUserControl\TicketDetails.xaml.cs">
       <DependentUpon>TicketDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\StatisticsUserControl.xaml.cs">
+      <DependentUpon>StatisticsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\SurverUserControl.xaml.cs">
+      <DependentUpon>SurverUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserControls\TicketsControl.xaml.cs">
       <DependentUpon>TicketsControl.xaml</DependentUpon>
@@ -354,11 +372,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\UserControls\CareerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\UserControls\ClientsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\UserControls\DetailsUserControl\BusScheduleDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\CareerDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -378,6 +404,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\StatisticsDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\SurveyDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\UserControls\DetailsUserControl\TicketDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -389,6 +423,14 @@
     <Page Include="Pages\UserControls\NewsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\UserControls\StatisticsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\SurverUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\UserControls\TicketsControl.xaml">
       <SubType>Designer</SubType>

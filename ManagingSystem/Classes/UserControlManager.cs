@@ -13,9 +13,9 @@ namespace ManagingSystem.Class
         public ClientsControl Clients { get; private set; }
         public EmployeesControl Employees { get; private set; }
         public NewsControl News { get; private set; }
-        public UserControl Schedule { get; private set; }
-        public UserControl Statistics { get; private set; }
-        public UserControl Survey { get; private set; }
+        public BusSchedule BusSchedule { get; private set; }
+        public StatisticsUserControl Statistics { get; private set; }
+        public SurverUserControl Survey { get; private set; }
         public TicketsControl Tickets { get; private set; }
 
         public UserControlManager()
