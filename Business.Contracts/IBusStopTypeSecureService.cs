@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.Collections.Generic;
+using System.ServiceModel;
 using Business.Entities;
 
 namespace Business.Contracts
@@ -7,6 +8,9 @@ namespace Business.Contracts
     public interface IBusStopTypeSecureService
     {
         [OperationContract]
+        IEnumerable<BusStopType> GetAllWithDeleted();
+
+        [OperationContract]
         void Create(BusStopType busStopType);
 
         [OperationContract]
@@ -14,5 +18,8 @@ namespace Business.Contracts
 
         [OperationContract]
         void DeleteById(int id);
+
+        [OperationContract]
+        void UndeleteById(int id);
     }
 }

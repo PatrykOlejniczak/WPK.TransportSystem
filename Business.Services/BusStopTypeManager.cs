@@ -41,6 +41,15 @@ namespace Business.Services
             return ConvertToReturn(result);
         }
 
+        public IEnumerable<BusStopType> GetAllWithDeleted()
+        {
+            var result = _busStopTypeRepository
+                .FindAll()
+                .AsEnumerable();
+
+            return ConvertToReturn(result);
+        }
+
         public void Create(BusStopType busStopType)
         {
             try
@@ -84,7 +93,35 @@ namespace Business.Services
                     .FindBy(b => b.Id == id)
                     .First();
 
+                if (actualBusStopType.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
                 actualBusStopType.IsDeleted = true;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualBusStopType = _busStopTypeRepository
+                    .FindBy(b => b.Id == id)
+                    .First();
+
+                if (!actualBusStopType.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualBusStopType.IsDeleted = false;
 
                 _unitOfWork.Commit();
             }

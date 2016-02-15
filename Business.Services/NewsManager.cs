@@ -42,6 +42,15 @@ namespace Business.Services
             return ConvertToReturn(result);
         }
 
+        public IEnumerable<News> GetAllWithDeleted()
+        {
+            var result = _newsRepository
+                .FindAll()
+                .AsEnumerable();
+
+            return ConvertToReturn(result);
+        }
+
         public IEnumerable<News> GetByEmployeeId(int employeeId)
         {
             var result = _newsRepository
@@ -98,10 +107,37 @@ namespace Business.Services
             {
                 var actualNews = _newsRepository
                     .FindBy(n => n.Id == id)
-                    .AsEnumerable()
                     .First();
 
+                if (actualNews.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
                 actualNews.IsDeleted = true;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualNews = _newsRepository
+                    .FindBy(n => n.Id == id)
+                    .First();
+
+                if (!actualNews.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualNews.IsDeleted = false;
 
                 _unitOfWork.Commit();
             }

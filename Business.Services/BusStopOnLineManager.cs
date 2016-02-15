@@ -41,6 +41,15 @@ namespace Business.Services
             return ConvertToReturn(result);
         }
 
+        public IEnumerable<BusStopOnLine> GetAllWithDeleted()
+        {
+            var result = _busStopOnLineRepository
+                .FindAll()
+                .AsEnumerable();
+
+            return ConvertToReturn(result);
+        }
+
         public void Create(BusStopOnLine busStopOnLine)
         {
             try
@@ -87,6 +96,11 @@ namespace Business.Services
                     .FindBy(b => b.Id == id)
                     .First();
 
+                if (actualBusStopOnLine.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
                 actualBusStopOnLine.IsDeleted = true;
 
                 _unitOfWork.Commit();
@@ -96,6 +110,30 @@ namespace Business.Services
                 throw new FaultException(exception.Message);
             }
         }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualBusStopOnLine = _busStopOnLineRepository
+                    .FindBy(b => b.Id == id)
+                    .First();
+
+                if (!actualBusStopOnLine.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualBusStopOnLine.IsDeleted = false;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
         private IEnumerable<BusStopOnLine> ConvertToReturn(IEnumerable<Data.Entities.BusStopOnLine> busStopTypes)
         {
             return AutoMapper.Mapper.Map<IEnumerable<BusStopOnLine>>(busStopTypes);

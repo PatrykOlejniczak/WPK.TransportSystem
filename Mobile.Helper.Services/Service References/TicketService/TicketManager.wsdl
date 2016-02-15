@@ -45,6 +45,12 @@
       <xsd:import schemaLocation="http://localhost:24462/Services/TicketService.svc?xsd=xsd2" namespace="Wpk.Entities" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="ITicketSecureService_GetAllWithDeleted_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWithDeleted" />
+  </wsdl:message>
+  <wsdl:message name="ITicketSecureService_GetAllWithDeleted_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWithDeletedResponse" />
+  </wsdl:message>
   <wsdl:message name="ITicketSecureService_Create_InputMessage">
     <wsdl:part name="parameters" element="tns:Create" />
   </wsdl:message>
@@ -62,6 +68,12 @@
   </wsdl:message>
   <wsdl:message name="ITicketSecureService_DeleteById_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITicketSecureService_UndeleteById_InputMessage">
+    <wsdl:part name="parameters" element="tns:UndeleteById" />
+  </wsdl:message>
+  <wsdl:message name="ITicketSecureService_UndeleteById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UndeleteByIdResponse" />
   </wsdl:message>
   <wsdl:message name="ITicketService_GetAll_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAll" />
@@ -100,6 +112,10 @@
     <wsdl:part name="parameters" element="tns:GetByNameResponse" />
   </wsdl:message>
   <wsdl:portType name="ITicketSecureService">
+    <wsdl:operation name="GetAllWithDeleted">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITicketSecureService/GetAllWithDeleted" message="tns:ITicketSecureService_GetAllWithDeleted_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITicketSecureService/GetAllWithDeletedResponse" message="tns:ITicketSecureService_GetAllWithDeleted_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Create">
       <wsdl:input wsaw:Action="http://tempuri.org/ITicketSecureService/Create" message="tns:ITicketSecureService_Create_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITicketSecureService/CreateResponse" message="tns:ITicketSecureService_Create_OutputMessage" />
@@ -111,6 +127,10 @@
     <wsdl:operation name="DeleteById">
       <wsdl:input wsaw:Action="http://tempuri.org/ITicketSecureService/DeleteById" message="tns:ITicketSecureService_DeleteById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITicketSecureService/DeleteByIdResponse" message="tns:ITicketSecureService_DeleteById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UndeleteById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITicketSecureService/UndeleteById" message="tns:ITicketSecureService_UndeleteById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITicketSecureService/UndeleteByIdResponse" message="tns:ITicketSecureService_UndeleteById_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ITicketService">
@@ -142,6 +162,15 @@
   <wsdl:binding name="BasicHttpBinding_ITicketSecureService" type="tns:ITicketSecureService">
     <wsp:PolicyReference URI="#BasicHttpBinding_ITicketSecureService_policy" />
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllWithDeleted">
+      <soap:operation soapAction="http://tempuri.org/ITicketSecureService/GetAllWithDeleted" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Create">
       <soap:operation soapAction="http://tempuri.org/ITicketSecureService/Create" style="document" />
       <wsdl:input>
@@ -162,6 +191,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteById">
       <soap:operation soapAction="http://tempuri.org/ITicketSecureService/DeleteById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UndeleteById">
+      <soap:operation soapAction="http://tempuri.org/ITicketSecureService/UndeleteById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

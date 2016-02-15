@@ -36,8 +36,16 @@ namespace Business.Services
         {
             var result = _timetrableRepository
                 .FindBy(t => t.Id == id)
-                .AsEnumerable()
                 .First();
+
+            return ConvertToReturn(result);
+        }
+
+        public IEnumerable<Timetable> GetAllWithDeleted()
+        {
+            var result = _timetrableRepository
+                .FindAll()
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
@@ -87,10 +95,37 @@ namespace Business.Services
             {
                 var actualTimetable = _timetrableRepository
                     .FindBy(t => t.Id == id)
-                    .AsEnumerable()
                     .First();
 
+                if (actualTimetable.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
                 actualTimetable.IsDeleted = true;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualTimetable = _timetrableRepository
+                    .FindBy(t => t.Id == id)
+                    .First();
+
+                if (!actualTimetable.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualTimetable.IsDeleted = false;
 
                 _unitOfWork.Commit();
             }

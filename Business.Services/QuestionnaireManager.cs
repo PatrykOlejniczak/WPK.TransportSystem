@@ -42,6 +42,15 @@ namespace Business.Services
             return ConvertToReturn(result);
         }
 
+        public IEnumerable<Questionnaire> GetAllWithDeleted()
+        {
+            var result = _questionnainerRepository
+                .FindAll()
+                .AsEnumerable();
+
+            return ConvertToReturn(result);
+        }
+
         public IEnumerable<Questionnaire> GetByEmployeeId(int employeeId)
         {
             var result = _questionnainerRepository
@@ -98,9 +107,37 @@ namespace Business.Services
             {
                 var actualQuestionnaire = _questionnainerRepository
                     .FindBy(d => d.Id == id)
-                    .AsEnumerable();
+                    .First();
 
-                actualQuestionnaire.First().IsDeleted = true;
+                if (actualQuestionnaire.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
+                actualQuestionnaire.IsDeleted = true;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualQuestionnaire = _questionnainerRepository
+                    .FindBy(d => d.Id == id)
+                    .First();
+
+                if (!actualQuestionnaire.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualQuestionnaire.IsDeleted = false;
 
                 _unitOfWork.Commit();
             }

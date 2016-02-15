@@ -11,6 +11,9 @@ namespace Business.Contracts
         IEnumerable<Customer> GetAll();
 
         [OperationContract]
+        IEnumerable<Customer> GetAllWithDeleted();
+
+        [OperationContract]
         IEnumerable<Customer> GetWhereAccountBallanceMoreThan(double ballance);
 
         [OperationContract]
@@ -21,5 +24,11 @@ namespace Business.Contracts
 
         [OperationContract]
         Customer GetByEmail(string email);
+
+        [OperationContract]
+        void DeleteById(int id);
+
+        [OperationContract]
+        void UndeleteById(int id);
     }
 }

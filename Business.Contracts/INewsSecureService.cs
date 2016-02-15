@@ -8,6 +8,9 @@ namespace Business.Contracts
     public interface INewsSecureService
     {
         [OperationContract]
+        IEnumerable<News> GetAllWithDeleted();
+
+        [OperationContract]
         IEnumerable<News> GetByEmployeeId(int employeeId);
 
         [OperationContract]
@@ -18,5 +21,8 @@ namespace Business.Contracts
 
         [OperationContract]
         void DeleteById(int id);
+
+        [OperationContract]
+        void UndeleteById(int id);
     }
 }

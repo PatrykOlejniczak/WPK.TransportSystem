@@ -25,7 +25,9 @@ namespace Business.Services
 
         public IEnumerable<TicketType> GetAll()
         {
-            var result = _ticketTypeRepository.FindBy(t => !t.IsDeleted).AsEnumerable();
+            var result = _ticketTypeRepository
+                .FindBy(t => !t.IsDeleted)
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
@@ -44,6 +46,15 @@ namespace Business.Services
             var result = _ticketTypeRepository
                 .FindBy(t => t.Name == name)
                 .AsEnumerable().First();
+
+            return ConvertToReturn(result);
+        }
+
+        public IEnumerable<TicketType> GetAllWithDeleted()
+        {
+            var result = _ticketTypeRepository
+                .FindAll()
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
@@ -96,6 +107,11 @@ namespace Business.Services
                     .FindBy(t => t.Id == id)
                     .First();
 
+                if (actualTicketType.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
                 actualTicketType.IsDeleted = true;
 
                 _unitOfWork.Commit();
@@ -104,6 +120,29 @@ namespace Business.Services
             {                
                 throw new FaultException(exception.Message);
             }            
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualTicketType = _ticketTypeRepository
+                    .FindBy(t => t.Id == id)
+                    .First();
+
+                if (!actualTicketType.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualTicketType.IsDeleted = false;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
         }
 
         private IEnumerable<TicketType> ConvertToReturn(IEnumerable<Data.Entities.TicketType> ticketTypes)

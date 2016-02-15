@@ -11,6 +11,9 @@ namespace Business.Contracts
         IEnumerable<UserAccount> GetAll();
 
         [OperationContract]
+        IEnumerable<UserAccount> GetAllWithDeleted();
+
+        [OperationContract]
         UserAccount GetById(int id);
 
         [OperationContract]
@@ -24,5 +27,11 @@ namespace Business.Contracts
 
         [OperationContract]
         void DeleteByEmployeeId(int employeeId);
+
+        [OperationContract]
+        void UndeleteById(int id);
+
+        [OperationContract]
+        void UndeleteByEmployeeId(int employeeId);
     }
 }

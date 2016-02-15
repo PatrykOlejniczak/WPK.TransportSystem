@@ -25,7 +25,9 @@ namespace Business.Services
 
         public IEnumerable<Discount> GetAll()
         {
-            var result = _discountRepository.FindBy(d => !d.IsDeleted).AsEnumerable();
+            var result = _discountRepository
+                .FindBy(d => !d.IsDeleted)
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
@@ -62,6 +64,15 @@ namespace Business.Services
             var result = _discountRepository
                 .FindBy(d => d.Name == name)
                 .AsEnumerable().First();
+
+            return ConvertToReturn(result);
+        }
+
+        public IEnumerable<Discount> GetAllWithDeleted()
+        {
+            var result = _discountRepository
+                .FindAll()
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
@@ -115,7 +126,35 @@ namespace Business.Services
                     .FindBy(d => d.Id == id)
                     .First();
 
+                if (actualDiscount.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
                 actualDiscount.IsDeleted = true;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualDiscount = _discountRepository
+                    .FindBy(d => d.Id == id)
+                    .First();
+
+                if (!actualDiscount.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualDiscount.IsDeleted = false;
 
                 _unitOfWork.Commit();
             }
