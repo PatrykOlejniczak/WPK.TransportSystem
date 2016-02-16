@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagingSystem.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ServiceModel.Description;
 
 namespace ManagingSystem.Pages.UserControls
 {
     /// <summary>
     /// Interaction logic for CareerUserControl.xaml
     /// </summary>
-    public partial class CareerUserControl : UserControl
+    public partial class CareerUserControl : UserControl, IDetailsPage
     {
         public CareerUserControl()
         {
             InitializeComponent();
+        }
+
+        public void FillData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateUserCredentials(ClientCredentials cc)
+        {
+            throw new NotImplementedException();
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

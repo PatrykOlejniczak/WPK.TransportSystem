@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ManagingSystem.CustomerSecureService;
 using ManagingSystem.CustomerOperationService;
 using ManagingSystem.Pages.UserControls.DetailsUserControl;
+using System.ServiceModel.Description;
 
 namespace ManagingSystem.Pages.UserControls
 {
@@ -51,12 +52,12 @@ namespace ManagingSystem.Pages.UserControls
             }
         }
 
-        internal void UpdateUserCredentials(string login, string password)
+        internal void UpdateUserCredentials(ClientCredentials cc)
         {
             try
             {
-                CustomerSecService.ClientCredentials.UserName.UserName = login;
-                CustomerSecService.ClientCredentials.UserName.Password = password;
+                CustomerSecService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
+                CustomerSecService.ClientCredentials.UserName.Password = cc.UserName.Password;
             }
             catch(Exception ex)
             {

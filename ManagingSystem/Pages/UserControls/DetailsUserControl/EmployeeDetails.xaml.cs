@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ManagingSystem.EmployeeSecureService;
+using ManagingSystem.Interface;
 
 namespace ManagingSystem.Pages.UserControls.DetailsUserControl
 {
@@ -23,18 +24,14 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     {
         public EmployeeSecureServiceClient employeeService { get; set; }
         Employee actualEmployee;
-        public EmployeeDetails()
+        public EmployeeDetails(Employee newEmployee)
         {
             InitializeComponent();
-        }
-
-        public void SetNewEmployee(Employee newEmployee)
-        {
             actualEmployee = newEmployee;
             UpdateUserDetails();
         }
 
-        private void UpdateUserDetails()
+        void UpdateUserDetails()
         {
             SelectedUserName.Text = actualEmployee.FirstName;
             SelectedUserSecondName.Text = actualEmployee.SecondName;

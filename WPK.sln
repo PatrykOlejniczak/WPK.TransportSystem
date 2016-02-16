@@ -51,6 +51,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ManagingSystem", "ManagingSystem", "{6309627A-42D3-4D5E-89DC-6183CE93FA43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagingSystem", "ManagingSystem\ManagingSystem.csproj", "{4095A6D1-373E-4B8F-B135-8552FF77DA3B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02A0B492-B736-49F8-9A9E-6193DE0EEE77} = {02A0B492-B736-49F8-9A9E-6193DE0EEE77}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

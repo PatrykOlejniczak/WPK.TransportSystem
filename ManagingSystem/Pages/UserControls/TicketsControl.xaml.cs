@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ManagingSystem.TicketTypeService;
 using ManagingSystem.TicketService;
 using ManagingSystem.Pages.UserControls.DetailsUserControl;
+using System.ServiceModel.Description;
 
 namespace ManagingSystem.Pages.UserControls
 {
@@ -35,15 +36,15 @@ namespace ManagingSystem.Pages.UserControls
             TicketService = new TicketServiceClient();
         }
 
-        public void UpdateUserCredentials(string login,string password)
+        public void UpdateUserCredentials(ClientCredentials cc)
         {
             try
             {
-                TicketTypeService.ClientCredentials.UserName.UserName = login;
-                TicketTypeService.ClientCredentials.UserName.Password = password;
+                TicketTypeService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
+                TicketTypeService.ClientCredentials.UserName.Password = cc.UserName.Password;
 
-                TicketService.ClientCredentials.UserName.UserName = login;
-                TicketService.ClientCredentials.UserName.Password = password;
+                TicketService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
+                TicketService.ClientCredentials.UserName.Password = cc.UserName.Password;
             }
             catch(Exception ex)
             {

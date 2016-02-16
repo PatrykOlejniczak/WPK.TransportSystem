@@ -16,13 +16,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ManagingSystem.EmployeeSecureService;
 using ManagingSystem.EmployeeAuthenticationService;
+using System.ServiceModel.Description;
+using ManagingSystem.Interface;
 
 namespace ManagingSystem.Pages.UserControls
 {
     /// <summary>
     /// Interaction logic for EmployeesControl.xaml
     /// </summary>
-    public partial class EmployeesControl : UserControl
+    public partial class EmployeesControl : UserControl, IPages
     {
         private EmployeeSecureServiceClient employeeService;
         private Employee[] EmployeesList;
@@ -36,39 +38,38 @@ namespace ManagingSystem.Pages.UserControls
             employeeService = new EmployeeSecureServiceClient();
         }
 
-        public void UpdateUserCredentials(string userName, string userPassword)
+        public void UpdateUserCredentials(ClientCredentials cc)
         {
-            //try
-            //{
-            //    employeeService.ClientCredentials.UserName.UserName = userName;
-            //    employeeService.ClientCredentials.UserName.Password = userPassword;
-            //}
-            //catch(Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
-            //}
-            
+            try
+            {
+                employeeService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
+                employeeService.ClientCredentials.UserName.Password = cc.UserName.Password;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
+            }
+
         }
 
         public void FillData()
         {
-            //try
-            //{
+            try
+            {
                 EmployeesList = employeeService.GetAll();
                 EmployeesListBox.ItemsSource = EmployeesList;
-            //}
-            //catch(Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
-            //}
-
         }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
+            }
+
+}
 
         private void EmployeesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            employeeDetails = new EmployeeDetails();
+            employeeDetails = new EmployeeDetails((Employee)EmployeesListBox.SelectedItem);
             this.EmployeeDetailsContentControl.Content = employeeDetails;
-            employeeDetails.SetNewEmployee((Employee)EmployeesListBox.SelectedItem);
         }
 
         private string[] SplitText(string text)

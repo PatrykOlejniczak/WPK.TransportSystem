@@ -92,24 +92,25 @@
                 </StackPanel.Resources>
 
                 <Button
-                x:Name="NewsMainButton"
-                Content="Aktualności"
-                Click="NewsButton_Click"
-                Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
+                    x:Name="NewsMainButton"
+                    Content="Aktualności"
+                    Click="NewsButton_Click"
+                    Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
                 <Button
-                x:Name="ScheduleMainButton"
-                Content="Rozkłady"
-                Click="ScheduleButton_Click"
-                Style="{StaticResource ResourceKey=LeftButtonStyle}" />
+                    x:Name="ScheduleMainButton"
+                    Content="Rozkłady"
+                    Click="ScheduleButton_Click"
+                    Style="{StaticResource ResourceKey=LeftButtonStyle}" />
                 <Button
-                x:Name="EmployeesMainButton"
-                Content="Pracownicy"
-                Click="EmployeesButton_Click"
-                Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
+                    x:Name="EmployeesMainButton"
+                    Content="Pracownicy"
+                    Click="EmployeesButton_Click"
+                    Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
                 <Button
                     x:Name="StatisticsMainButton"
                     Foreground="Red"
                     Content="Statystyki"
+                    Click="StatisticsMainButton_Click"
                     Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
                 <Button
                     x:Name="ClientsMainButton"
@@ -118,20 +119,22 @@
                     Click="ClientsMainButton_Click"
                     Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
                 <Button 
-                x:Name="CareerMainButton"
-                Content="Kariera"
+                    x:Name="CareerMainButton"
+                    Content="Kariera"
                     Foreground="Red"
-                Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
+                    Click="CareerMainButton_Click"
+                    Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
                 <Button
-                x:Name="QuestionnaireMainButton"
-                Content="Ankiety"
+                    x:Name="QuestionnaireMainButton"
+                    Content="Ankiety"
                     Foreground="Red"
-                Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
+                    Click="QuestionnaireMainButton_Click"
+                    Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
                 <Button
-                x:Name="TicketsMainButton"
-                Content="Bilety"
-                Style="{StaticResource ResourceKey=LeftButtonStyle}"
-                Click="TicketsMainButton_Click"/>
+                    x:Name="TicketsMainButton"
+                    Content="Bilety"
+                    Click="TicketsMainButton_Click"
+                    Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
             </StackPanel>
         </StackPanel>
         <ContentControl

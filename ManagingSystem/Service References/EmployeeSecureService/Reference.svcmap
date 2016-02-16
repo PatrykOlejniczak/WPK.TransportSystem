@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="39a03946-0e39-4896-8889-b717bbcfbd76" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2e65a717-3b74-44e1-8644-cca17f62e25f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:24462/Services/EmployeeSecureService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="EmployeeSecureService.xsd" MetadataType="Schema" ID="b30e1cd5-8902-4a1b-a2b7-68a3199f6e40" SourceId="1" SourceUrl="http://localhost:24462/Services/EmployeeSecureService.svc?xsd=xsd0" />
-    <MetadataFile FileName="EmployeeManager.wsdl" MetadataType="Wsdl" ID="738a30f6-c168-44f6-b0ab-1239e76b821a" SourceId="1" SourceUrl="http://localhost:24462/Services/EmployeeSecureService.svc?wsdl" />
-    <MetadataFile FileName="EmployeeSecureService1.xsd" MetadataType="Schema" ID="d54317a8-f2dd-4cad-95bb-1fca3277ac7c" SourceId="1" SourceUrl="http://localhost:24462/Services/EmployeeSecureService.svc?xsd=xsd2" />
-    <MetadataFile FileName="EmployeeSecureService2.xsd" MetadataType="Schema" ID="b6b27846-9165-477f-81a1-5d787a30fb37" SourceId="1" SourceUrl="http://localhost:24462/Services/EmployeeSecureService.svc?xsd=xsd1" />
-    <MetadataFile FileName="EmployeeSecureService.disco" MetadataType="Disco" ID="109afaac-b35a-472d-8b14-9305371aabc4" SourceId="1" SourceUrl="http://localhost:24462/Services/EmployeeSecureService.svc?disco" />
+    <MetadataFile FileName="EmployeeSecureService.xsd" MetadataType="Schema" ID="dce87cd3-bc66-4518-af37-928a8797b137" SourceId="1" SourceUrl="http://localhost:24462/Services/EmployeeSecureService.svc?xsd=xsd0" />
+    <MetadataFile FileName="EmployeeManager.wsdl" MetadataType="Wsdl" ID="df9858a5-2455-4864-90b8-b585e287821e" SourceId="1" SourceUrl="http://localhost:24462/Services/EmployeeSecureService.svc?wsdl" />
+    <MetadataFile FileName="EmployeeSecureService1.xsd" MetadataType="Schema" ID="948119d1-e32c-4100-9224-f8da8c65a6ec" SourceId="1" SourceUrl="http://localhost:24462/Services/EmployeeSecureService.svc?xsd=xsd2" />
+    <MetadataFile FileName="EmployeeSecureService2.xsd" MetadataType="Schema" ID="3d7318c3-cd4e-41b2-932c-6633df86bfd9" SourceId="1" SourceUrl="http://localhost:24462/Services/EmployeeSecureService.svc?xsd=xsd1" />
+    <MetadataFile FileName="EmployeeSecureService.disco" MetadataType="Disco" ID="421c57e5-cbb2-40c8-b5c1-b96536d484e3" SourceId="1" SourceUrl="http://localhost:24462/Services/EmployeeSecureService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

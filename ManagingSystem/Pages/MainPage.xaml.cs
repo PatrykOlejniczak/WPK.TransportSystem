@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ManagingSystem.EmployeeAuthenticationService;
+using System.ServiceModel.Description;
 
 namespace ManagingSystem.Pages
 {
@@ -22,47 +23,63 @@ namespace ManagingSystem.Pages
     /// </summary>
     public partial class MainPage : Page
     {
-        private EmployeeAuthenticationClient EmployeeAuth { get; set; }
         UserControlManager ucm;
-        DatabaseProvider databaseProvider;
 
-        public MainPage(EmployeeAuthenticationClient employeeAuth)
+        public MainPage(ClientCredentials cc)
         {
             InitializeComponent();
 
-            EmployeeAuth = employeeAuth;
             ucm = new UserControlManager();
-            databaseProvider = new DatabaseProvider();
+            ucm.SetClientCredentials(cc);
         }
 
         private void NewsButton_Click(object sender, RoutedEventArgs e)
         {
-            ucm.OpenNews(EmployeeAuth.ClientCredentials.UserName.UserName, EmployeeAuth.ClientCredentials.UserName.Password);
+            ucm.OpenNews();
             this.MainContentControl.Content = ucm.News;
         }
 
         private void ScheduleButton_Click(object sender, RoutedEventArgs e)
         {
+            ucm.OpenSchedule();
             this.MainContentControl.Content = ucm.BusSchedule;
         }
 
         private void EmployeesButton_Click(object sender, RoutedEventArgs e)
         {
-            ucm.OpenEmployees(EmployeeAuth.ClientCredentials.UserName.UserName,EmployeeAuth.ClientCredentials.UserName.Password);
+            ucm.OpenEmployees();
             this.MainContentControl.Content = ucm.Employees;
         }
 
         private void TicketsMainButton_Click(object sender, RoutedEventArgs e)
         {
-            ucm.OpenTickets(EmployeeAuth.ClientCredentials.UserName.UserName, EmployeeAuth.ClientCredentials.UserName.Password);
+            ucm.OpenTickets();
             this.MainContentControl.Content = ucm.Tickets;
             
         }
 
         private void ClientsMainButton_Click(object sender, RoutedEventArgs e)
         {
-            ucm.OpenClients(EmployeeAuth.ClientCredentials.UserName.UserName, EmployeeAuth.ClientCredentials.UserName.Password);
+            ucm.OpenClients();
             this.MainContentControl.Content = ucm.Clients;
+        }
+
+        private void StatisticsMainButton_Click(object sender, RoutedEventArgs e)
+        {
+            ucm.OpenStatistics();
+            this.MainContentControl.Content = ucm.Statistics;
+        }
+
+        private void CareerMainButton_Click(object sender, RoutedEventArgs e)
+        {
+            ucm.OpenCareer();
+            this.MainContentControl.Content = ucm.Career;
+        }
+
+        private void QuestionnaireMainButton_Click(object sender, RoutedEventArgs e)
+        {
+            ucm.OpenQuestionnaire();
+            this.MainContentControl.Content = ucm.Questionnaire;
         }
     }
 }

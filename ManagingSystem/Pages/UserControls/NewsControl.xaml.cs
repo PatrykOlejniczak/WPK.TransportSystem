@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ManagingSystem.NewsService;
 using ManagingSystem.Pages.UserControls.DetailsUserControl;
+using System.ServiceModel.Description;
 
 namespace ManagingSystem.Pages.UserControls
 {
@@ -36,12 +37,12 @@ namespace ManagingSystem.Pages.UserControls
             NewsService = new NewsServiceClient();
         }
 
-        public void UpdateUserCredentials(string login, string password)
+        public void UpdateUserCredentials(ClientCredentials cc)
         {
             try
             {
-                NewsSecService.ClientCredentials.UserName.UserName = login;
-                NewsSecService.ClientCredentials.UserName.Password = password;
+                NewsSecService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
+                NewsSecService.ClientCredentials.UserName.Password = cc.UserName.Password;
             }
             catch(Exception ex)
             {

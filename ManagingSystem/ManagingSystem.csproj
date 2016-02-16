@@ -79,6 +79,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interface\IDetailsPage.cs" />
+    <Compile Include="Interface\IPages.cs" />
     <Compile Include="Pages\UserControls\BusSchedule.xaml.cs">
       <DependentUpon>BusSchedule.xaml</DependentUpon>
     </Compile>
@@ -115,8 +117,8 @@
     <Compile Include="Pages\UserControls\StatisticsUserControl.xaml.cs">
       <DependentUpon>StatisticsUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UserControls\SurverUserControl.xaml.cs">
-      <DependentUpon>SurverUserControl.xaml</DependentUpon>
+    <Compile Include="Pages\UserControls\QuestionnaireUserControl.xaml.cs">
+      <DependentUpon>QuestionnaireUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserControls\TicketsControl.xaml.cs">
       <DependentUpon>TicketsControl.xaml</DependentUpon>
@@ -428,7 +430,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UserControls\SurverUserControl.xaml">
+    <Page Include="Pages\UserControls\QuestionnaireUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -462,21 +464,6 @@
     <WCFMetadataStorage Include="Service References\TicketService\" />
     <WCFMetadataStorage Include="Service References\TicketTypeService\" />
     <WCFMetadataStorage Include="Service References\UserAccountService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\EmployeeSecureService\EmployeeSecureService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\EmployeeSecureService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\EmployeeSecureService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\EmployeeSecureService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\EmployeeAuthenticationService\EmployeeAuthentication.disco" />
@@ -594,6 +581,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\CustomerOperationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeSecureService\EmployeeSecureService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeSecureService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeSecureService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EmployeeSecureService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

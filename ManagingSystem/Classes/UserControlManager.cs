@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using ManagingSystem.Pages.UserControls;
+using System.ServiceModel.Description;
 
 namespace ManagingSystem.Class
 {
@@ -15,8 +16,11 @@ namespace ManagingSystem.Class
         public NewsControl News { get; private set; }
         public BusSchedule BusSchedule { get; private set; }
         public StatisticsUserControl Statistics { get; private set; }
-        public SurverUserControl Survey { get; private set; }
+        public QuestionnaireUserControl Questionnaire { get; private set; }
         public TicketsControl Tickets { get; private set; }
+        public CareerUserControl Career { get; private set; }
+
+        private ClientCredentials clientCredentials{ get; set; }
 
         public UserControlManager()
         {
@@ -29,31 +33,64 @@ namespace ManagingSystem.Class
             //Tickets = new TicketsControl();
         }
 
-        public void OpenEmployees(string login, string password)
+        public void SetClientCredentials(ClientCredentials _clientCredentials)
+        {
+            this.clientCredentials = _clientCredentials;
+        }
+
+        public void OpenSchedule() //EmptyDATABASE
+        {
+            BusSchedule = new BusSchedule();
+            BusSchedule.UpdateUserCredentials(clientCredentials);
+            BusSchedule.FillData();
+        }
+
+        public void OpenEmployees()
         {
             Employees = new EmployeesControl();
-            Employees.UpdateUserCredentials(login,password);
+            Employees.UpdateUserCredentials(clientCredentials);
             Employees.FillData();
         }
 
-        public void OpenTickets(string login, string password)
+        public void OpenTickets()
         {
             Tickets = new TicketsControl();
-            Tickets.UpdateUserCredentials(login, password);
+            Tickets.UpdateUserCredentials(clientCredentials);
             Tickets.FillData();
         }
 
-        public void OpenNews(string login, string password)
+        public void OpenNews()
         {
             News = new NewsControl();
-            News.UpdateUserCredentials(login, password);
+            News.UpdateUserCredentials(clientCredentials);
             News.FillData();
         }
 
-        public void OpenClients(string login, string password)
+        public void OpenCareer()
+        {
+            Career = new CareerUserControl();
+            Career.UpdateUserCredentials(clientCredentials);
+            Career.FillData();
+        }
+
+        public void OpenStatistics()
+        {
+            Statistics = new StatisticsUserControl();
+            Statistics.UpdateUserCredentials(clientCredentials);
+            Statistics.FillData();
+        }
+
+        public void OpenQuestionnaire()
+        {
+            Questionnaire = new QuestionnaireUserControl();
+            Questionnaire.UpdateUserCredentials(clientCredentials);
+            Questionnaire.FillData();
+        }
+
+        public void OpenClients()
         {
             Clients = new ClientsControl();
-            Clients.UpdateUserCredentials(login, password);
+            Clients.UpdateUserCredentials(clientCredentials);
             Clients.FillData();
         }
     }

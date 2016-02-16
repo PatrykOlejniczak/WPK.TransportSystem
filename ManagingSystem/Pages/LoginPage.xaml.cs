@@ -39,7 +39,7 @@ namespace ManagingSystem.Pages
             employeeAuthentication.ClientCredentials.UserName.UserName = "UserAccount1";
             employeeAuthentication.ClientCredentials.UserName.Password = "password1";
 
-            MainPage mp = new MainPage(employeeAuthentication);
+            MainPage mp = new MainPage(employeeAuthentication.ClientCredentials);
             thisWindow.Content = mp;
 
             // try

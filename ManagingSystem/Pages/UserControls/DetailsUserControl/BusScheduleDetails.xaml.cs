@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagingSystem.BusStopService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,17 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     /// </summary>
     public partial class BusScheduleDetails : UserControl
     {
-        public BusScheduleDetails()
+        BusStop FocusingBusStop { get; set; }
+        public BusScheduleDetails(BusStop focusingBusStop)
         {
             InitializeComponent();
+            FocusingBusStop = focusingBusStop;
         }
+
+        private void UpdateDetails()
+        {
+
+        }
+
     }
 }
