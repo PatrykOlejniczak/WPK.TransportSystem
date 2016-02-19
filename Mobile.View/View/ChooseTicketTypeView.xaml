@@ -11,7 +11,6 @@
     mc:Ignorable="d"
     DataContext="{Binding ChooseTicketType, Source={StaticResource ViewModelLocator}}">
     <Page.Resources>
-        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <Style TargetType="PivotHeaderItem">
             <Setter Property="FontSize" Value="{ThemeResource PivotHeaderItemFontSize}" />
             <Setter Property="FontFamily" Value="{ThemeResource PivotHeaderItemFontFamily}" />
@@ -51,7 +50,6 @@
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="Black" />
-                                                <!-- original value {ThemeResource SystemControlHighlightAltBaseHighBrush} -->
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Background">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
@@ -120,7 +118,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" MaxWidth="480">
         <Grid Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -131,15 +129,35 @@
                 <PivotItem Header="OneTime">
                     <Grid>
                         <ListView
-                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                            SelectionMode="Single"                 
+                            ScrollViewer.VerticalScrollBarVisibility="Hidden"                                           
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Center"
                             ItemsSource="{Binding OneTimeTickets}"
-                            SelectedItem="{Binding SelectedTicket, Mode=TwoWay}">
+                            SelectedItem="{Binding SelectedTicket, Mode=TwoWay}"
+                            SelectionMode="Single">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListViewItem">
+                                                <Grid>
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal"/>
+                                                        </VisualStateGroup>
+                                                        <VisualStateGroup x:Name="SelectionStates">
+                                                            <VisualState x:Name="Unselected"/>
+                                                            <VisualState x:Name="SelectedUnfocused"/>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Border x:Name="myback" Background="Transparent">
+                                                        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                                    </Border>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>

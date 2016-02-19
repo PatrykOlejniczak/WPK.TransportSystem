@@ -10,11 +10,8 @@
     xmlns:userControls="using:Mobile.View.UserControls"
     mc:Ignorable="d"
     DataContext="{Binding MainMenu, Source={StaticResource ViewModelLocator}}">
-<Page.Resources>
-        <converters:EmptyListToVisibityConverter x:Key="EmptyListToVisibilityConverter"/>
 
-    </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" MaxWidth="480">
         <StackPanel>
         <StackPanel Margin="20">
             <userControls:LoginPanel />

@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Mobile.ViewModel.Helpers;
+using Mobile.ViewModel.Messages;
 
 namespace Mobile.ViewModel
 {
@@ -12,7 +13,6 @@ namespace Mobile.ViewModel
         public ICommand NavigateToFinalizationTransaction { get; private set; }
         
         private ObservableCollection<int> _ticketCounts;
-
         public ObservableCollection<int> TicketCounts
         {
             get { return _ticketCounts; }
@@ -21,9 +21,8 @@ namespace Mobile.ViewModel
                 if (value != null && _ticketCounts != value)
                 {
                     _ticketCounts = value;
-                }
-
-                RaisePropertyChanged();
+                    RaisePropertyChanged();
+                }               
             }
         }
 
@@ -35,29 +34,52 @@ namespace Mobile.ViewModel
             {
                 _selectedItem = value;
                 RaisePropertyChanged();
-                Messenger.Default.Send(_selectedItem);
                 ExecuteNavigateToFinalizationTransaction();
             }
         }
 
         private readonly IExpandedNavigation _navigationService;
+        private PurchaseTicketStatus _actualPurchaseStatus;
 
-        public BuyTicketCountViewModel(IExpandedNavigation navigationService)
+        public BuyTicketCountViewModel(
+            IExpandedNavigation navigationService)
         {
             _navigationService = navigationService;
+
             TicketCounts = new ObservableCollection<int>();
-            for (int i = 1; i < 10; i++)
-            {
-                _ticketCounts.Add(i);    
-            }
+            InitTicketCounts();
+
+            Messenger.Default.Register<PurchaseTicketStatus>(this,
+               (message) =>
+               {
+                   _actualPurchaseStatus = message;
+               });
 
             NavigateToFinalizationTransaction
                     = new RelayCommand(ExecuteNavigateToFinalizationTransaction);
         }
 
+        private void InitTicketCounts()
+        {
+            for (int i = 1; i < 10; i++)
+            {
+                _ticketCounts.Add(i);
+            }
+        }
+
         private void ExecuteNavigateToFinalizationTransaction()
         {
+            SendMessage();
             _navigationService.NavigateTo("FinalizationTransactionView");
+        }
+
+        private void SendMessage()
+        {
+            Messenger.Default.Send(new PurchaseTicketStatus()
+            {
+                TicketCount = SelectedCount,
+                Ticket = _actualPurchaseStatus.Ticket
+            });
         }
     }
 }

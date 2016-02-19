@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Mobile.Model;
 using Mobile.ViewModel.Helpers;
+using Mobile.ViewModel.Messages;
 
 namespace Mobile.ViewModel
 {
@@ -23,14 +24,12 @@ namespace Mobile.ViewModel
                 if (value != null && _oneTimeTickets != value)
                 {
                     _oneTimeTickets = value;
-                }
-
-                RaisePropertyChanged();
+                    RaisePropertyChanged();
+                }               
             }
         }
 
         private ObservableCollection<Ticket> _seasonTickets;
-
         public ObservableCollection<Ticket> SeasonTickets
         {
             get { return _seasonTickets; }
@@ -39,9 +38,8 @@ namespace Mobile.ViewModel
                 if (value != null && _seasonTickets != value)
                 {
                     _seasonTickets = value;
-                }
-
-                RaisePropertyChanged();
+                    RaisePropertyChanged();
+                }               
             }
         }
 
@@ -54,17 +52,18 @@ namespace Mobile.ViewModel
             }
             set
             {
-                _selectedTicket = value;
-                Messenger.Default.Send(_selectedTicket);
+                _selectedTicket = value;                
                 RaisePropertyChanged();
                 NavigateToBuyTicketCount.Execute(null);
             }
         }
 
-        private ObservableCollection<Ticket> _downloadedTickets;
         public ICommand NavigateToBuyTicketCount { get; private set; }
-        public ChooseTicketTypeViewModel(
-            IExpandedNavigation navigationService, ITicketProvider ticketProvider, IAccountManager accountManager)
+
+        private ObservableCollection<Ticket> _downloadedTickets;
+
+        public ChooseTicketTypeViewModel(IExpandedNavigation navigationService, 
+            ITicketProvider ticketProvider, IAccountManager accountManager)
         {
             NavigationService = navigationService;
             TicketProvider = ticketProvider;
@@ -72,6 +71,9 @@ namespace Mobile.ViewModel
 
             OneTimeTickets = new ObservableCollection<Ticket>();
             SeasonTickets = new ObservableCollection<Ticket>();
+
+            NavigateToBuyTicketCount
+                = new RelayCommand(ExecuteNavigateToBuyTicketCount);          
 
             DownloadTickets();
         }
@@ -84,14 +86,20 @@ namespace Mobile.ViewModel
             {
                 SeparateToGroups();
             }
-
-            NavigateToBuyTicketCount
-                = new RelayCommand(ExecuteNavigateToBuyTicketCount);
         }
 
         private void ExecuteNavigateToBuyTicketCount()
         {
+            SendMessage();
             NavigationService.NavigateTo("BuyTicketCountView");
+        }
+
+        private void SendMessage()
+        {
+            Messenger.Default.Send(new PurchaseTicketStatus()
+            {
+                Ticket = SelectedTicket
+            });
         }
 
         private void SeparateToGroups()

@@ -10,12 +10,8 @@
     mc:Ignorable="d"
     DataContext="{Binding BoostAccount, Source={StaticResource ViewModelLocator}}">
 
-    <Page.Resources>
-        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    </Page.Resources>
-    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Margin="20">
+        <Grid Margin="20" MaxWidth="480">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
@@ -37,17 +33,15 @@
                 <TextBox FontSize="30" 
                          Margin="0, 50, 0, 0" 
                          Text="{Binding Code, Mode=TwoWay}"/>
-                <TextBlock HorizontalAlignment="Center" 
-                           Visibility="{Binding IsError, 
-                                        Converter={StaticResource BooleanToVisibilityConverter}}"
+                <TextBlock Text="{Binding ErrorMessage}"
+                           HorizontalAlignment="Center"
                            Foreground="Red" 
                            FontSize="30" 
-                           Margin="0, 30, 0, 0" 
-                           Text="Wrong code!"/>
+                           Margin="0, 30, 0, 0" />
             </StackPanel>
             <Button Grid.Row="1" 
                     VerticalAlignment="Bottom"
-                    Margin="0, 0, 0, 25"
+                    Margin="0, 20, 0, 0"
                     Command="{Binding AcceptBoostAccount}"
                     HorizontalAlignment="Stretch"
                     Background="#5CA595" 
@@ -56,6 +50,94 @@
                     Height="75"
                     Content="accept">
             </Button>
+        </Grid>
+        <Grid Grid.Column="0"
+              Background="#5CA594"
+              Visibility="{Binding IsLoading, 
+                          Converter={StaticResource BooleanToVisibilityConverter}}"
+              Opacity="0.8">
+            <Grid Margin="40, 0, 40, 0"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center">
+                <Grid.Triggers>
+                    <EventTrigger RoutedEvent="Grid.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <ObjectAnimationUsingKeyFrames 
+                                        Storyboard.TargetProperty="(Image.Source)" 
+                                        Storyboard.TargetName="LoadingAnimation">
+
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <BitmapImage UriSource="../Assets/ladowaniewiecej.png" />
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <BitmapImage UriSource="../Assets/ladowaniewiecej1.png" />
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:1.5">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <BitmapImage UriSource="../Assets/ladowaniewiecej2.png" />
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:2.5">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <BitmapImage UriSource="../Assets/ladowaniewiecej3.png" />
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:3.5">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <BitmapImage UriSource="../Assets/ladowaniewiecej.png" />
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Grid.Triggers>
+                <Image x:Name="LoadingAnimation"
+                               MaxWidth="480"
+                               Source="../Assets/ladowaniewiecej.png"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="PopUpComplete"
+              Margin="20, 100, 20, 20"
+              Visibility="{Binding IsCorrect, Converter={StaticResource BooleanToVisibilityConverter}}"
+              Background="#5CA595">
+            <StackPanel>
+                <TextBlock Text="Statement"
+                           FontSize="26"
+                           Margin="0, 50, 0, 0"
+                           HorizontalAlignment="Center"
+                           Foreground="White"/>
+                <TextBlock Text="Your account has been successfully topped up."
+                           TextWrapping="Wrap"
+                           FontSize="26"
+                           Margin="10, 20, 0, 0"
+                           Foreground="White"/>
+                <TextBlock Text="{Binding Customer.AccountBallance, Converter={StaticResource StringFormatConverter}, ConverterParameter='Your current account balance is: {0}'}"
+                           TextWrapping="Wrap"
+                           FontSize="26"
+                           Margin="10, 20, 0, 0"
+                           Foreground="White"/>
+                <Image Source="../Assets/wallet.png" Width="100" Margin="30"/>
+                <Button 
+                    Content="Back"
+                    FontSize="36"
+                    HorizontalAlignment="Center"
+                    Foreground="White"
+                    Command="{Binding NaviagteToMainMenu}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <TextBlock Text="{TemplateBinding Content}" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

@@ -13,6 +13,8 @@
         
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+        <converters:StringFormatConverter x:Key="StringFormatConverter"/>
+        <converters:EmptyListToVisibityConverter x:Key="EmptyListToVisibilityConverter"/>
         
     </Application.Resources>
 

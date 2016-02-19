@@ -104,6 +104,7 @@
     <Compile Include="Converters\EmptyListToVisibityConverter.cs" />
     <Compile Include="Converters\ListElementToBackground.cs" />
     <Compile Include="Converters\NotifyTaskToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Converters\StringToVisibilityConverter.cs" />
     <Compile Include="Converters\TextInputToVisibilityConverter.cs" />
     <Compile Include="Helpers\DeviceManager.cs" />
@@ -158,6 +159,7 @@
     <Content Include="Assets\ulu.png" />
     <Content Include="Assets\ulubionedodaj.png" />
     <Content Include="Assets\ulubionedodane.png" />
+    <Content Include="Assets\wallet.png" />
     <Content Include="Assets\zmientrase.png" />
     <Content Include="Images\bilet.png" />
     <Content Include="Images\brak.png" />

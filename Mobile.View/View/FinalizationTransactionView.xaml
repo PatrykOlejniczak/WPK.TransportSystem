@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     DataContext="{Binding FinalizationTransaction, Source={StaticResource ViewModelLocator}}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" MaxWidth="480">
         <StackPanel Margin="20">
             <userControls:LoginPanel />
             <Grid Margin="0, 30, 0, 0">
@@ -88,7 +88,7 @@
                            FontSize="26"/>
                 <TextBlock Grid.Column="1"
                            Grid.Row="5"
-                           Text="{Binding BallanceAfterTransaction, Mode=TwoWay}"
+                           Text="{Binding BalanceAfterTransaction, Mode=TwoWay}"
                            TextAlignment="Center"
                            FontSize="26"/>
             </Grid>

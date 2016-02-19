@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -184,13 +183,13 @@ namespace Mobile.ViewModel
             {
                 IsLoading = true;
 
-                await _accountManager.RegisterUser(LoginEmail, password);
+                await _accountManager.RegisterUser(RegisterEmail, password);
 
                 ExecuteNavigateToMainMenu();
             }
             catch (Exception exception)
             {
-                LoginErrorMessage = exception.Message;
+                RegisterErrorMessage = exception.Message;
             }
             finally
             {

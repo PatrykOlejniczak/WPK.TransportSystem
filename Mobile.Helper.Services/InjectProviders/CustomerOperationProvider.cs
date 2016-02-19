@@ -58,19 +58,9 @@ namespace Mobile.Helper.Services.InjectProviders
             return collection;
         }
 
-        public Task UpdateCustomerEmail(string email)
+        public async Task CreateNewBoostAccount(string code)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<bool> CreateNewBoostAccount(string code)
-        {
-
-                await
-                    _customerOperationServiceClient.CreateNewBoostAccountAsync("basia.kowalska@onet.eu", "kowalska",
-                        code);
-
-            return true;
+            await _customerOperationServiceClient.CreateNewBoostAccountAsync("basia.kowalska@onet.eu", "kowalska", code);
         }
 
         public async Task CreateNewPurchaseTicket(PurchaseTicket purchaseTicket, int howManyTickets)
@@ -82,6 +72,8 @@ namespace Mobile.Helper.Services.InjectProviders
                 "basia.kowalska@onet.eu", "kowalska", 
                 AutoMapper.Mapper.Map<CustomerOperationService.PurchaseTicket>(purchaseTicket), 
                 howManyTickets);
+
+            await _accountManager.RefreshCustomerAccount();
         }
     }
 }

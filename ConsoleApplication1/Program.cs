@@ -12,12 +12,15 @@ namespace ConsoleApplication1
         {
             var test = new BoostAccountCreator.BoostAccountCreatorServiceClient();
 
+            for (int i = 0; i < 10; i++)
+            {
+                var k = test.GetNewCodeFor(10.0);
+
+                Console.WriteLine(k);
+            }
 
 
-
-            var k = test.GetNewCodeFor(10.0);
-
-
+            Console.ReadKey();
         }
     }
 }

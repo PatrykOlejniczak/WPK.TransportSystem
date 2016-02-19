@@ -1,27 +1,32 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Messaging;
 using Mobile.Helper.Services.CustomerAuthenticationService;
 using Mobile.Helper.Services.ServiceConfiguration;
 using Mobile.ViewModel.Helpers;
+using Mobile.ViewModel.Messages;
 using Customer = Mobile.Helper.Services.CustomerAuthenticationService.Customer;
 
 namespace Mobile.Helper.Services.InjectProviders
 {
     public class AccountManager : IAccountManager
     {
-        public bool IsUserLogged { get; }
-
         private string _password;
         private string _login;
 
         private Model.Customer _actualLoggedUser;
-        public Model.Customer ActualLoggedUser {
+        public Model.Customer ActualLoggedUser
+        {
             get
             {
                 return _actualLoggedUser;
             }
-            private set { _actualLoggedUser = value; } }
-        public double AccountBallance { get; private set; }
+            private set
+            {
+                _actualLoggedUser = value;
+                Messenger.Default.Send(new CustomerStatus(_actualLoggedUser));
+            }
+        }
         private readonly CustomerAuthenticationServiceClient _customerAuthenticationService;
 
         public AccountManager()
@@ -48,6 +53,8 @@ namespace Mobile.Helper.Services.InjectProviders
             var converted = await _customerAuthenticationService.GetInfoAboutCustomerAsync(_login, _password);
 
             ActualLoggedUser = AutoMapper.Mapper.Map<Mobile.Model.Customer>(converted);
+
+            Messenger.Default.Send(ActualLoggedUser);
         }
 
         public async Task GetInfo(string login, string password)
@@ -57,6 +64,8 @@ namespace Mobile.Helper.Services.InjectProviders
             var converted = await _customerAuthenticationService.GetInfoAboutCustomerAsync(login, password);
 
             ActualLoggedUser =  AutoMapper.Mapper.Map<Mobile.Model.Customer>(converted);
+
+            Messenger.Default.Send(ActualLoggedUser);
         }
 
         public async Task RegisterUser(string login, string password)
