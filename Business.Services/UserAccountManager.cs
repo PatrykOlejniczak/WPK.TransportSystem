@@ -25,7 +25,18 @@ namespace Business.Services
 
         public IEnumerable<UserAccount> GetAll()
         {
-            var result = _userAccountRepository.FindAll().AsEnumerable();
+            var result = _userAccountRepository
+                .FindBy(u => u.IsDeleted == false)
+                .AsEnumerable();
+
+            return ConvertToReturn(result);
+        }
+
+        public IEnumerable<UserAccount> GetAllWithDeleted()
+        {
+            var result = _userAccountRepository
+                .FindAll()
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
@@ -69,9 +80,14 @@ namespace Business.Services
             {
                 var actualUserAccount = _userAccountRepository
                     .FindBy(d => d.Id == id)
-                    .AsEnumerable();
+                    .First();
 
-                actualUserAccount.First().IsDeleted = true;
+                if (actualUserAccount.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
+                actualUserAccount.IsDeleted = true;
 
                 _unitOfWork.Commit();
             }
@@ -83,7 +99,71 @@ namespace Business.Services
 
         public void DeleteByEmployeeId(int employeeId)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var actualUserAccount = _userAccountRepository
+                    .FindBy(d => d.EmployeeId == employeeId)
+                    .First();
+
+                if (actualUserAccount.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
+                actualUserAccount.IsDeleted = true;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualUserAccount = _userAccountRepository
+                    .FindBy(d => d.Id == id)
+                    .First();
+
+                if (!actualUserAccount.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualUserAccount.IsDeleted = false;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteByEmployeeId(int employeeId)
+        {
+            try
+            {
+                var actualUserAccount = _userAccountRepository
+                    .FindBy(d => d.EmployeeId == employeeId)
+                    .First();
+
+                if (!actualUserAccount.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualUserAccount.IsDeleted = false;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
         }
 
         private IEnumerable<UserAccount> ConvertToReturn(IEnumerable<Data.Entities.UserAccount> userAccounts)

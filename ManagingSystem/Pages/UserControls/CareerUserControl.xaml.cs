@@ -22,6 +22,8 @@ namespace ManagingSystem.Pages.UserControls
     /// </summary>
     public partial class CareerUserControl : UserControl, IDetailsPage
     {
+        
+
         public CareerUserControl()
         {
             InitializeComponent();

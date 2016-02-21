@@ -124,6 +124,9 @@ namespace Mobile.Helper.Services.TicketService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TicketService.ITicketSecureService")]
     public interface ITicketSecureService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSecureService/GetAllWithDeleted", ReplyAction="http://tempuri.org/ITicketSecureService/GetAllWithDeletedResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.TicketService.Ticket>> GetAllWithDeletedAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSecureService/Create", ReplyAction="http://tempuri.org/ITicketSecureService/CreateResponse")]
         System.Threading.Tasks.Task CreateAsync(Mobile.Helper.Services.TicketService.Ticket ticket);
         
@@ -132,6 +135,9 @@ namespace Mobile.Helper.Services.TicketService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSecureService/DeleteById", ReplyAction="http://tempuri.org/ITicketSecureService/DeleteByIdResponse")]
         System.Threading.Tasks.Task DeleteByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSecureService/UndeleteById", ReplyAction="http://tempuri.org/ITicketSecureService/UndeleteByIdResponse")]
+        System.Threading.Tasks.Task UndeleteByIdAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -177,6 +183,10 @@ namespace Mobile.Helper.Services.TicketService {
                 base(binding, remoteAddress) {
         }
         
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mobile.Helper.Services.TicketService.Ticket>> GetAllWithDeletedAsync() {
+            return base.Channel.GetAllWithDeletedAsync();
+        }
+        
         public System.Threading.Tasks.Task CreateAsync(Mobile.Helper.Services.TicketService.Ticket ticket) {
             return base.Channel.CreateAsync(ticket);
         }
@@ -187,6 +197,10 @@ namespace Mobile.Helper.Services.TicketService {
         
         public System.Threading.Tasks.Task DeleteByIdAsync(int id) {
             return base.Channel.DeleteByIdAsync(id);
+        }
+        
+        public System.Threading.Tasks.Task UndeleteByIdAsync(int id) {
+            return base.Channel.UndeleteByIdAsync(id);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {

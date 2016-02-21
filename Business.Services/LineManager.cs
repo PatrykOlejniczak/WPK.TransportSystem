@@ -42,6 +42,15 @@ namespace Business.Services
             return ConvertToReturn(result);
         }
 
+        public IEnumerable<Line> GetAllWithDeleted()
+        {
+            var result = _lineRepository
+                .FindAll()
+                .AsEnumerable();
+
+            return ConvertToReturn(result);
+        }
+
         public void Create(Line line)
         {
             try
@@ -88,7 +97,35 @@ namespace Business.Services
                     .FindBy(li => li.Id == id)
                     .First();
 
+                if (actualLine.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
                 actualLine.IsDeleted = true;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualLine = _lineRepository
+                    .FindBy(li => li.Id == id)
+                    .First();
+
+                if (!actualLine.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualLine.IsDeleted = false;
 
                 _unitOfWork.Commit();
             }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ManagingSystem.EmployeeSecureService;
 using ManagingSystem.Interface;
+using System.ServiceModel.Description;
 
 namespace ManagingSystem.Pages.UserControls.DetailsUserControl
 {
@@ -24,32 +25,76 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     {
         public EmployeeSecureServiceClient employeeService { get; set; }
         Employee actualEmployee;
-        public EmployeeDetails(Employee newEmployee)
+        bool isNewEmployeeEnable;
+
+        //Add new Employee.
+        public EmployeeDetails(ClientCredentials cc)
         {
             InitializeComponent();
+            isNewEmployeeEnable = true;
+            employeeService = new EmployeeSecureServiceClient();
+
+            employeeService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
+            employeeService.ClientCredentials.UserName.Password = cc.UserName.Password;
+
+            OpenAllTextBoxes();
+            EditButton.IsEnabled = false;
+        }
+
+        public EmployeeDetails(ClientCredentials cc, Employee newEmployee)
+        {
+            InitializeComponent();
+            isNewEmployeeEnable = false;
+            SaveButton.IsEnabled = false;
+            employeeService = new EmployeeSecureServiceClient();
+
+            employeeService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
+            employeeService.ClientCredentials.UserName.Password = cc.UserName.Password;
+
             actualEmployee = newEmployee;
             UpdateUserDetails();
+        }
+
+        private void OpenAllTextBoxes()
+        {
+            SelectedUserName.IsEnabled = true;
+            SelectedUserSurname.IsEnabled = true;
+            SelectedUserStreet.IsEnabled = true;
+            SelectedUserCity.IsEnabled = true;
+            SelectedUserSurname.IsEnabled = true;
+            SelectedUserWorksite.IsEnabled = true;
         }
 
         void UpdateUserDetails()
         {
             SelectedUserName.Text = actualEmployee.FirstName;
-            SelectedUserSecondName.Text = actualEmployee.SecondName;
+            SelectedUserSurname.Text = actualEmployee.SecondName;
             SelectedUserStreet.Text = actualEmployee.Street;
             SelectedUserCity.Text = actualEmployee.City;
             SelectedUserSurname.Text = actualEmployee.LastName;
             SelectedUserWorksite.Text = actualEmployee.Street;
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            NewEmployee newEmployee = new NewEmployee(employeeService, actualEmployee);
-            this.Content = newEmployee;
+            OpenAllTextBoxes();
+            SaveButton.IsEnabled = true;
+            EditButton.IsEnabled = false;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            actualEmployee.FirstName = SelectedUserName.Text;
+            actualEmployee.SecondName = SelectedUserSurname.Text;
+            actualEmployee.Street = SelectedUserStreet.Text;
+            actualEmployee.City = SelectedUserCity.Text;
+            actualEmployee.LastName = SelectedUserSurname.Text;
+            actualEmployee.Street = SelectedUserWorksite.Text;
+
+            if (isNewEmployeeEnable)
+                employeeService.Update(actualEmployee);
+            else
+                employeeService.Create(actualEmployee);
         }
     }
 }

@@ -99,9 +99,6 @@
     <Compile Include="Pages\UserControls\DetailsUserControl\CustomerDetails.xaml.cs">
       <DependentUpon>CustomerDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UserControls\DetailsUserControl\NewEmployee.xaml.cs">
-      <DependentUpon>NewEmployee.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\UserControls\DetailsUserControl\NewsDetails.xaml.cs">
       <DependentUpon>NewsDetails.xaml</DependentUpon>
     </Compile>
@@ -138,6 +135,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\DistanceBetweenStopsSerice\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\EmployeeAuthenticationService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -149,6 +151,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\NewsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\QuestionnaireService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -261,6 +268,19 @@
     <None Include="Service References\CustomerSecureService\ManagingSystem.CustomerSecureService.Customer.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\DistanceBetweenStopsSerice\DistanceBetweenStopsManager.wsdl" />
+    <None Include="Service References\DistanceBetweenStopsSerice\DistanceBetweenStopsService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DistanceBetweenStopsSerice\DistanceBetweenStopsService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DistanceBetweenStopsSerice\DistanceBetweenStopsService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DistanceBetweenStopsSerice\ManagingSystem.DistanceBetweenStopsSerice.DistanceBetweenStops.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\EmployeeAuthenticationService\AuthenticationEmployeeManager.wsdl" />
     <None Include="Service References\EmployeeAuthenticationService\EmployeeAuthentication.xsd">
       <SubType>Designer</SubType>
@@ -292,6 +312,19 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\NewsService\NewsService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QuestionnaireService\ManagingSystem.QuestionnaireService.Questionnaire.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QuestionnaireService\QuestionnaireManager.wsdl" />
+    <None Include="Service References\QuestionnaireService\QuestionnaireService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QuestionnaireService\QuestionnaireService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QuestionnaireService\QuestionnaireService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TicketService\ManagingSystem.TicketService.Ticket.datasource">
@@ -398,10 +431,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\UserControls\DetailsUserControl\NewEmployee.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\UserControls\DetailsUserControl\NewsDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -458,9 +487,11 @@
     <WCFMetadataStorage Include="Service References\BusStopService\" />
     <WCFMetadataStorage Include="Service References\CustomerOperationService\" />
     <WCFMetadataStorage Include="Service References\CustomerSecureService\" />
+    <WCFMetadataStorage Include="Service References\DistanceBetweenStopsSerice\" />
     <WCFMetadataStorage Include="Service References\EmployeeAuthenticationService\" />
     <WCFMetadataStorage Include="Service References\EmployeeSecureService\" />
     <WCFMetadataStorage Include="Service References\NewsService\" />
+    <WCFMetadataStorage Include="Service References\QuestionnaireService\" />
     <WCFMetadataStorage Include="Service References\TicketService\" />
     <WCFMetadataStorage Include="Service References\TicketTypeService\" />
     <WCFMetadataStorage Include="Service References\UserAccountService\" />
@@ -596,6 +627,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\EmployeeSecureService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QuestionnaireService\QuestionnaireService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QuestionnaireService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QuestionnaireService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QuestionnaireService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DistanceBetweenStopsSerice\DistanceBetweenStopsService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DistanceBetweenStopsSerice\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DistanceBetweenStopsSerice\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DistanceBetweenStopsSerice\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

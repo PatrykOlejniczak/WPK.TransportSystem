@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e039b7a1-a45f-4a97-a68d-586c1db2d026" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:24462/Services/DistanceBetweenStopsService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DistanceBetweenStopsService.disco" MetadataType="Disco" ID="6c9e710f-f39b-4c44-8c08-cf6fe1581386" SourceId="1" SourceUrl="http://localhost:24462/Services/DistanceBetweenStopsService.svc?disco" />
+    <MetadataFile FileName="DistanceBetweenStopsManager.wsdl" MetadataType="Wsdl" ID="3f507dc6-a15a-4aec-80b8-dfc6a2d081cd" SourceId="1" SourceUrl="http://localhost:24462/Services/DistanceBetweenStopsService.svc?wsdl" />
+    <MetadataFile FileName="DistanceBetweenStopsService.xsd" MetadataType="Schema" ID="2d4e7d3a-6860-45a8-8622-c8df8e289807" SourceId="1" SourceUrl="http://localhost:24462/Services/DistanceBetweenStopsService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DistanceBetweenStopsService1.xsd" MetadataType="Schema" ID="5229819d-1535-42bd-98d2-68351f6447bc" SourceId="1" SourceUrl="http://localhost:24462/Services/DistanceBetweenStopsService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DistanceBetweenStopsService2.xsd" MetadataType="Schema" ID="ce2997dd-5bae-48f7-afe0-1a9f54008cd8" SourceId="1" SourceUrl="http://localhost:24462/Services/DistanceBetweenStopsService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

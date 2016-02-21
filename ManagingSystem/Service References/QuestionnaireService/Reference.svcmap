@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="11e94be7-c364-48be-88e0-88999dc18a41" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:24462/Services/QuestionnaireService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="QuestionnaireService.xsd" MetadataType="Schema" ID="24280cd3-964e-403d-a51a-d1354b5e727b" SourceId="1" SourceUrl="http://localhost:24462/Services/QuestionnaireService.svc?xsd=xsd0" />
+    <MetadataFile FileName="QuestionnaireService1.xsd" MetadataType="Schema" ID="ef6da291-8c09-43d3-aa01-1b3975b58cc6" SourceId="1" SourceUrl="http://localhost:24462/Services/QuestionnaireService.svc?xsd=xsd1" />
+    <MetadataFile FileName="QuestionnaireService.disco" MetadataType="Disco" ID="b9a15451-a0a2-4525-8669-1a467f6697a6" SourceId="1" SourceUrl="http://localhost:24462/Services/QuestionnaireService.svc?disco" />
+    <MetadataFile FileName="QuestionnaireService2.xsd" MetadataType="Schema" ID="ed09e36b-c74e-47ef-a2e2-5eeabafa3b9c" SourceId="1" SourceUrl="http://localhost:24462/Services/QuestionnaireService.svc?xsd=xsd2" />
+    <MetadataFile FileName="QuestionnaireManager.wsdl" MetadataType="Wsdl" ID="4ebe0774-c1ec-45e0-a375-2c5c66c28ed5" SourceId="1" SourceUrl="http://localhost:24462/Services/QuestionnaireService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

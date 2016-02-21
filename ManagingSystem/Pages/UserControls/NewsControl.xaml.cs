@@ -65,9 +65,8 @@ namespace ManagingSystem.Pages.UserControls
         {
             try
             {
-                NewsDetails newsDetails = new NewsDetails();
+                NewsDetails newsDetails = new NewsDetails(NewsSecService.ClientCredentials, (News)NewsListBox.SelectedItem);
                 this.NewsDetailsContentControl.Content = newsDetails;
-                newsDetails.SetActualNews((News)NewsListBox.SelectedItem);
             }
             catch(Exception ex)
             {

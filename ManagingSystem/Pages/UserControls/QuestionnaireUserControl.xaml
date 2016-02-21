@@ -59,7 +59,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label
-                            Content="{Binding Email}"
+                            Content="{Binding Question}"
                             FontSize="24"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using Business.Contracts;
 using Business.Entities;
 using Data.Core.Repository;
@@ -24,6 +26,13 @@ namespace Business.Services
         public IEnumerable<Customer> GetAll()
         {
             var result = _customerRepository.FindBy(c => !c.IsDeleted).AsEnumerable();
+
+            return ConvertToReturn(result);
+        }
+
+        public IEnumerable<Customer> GetAllWithDeleted()
+        {
+            var result = _customerRepository.FindAll();
 
             return ConvertToReturn(result);
         }
@@ -60,6 +69,52 @@ namespace Business.Services
                 .AsEnumerable().First();
 
             return ConvertToReturn(result);
+        }
+
+        public void DeleteById(int id)
+        {
+            try
+            {
+                var customer = _customerRepository
+                    .FindBy(c => c.Id == id)
+                    .First();
+
+                if (customer.IsDeleted)
+                {
+                    throw new ArgumentException("This customer is already deleted.");
+                }
+
+                customer.IsDeleted = true;
+
+                _unittOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var customer = _customerRepository
+                    .FindBy(c => c.Id == id)
+                    .First();
+
+                if (!customer.IsDeleted)
+                {
+                    throw new ArgumentException("This customer is already undeleted.");
+                }
+
+                customer.IsDeleted = false;
+
+                _unittOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
         }
 
         private IEnumerable<Customer> ConvertToReturn(IEnumerable<Data.Entities.Customer> customers)

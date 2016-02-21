@@ -46,20 +46,15 @@
                             Margin="10"
                             >
                     <TextBlock
-                                x:Name="LoggedUserName"
-                                Text="UserName"
+                                Text="Zalogowany jako:"
                                 FontSize="20"
                                 Foreground="WhiteSmoke"/>
                     <TextBlock
-                                x:Name="LoggedUserSurname"
-                                Text="UserSurname"
+                                x:Name="LoggedUsername"
+                                Text="[Username]"
                                 FontSize="18"
                                 Foreground="WhiteSmoke"/>
                 </StackPanel>
-                <Image
-                            x:Name="LoggedUserImage"
-                            Source="/Assets/usrImg.png"
-                            Height="40"/>
             </StackPanel>
             <!--UserNameInfo-->
             <StackPanel
@@ -100,22 +95,22 @@
                     x:Name="ScheduleMainButton"
                     Content="Rozkłady"
                     Click="ScheduleButton_Click"
+                    Foreground="Red"
                     Style="{StaticResource ResourceKey=LeftButtonStyle}" />
                 <Button
                     x:Name="EmployeesMainButton"
                     Content="Pracownicy"
                     Click="EmployeesButton_Click"
                     Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
-                <Button
+                <!--<Button
                     x:Name="StatisticsMainButton"
                     Foreground="Red"
                     Content="Statystyki"
                     Click="StatisticsMainButton_Click"
-                    Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
+                    Style="{StaticResource ResourceKey=LeftButtonStyle}"/>-->
                 <Button
                     x:Name="ClientsMainButton"
                     Content="Klienci"
-                    Foreground="Red"
                     Click="ClientsMainButton_Click"
                     Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
                 <Button 
@@ -127,7 +122,6 @@
                 <Button
                     x:Name="QuestionnaireMainButton"
                     Content="Ankiety"
-                    Foreground="Red"
                     Click="QuestionnaireMainButton_Click"
                     Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
                 <Button

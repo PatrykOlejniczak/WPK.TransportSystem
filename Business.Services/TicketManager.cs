@@ -25,7 +25,9 @@ namespace Business.Services
 
         public IEnumerable<Ticket> GetAll()
         {
-            var result = _ticketRepository.FindBy(t => !t.IsDeleted).AsEnumerable();
+            var result = _ticketRepository
+                .FindBy(t => !t.IsDeleted)
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
@@ -72,6 +74,15 @@ namespace Business.Services
             var result = _ticketRepository
                 .FindBy(t => t.Name == name)
                 .AsEnumerable().First();
+
+            return ConvertToReturn(result);
+        }
+
+        public IEnumerable<Ticket> GetAllWithDeleted()
+        {
+            var result = _ticketRepository
+                .FindAll()
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
@@ -124,14 +135,42 @@ namespace Business.Services
             {
                 var actualTicket = _ticketRepository
                     .FindBy(d => d.Id == id)
-                    .AsEnumerable();
+                    .First();
 
-                actualTicket.First().IsDeleted = true;
+                if (actualTicket.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
+                actualTicket.IsDeleted = true;
 
                 _unitOfWork.Commit();
             }
             catch (Exception exception)
             {                
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualTicket = _ticketRepository
+                    .FindBy(d => d.Id == id)
+                    .First();
+
+                if (!actualTicket.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualTicket.IsDeleted = false;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
                 throw new FaultException(exception.Message);
             }
         }

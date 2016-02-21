@@ -21,7 +21,7 @@
                     Margin="0"
                     Grid.Row="0"
                     HorizontalAlignment="Right">
-                <StackPanel
+                <!--<StackPanel
                         Orientation="Vertical"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -98,23 +98,55 @@
                             FontSize="10"
                             Foreground="WhiteSmoke"
                             Content="Edytuj"/>
-                </StackPanel>
+                </StackPanel>-->
+                <Button
+                    x:Name="SaveButton"
+                    Content="Save"
+                    Width="50"
+                    Click="SaveButton_Click"/>
+                <Button
+                    x:Name="EditButton"
+                    Content="Edit"
+                    Width="50"
+                    Click="EditButton_Click"/>
+                <Button
+                    x:Name="DeleteButton"
+                    Content="Delete"
+                    Width="50"
+                    Click="DeleteButton_Click"/>
             </StackPanel>
             <StackPanel
                 Orientation="Horizontal"
                 Grid.Row="1"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left">
-                <TextBlock
-                        Grid.Row="0"
+                <Label
+                    Padding="50 25"
+                    Foreground="WhiteSmoke"
+                    Background="#2D4D5E"
+                    FontSize="52"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="i"/>
+                <TextBox
+                    Text="[News Title]"
+                    VerticalAlignment="Center"
+                    Height="50"
+                    Grid.Row="0"
                     TextWrapping="WrapWithOverflow"
-                        Width="225"
-                            FontSize="18"
-                            Margin="5"
-                            x:Name="SelectedNewsTitle"/>
+                    Padding="4"
+                    Width="275"
+                    IsEnabled="False"
+                    FontSize="28"
+                    x:Name="SelectedNewsTitle"/>
             </StackPanel>
-            <TextBlock
+            <TextBox
                 x:Name="SelectedNewsDescription"
+                Padding="15"
+                Text="[News Description]"
+                Margin="0 20"
+                IsEnabled="False"
+                FontSize="24"
                 Grid.Row="2"
                 TextWrapping="WrapWithOverflow"
                 />

@@ -8,6 +8,9 @@ namespace Business.Contracts
     public interface IQuestionnaireSecureService
     {
         [OperationContract]
+        IEnumerable<Questionnaire> GetAllWithDeleted();
+
+        [OperationContract]
         IEnumerable<Questionnaire> GetByEmployeeId(int employeeId);
 
         [OperationContract]
@@ -18,5 +21,8 @@ namespace Business.Contracts
 
         [OperationContract]
         void DelteById(int id);
+
+        [OperationContract]
+        void UndeleteById(int id);
     }
 }

@@ -25,14 +25,18 @@ namespace Business.Services
 
         public IEnumerable<AnswerOption> GetAll()
         {
-            var result = _answerOptionRepository.FindBy(t => !t.IsDeleted).AsEnumerable();
+            var result = _answerOptionRepository
+                .FindBy(t => !t.IsDeleted)
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
 
         public IEnumerable<AnswerOption> GetByQuestionnaireId(int questionnaireId)
         {
-            var result = _answerOptionRepository.FindBy(t => !t.IsDeleted).AsEnumerable();
+            var result = _answerOptionRepository
+                .FindBy(t => !t.IsDeleted)
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
@@ -46,13 +50,22 @@ namespace Business.Services
             return ConvertToReturn(result);
         }
 
+        public IEnumerable<AnswerOption> GetAllWithDeleted()
+        {
+            var result = _answerOptionRepository
+                .FindAll()
+                .AsEnumerable();
+
+            return ConvertToReturn(result);
+        }
+
         public void Create(AnswerOption answerOption)
         {
             try
             {
                 var mapAnswerOption = AutoMapper.Mapper.Map
                     <Data.Entities.AnswerOption>(answerOption);
-
+                
                 _answerOptionRepository.Add(mapAnswerOption);
 
                 _unitOfWork.Commit();
@@ -92,9 +105,37 @@ namespace Business.Services
             {
                 var actualAnswerOption = _answerOptionRepository
                     .FindBy(d => d.Id == id)
-                    .AsEnumerable();
+                    .First();
 
-                actualAnswerOption.First().IsDeleted = true;
+                if (actualAnswerOption.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
+                actualAnswerOption.IsDeleted = true;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualAnswerOption = _answerOptionRepository
+                    .FindBy(d => d.Id == id)
+                    .First();
+
+                if (!actualAnswerOption.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualAnswerOption.IsDeleted = false;
 
                 _unitOfWork.Commit();
             }

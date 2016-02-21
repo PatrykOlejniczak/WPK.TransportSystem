@@ -22,6 +22,8 @@ namespace ManagingSystem.Pages.UserControls
     /// </summary>
     public partial class StatisticsUserControl : UserControl, IDetailsPage
     {
+
+
         public StatisticsUserControl()
         {
             InitializeComponent();

@@ -51,6 +51,15 @@ namespace Business.Services
             return ConvertToReturn(result);
         }
 
+        public IEnumerable<Photo> GetAllWithDeleted()
+        {
+            var result = _photoRepository
+                .FindAll()
+                .AsEnumerable();
+
+            return ConvertToReturn(result);
+        }
+
         public void Create(Photo photo)
         {
             try
@@ -99,7 +108,35 @@ namespace Business.Services
                     .FindBy(p => p.Id == id)
                     .First();
 
+                if (actualPhoto.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
                 actualPhoto.IsDeleted = true;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualPhoto = _photoRepository
+                    .FindBy(p => p.Id == id)
+                    .First();
+
+                if (!actualPhoto.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualPhoto.IsDeleted = false;
 
                 _unitOfWork.Commit();
             }

@@ -68,7 +68,7 @@ namespace ManagingSystem.Pages.UserControls
 
         private void EmployeesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            employeeDetails = new EmployeeDetails((Employee)EmployeesListBox.SelectedItem);
+            employeeDetails = new EmployeeDetails(employeeService.ClientCredentials,(Employee)EmployeesListBox.SelectedItem);
             this.EmployeeDetailsContentControl.Content = employeeDetails;
         }
 
@@ -142,7 +142,7 @@ namespace ManagingSystem.Pages.UserControls
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            NewEmployee newEmployee = new NewEmployee(employeeService);
+            EmployeeDetails newEmployee = new EmployeeDetails(employeeService.ClientCredentials);
             this.EmployeeDetailsContentControl.Content = newEmployee;
         }
     }

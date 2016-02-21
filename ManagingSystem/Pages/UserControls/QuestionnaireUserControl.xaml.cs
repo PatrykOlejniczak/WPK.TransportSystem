@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel.Description;
+using ManagingSystem.QuestionnaireService;
 
 namespace ManagingSystem.Pages.UserControls
 {
@@ -22,19 +23,43 @@ namespace ManagingSystem.Pages.UserControls
     /// </summary>
     public partial class QuestionnaireUserControl : UserControl, IDetailsPage
     {
+        QuestionnaireServiceClient questionnaireService { get; set; }
+        QuestionnaireSecureServiceClient questionnaireSecureService { get; set; }
+        Questionnaire[] questionnaireList;
+        //QuestionnaireDetails questionnaireDetails;
+
         public QuestionnaireUserControl()
         {
             InitializeComponent();
+
+            questionnaireService = new QuestionnaireServiceClient();
+            questionnaireSecureService = new QuestionnaireSecureServiceClient();
         }
 
         public void FillData()
         {
-            throw new NotImplementedException();
+            try
+            {
+                questionnaireList = questionnaireService.GetAll();
+                ListBox.ItemsSource = questionnaireList;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
+            }
         }
 
         public void UpdateUserCredentials(ClientCredentials cc)
         {
-            throw new NotImplementedException();
+            try
+            {
+                questionnaireService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
+                questionnaireService.ClientCredentials.UserName.Password = cc.UserName.Password;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
+            }
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

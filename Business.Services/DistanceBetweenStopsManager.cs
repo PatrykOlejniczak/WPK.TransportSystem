@@ -41,6 +41,15 @@ namespace Business.Services
             return ConvertToReturn(result);
         }
 
+        public IEnumerable<DistanceBetweenStops> GetAllWithDeleted()
+        {
+            var result = _distanceBetweenStopsRepository
+                .FindAll()
+                .AsEnumerable();
+
+            return ConvertToReturn(result);
+        }
+
         public void Create(DistanceBetweenStops distanceBetweenStops)
         {
             try
@@ -87,7 +96,35 @@ namespace Business.Services
                     .FindBy(b => b.Id == id)
                     .First();
 
+                if (actualDistanceBetweenStops.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already deleted.");
+                }
+
                 actualDistanceBetweenStops.IsDeleted = true;
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                throw new FaultException(exception.Message);
+            }
+        }
+
+        public void UndeleteById(int id)
+        {
+            try
+            {
+                var actualDistanceBetweenStops = _distanceBetweenStopsRepository
+                    .FindBy(b => b.Id == id)
+                    .First();
+
+                if (!actualDistanceBetweenStops.IsDeleted)
+                {
+                    throw new ArgumentException("This object is already undeleted.");
+                }
+
+                actualDistanceBetweenStops.IsDeleted = false;
 
                 _unitOfWork.Commit();
             }

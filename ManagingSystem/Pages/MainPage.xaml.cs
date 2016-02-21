@@ -31,6 +31,8 @@ namespace ManagingSystem.Pages
 
             ucm = new UserControlManager();
             ucm.SetClientCredentials(cc);
+
+            LoggedUsername.Text = cc.UserName.UserName;
         }
 
         private void NewsButton_Click(object sender, RoutedEventArgs e)
