@@ -107,7 +107,7 @@
   <xs:element name="GetByCustomerIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="Wpk.Entities" minOccurs="0" name="GetByCustomerIdResult" nillable="true" type="q8:PurchaseTicket" />
+        <xs:element xmlns:q8="Wpk.Entities" minOccurs="0" name="GetByCustomerIdResult" nillable="true" type="q8:ArrayOfPurchaseTicket" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -121,7 +121,7 @@
   <xs:element name="GetFromDateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="Wpk.Entities" minOccurs="0" name="GetFromDateResult" nillable="true" type="q9:PurchaseTicket" />
+        <xs:element xmlns:q9="Wpk.Entities" minOccurs="0" name="GetFromDateResult" nillable="true" type="q9:ArrayOfPurchaseTicket" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

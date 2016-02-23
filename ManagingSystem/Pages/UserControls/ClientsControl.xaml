@@ -67,12 +67,12 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-        <StackPanel
+        <Grid
             x:Name="RightView"
             Grid.Column="1"
             Background="#9EACB2">
             <ContentControl
                 x:Name="DetailsContentControl"/>
-        </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="Interface\IDetailsPage.cs" />
     <Compile Include="Interface\IPages.cs" />
+    <Compile Include="Model\TicketInfo.cs" />
     <Compile Include="Pages\UserControls\BusSchedule.xaml.cs">
       <DependentUpon>BusSchedule.xaml</DependentUpon>
     </Compile>
@@ -183,14 +184,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\DatabaseProvider.cs" />
-    <Compile Include="Model\Customer.cs" />
-    <Compile Include="Interface\ICustomerProvider.cs" />
     <Compile Include="Interface\IDatabaseProvider.cs" />
     <Compile Include="Classes\UserControlManager.cs" />
     <Compile Include="Interface\IEmployeeProvider.cs" />
     <Compile Include="Interface\IPlanningProvider.cs" />
-    <Compile Include="Interface\IScheduleProvider.cs" />
-    <Compile Include="Model\Schedule.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

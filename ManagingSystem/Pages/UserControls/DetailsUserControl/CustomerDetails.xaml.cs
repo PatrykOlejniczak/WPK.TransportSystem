@@ -1,5 +1,7 @@
 ﻿using ManagingSystem.CustomerSecureService;
+using ManagingSystem.Model;
 using ManagingSystem.PurchaseTicketSecureService;
+using ManagingSystem.TicketTypeService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,26 +27,21 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     public partial class CustomerDetails : UserControl
     {
         private CustomerSecureServiceClient customerService { get; set; }
+        private TicketTypeServiceClient ticketTypeService { get; set; }
         private PurchaseTicketSecureServiceClient ticketService { get; set; }
         private Customer customer{ get; set; }
-
-        public CustomerDetails(ClientCredentials clientCredentials)
-        {
-            InitializeComponent();
-
-            customerService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
-            customerService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
-
-            customer = new Customer();
-        }
 
         public CustomerDetails(Customer _customer, ClientCredentials clientCredentials)
         {
             InitializeComponent();
 
+            ticketTypeService = new TicketTypeServiceClient();
+            
+            customerService = new CustomerSecureServiceClient();
             customerService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
             customerService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
 
+            ticketService = new PurchaseTicketSecureServiceClient();
             ticketService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
             ticketService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
 
@@ -60,9 +57,22 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
 
         private void FillLabels()
         {
+            //TODO
             CustomerEmail.Content = customer.Email;
 
-            PurchaseTicket[] ticketList = ticketService.get
+            PurchaseTicket[] ticketListFromDB = ticketService.GetByCustomerId(customer.Id.Value);
+            
+
+            TicketInfo[] ticket = new TicketInfo[ticketListFromDB.Length];
+
+            for (int i = 0; i < ticketListFromDB.Length; i++)
+            {
+                ticket[i] = new TicketInfo();
+                ticket[i].Type = ticketTypeService.GetById(ticketListFromDB[i].TicketId).Name;
+                ticket[i].Time = ticketListFromDB[i].DateOfPurchase;
+            }
+
+            TicketHistory.ItemsSource = ticket;
         }
     }
 }

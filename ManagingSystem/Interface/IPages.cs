@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ManagingSystem.Interface
 {
-    interface ICustomerProvider
+    interface IPages
     {
-        List<Customer> GetAllCustomers();
-        Customer SearchCustomerByName(string customerName);
+        void UpdateUserCredentials(ClientCredentials cc);
+
+        void FillData();
+
     }
 }
