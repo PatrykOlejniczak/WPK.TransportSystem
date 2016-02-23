@@ -155,6 +155,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\PurchaseTicketSecureService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\QuestionnaireService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -312,6 +317,19 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\NewsService\NewsService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PurchaseTicketSecureService\ManagingSystem.PurchaseTicketSecureService.PurchaseTicket.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PurchaseTicketSecureService\PurchaseTicketManager.wsdl" />
+    <None Include="Service References\PurchaseTicketSecureService\PurchaseTicketSecureService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PurchaseTicketSecureService\PurchaseTicketSecureService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PurchaseTicketSecureService\PurchaseTicketSecureService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\QuestionnaireService\ManagingSystem.QuestionnaireService.Questionnaire.datasource">
@@ -491,6 +509,7 @@
     <WCFMetadataStorage Include="Service References\EmployeeAuthenticationService\" />
     <WCFMetadataStorage Include="Service References\EmployeeSecureService\" />
     <WCFMetadataStorage Include="Service References\NewsService\" />
+    <WCFMetadataStorage Include="Service References\PurchaseTicketSecureService\" />
     <WCFMetadataStorage Include="Service References\QuestionnaireService\" />
     <WCFMetadataStorage Include="Service References\TicketService\" />
     <WCFMetadataStorage Include="Service References\TicketTypeService\" />
@@ -657,6 +676,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\DistanceBetweenStopsSerice\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PurchaseTicketSecureService\PurchaseTicketSecureService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PurchaseTicketSecureService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PurchaseTicketSecureService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PurchaseTicketSecureService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

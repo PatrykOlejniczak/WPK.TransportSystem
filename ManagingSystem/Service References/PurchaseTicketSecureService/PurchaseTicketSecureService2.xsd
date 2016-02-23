@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:24462/Services/PurchaseTicketSecureService.svc?xsd=xsd2" namespace="Wpk.Entities" />
+  <xs:element name="GetAll">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="Wpk.Entities" minOccurs="0" name="GetAllResult" nillable="true" type="q1:ArrayOfPurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetToDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetToDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="Wpk.Entities" minOccurs="0" name="GetToDateResult" nillable="true" type="q2:ArrayOfPurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAfterDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAfterDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="Wpk.Entities" minOccurs="0" name="GetAfterDateResult" nillable="true" type="q3:ArrayOfPurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByFirstName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByFirstNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="Wpk.Entities" minOccurs="0" name="GetByFirstNameResult" nillable="true" type="q4:ArrayOfPurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByLastName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByLastNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="Wpk.Entities" minOccurs="0" name="GetByLastNameResult" nillable="true" type="q5:ArrayOfPurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFromDevice">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="deviceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFromDeviceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="Wpk.Entities" minOccurs="0" name="GetFromDeviceResult" nillable="true" type="q6:ArrayOfPurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="Wpk.Entities" minOccurs="0" name="GetByIdResult" nillable="true" type="q7:PurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByCustomerId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="customerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByCustomerIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="Wpk.Entities" minOccurs="0" name="GetByCustomerIdResult" nillable="true" type="q8:PurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFromDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFromDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="Wpk.Entities" minOccurs="0" name="GetFromDateResult" nillable="true" type="q9:PurchaseTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

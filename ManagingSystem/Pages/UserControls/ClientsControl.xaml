@@ -42,6 +42,7 @@
                     />
                 <Button
                     Grid.Column="5"
+                    Foreground="WhiteSmoke"
                     BorderBrush="Transparent"
                     Background="Transparent"
                     FontFamily="Segoe MDL2 Assets"

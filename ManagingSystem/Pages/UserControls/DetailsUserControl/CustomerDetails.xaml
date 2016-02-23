@@ -119,7 +119,7 @@
                     Content="Informacje"
                     Style="{StaticResource ResourceKey=LabelStyle}"/>
             </StackPanel>
-            <TabControl
+            <!--<TabControl
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Grid.Row="2"
@@ -182,7 +182,9 @@
                 <TabItem
                         Style="{StaticResource ResourceKey=TabStyle}"
                         Header="Dane klienta">
-                    
+                    <Grid>
+
+                    </Grid>
                 </TabItem>
                 <TabItem
                         Style="{StaticResource ResourceKey=TabStyle}"
@@ -194,7 +196,22 @@
                         Header="Anuluj">
 
                 </TabItem>
-            </TabControl>
+            </TabControl>-->
+            <Grid
+                Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label
+                    Content="Historia zakupów biletów:"
+                    FontSize="30"/>
+                <ListBox
+                    x:Name="TicketHistory"
+                    Grid.Row="1"
+                    Background="Transparent"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

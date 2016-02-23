@@ -75,5 +75,19 @@ namespace ManagingSystem.Pages.UserControls
             customerArray = CustomerSecService.GetAll();
             ListBox.ItemsSource = customerArray;
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                CustomerDetails customerDetails = new CustomerDetails(CustomerSecService.ClientCredentials);
+                this.DetailsContentControl.Content = customerDetails;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }
