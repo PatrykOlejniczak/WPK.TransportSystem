@@ -1,0 +1,2 @@
+MainPackage=C:\Users\Patryk\Desktop\WPK\Mobile.View\bin\x86\Debug\Mobile.View_1.0.2.0_x86_Debug.appx
+SymbolPackage=C:\Users\Patryk\Desktop\Mobile.View_1.0.2.0_Debug_Test\Mobile.View_1.0.2.0_x86_Debug.appxsym

@@ -1,41 +1,34 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.System.Threading;
-using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
 using Mobile.Model;
 using Mobile.ViewModel.Helpers;
+using Mobile.ViewModel.Messages;
 
 namespace Mobile.ViewModel
 {
     public class MainMenuViewModel : ViewModelBase
     {
         private ObservableCollection<PurchaseTicket> _activePurchaseTickets;
-
         public ObservableCollection<PurchaseTicket> ActivePurchaseTickets
         {
-            get
-            {               
-                return _activePurchaseTickets;
-            }
+            get { return _activePurchaseTickets; }
             private set
             {
                 if (_activePurchaseTickets != value)
                 {
                     _activePurchaseTickets = value;
+                    RaisePropertyChanged();
                 }
-
-                RaisePropertyChanged();
             }
         }
 
         private ObservableCollection<string> _favouriteLines;
-
         public ObservableCollection<string> FavouriteLines
         {
             get { return _favouriteLines; }
@@ -44,9 +37,8 @@ namespace Mobile.ViewModel
                 if (_favouriteLines != value)
                 {
                     _favouriteLines = value;
-                }
-
-                RaisePropertyChanged();
+                    RaisePropertyChanged();
+                }                
             }
         }
 
@@ -56,15 +48,13 @@ namespace Mobile.ViewModel
         public ICommand NavigateToBoostAccount { get; private set; }
 
         private readonly IExpandedNavigation _navigationService;
-        private readonly IAccountManager _accountManager;
         private readonly ICustomerOperationProvider _customerOperationProvider;
 
-        public MainMenuViewModel(
-            IExpandedNavigation navigationService, ICustomerOperationProvider customerOperationProvider, IAccountManager accountManager)
+        public MainMenuViewModel(IExpandedNavigation navigationService, 
+            ICustomerOperationProvider customerOperationProvider)
         {
             _navigationService = navigationService;
             _customerOperationProvider = customerOperationProvider;
-            _accountManager = accountManager;
 
             NavigateToPurchaseHistory
                 = new RelayCommand(ExecuteNavigateToPurchaseHistory);
@@ -77,11 +67,10 @@ namespace Mobile.ViewModel
 
             NavigateToTimetable
                 = new RelayCommand(ExecuteNavigateToTimetable);
-            _navigationService.RemoveBackEntry();
-            if (ActivePurchaseTickets == null)
-            {
-                test();
-            }
+
+            Messenger.Default.Register<CustomerStatus>(this, message => DownloadActiveTickets());
+
+            UpdateActiveTicketList();
         }
 
         private void ExecuteNavigateToPurchaseHistory()
@@ -106,24 +95,23 @@ namespace Mobile.ViewModel
 
         private async void DownloadActiveTickets()
         {
-            _activePurchaseTickets = await _customerOperationProvider.GetActivePurchaseTicketsAsync();
+            ActivePurchaseTickets = 
+                await _customerOperationProvider.GetActivePurchaseTicketsAsync();
         }
 
-        private void test()
+        private void UpdateActiveTicketList()
         {
-            Task k =
+            Task dowloaderTask =
                 new Task(
                     async () =>
                     {
                         while(true)
                         {
-                            var z = await _customerOperationProvider.GetActivePurchaseTicketsAsync();
-                            DispatcherHelper.CheckBeginInvokeOnUI(() => ActivePurchaseTickets = z);
-                            await Task.Delay(new TimeSpan(0, 0, 0, 15));
+                            await DispatcherHelper.RunAsync(DownloadActiveTickets);
+                            await Task.Delay(new TimeSpan(0, 0, 0, 5));
                         }
                     });
-            k.Start();
-
+            dowloaderTask.Start();
         }
     }
 }

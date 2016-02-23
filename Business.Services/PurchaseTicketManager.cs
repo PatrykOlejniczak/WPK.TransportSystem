@@ -83,20 +83,20 @@ namespace Business.Services
             return ConvertToReturn(result);
         }
 
-        public PurchaseTicket GetByCustomerId(int customerId)
+        public IEnumerable<PurchaseTicket> GetByCustomerId(int customerId)
         {
             var result = _purchaseTicketRepository
                 .FindBy(p => p.CustomerId == customerId)
-                .AsEnumerable().First();
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }
 
-        public PurchaseTicket GetFromDate(DateTime dateTime)
+        public IEnumerable<PurchaseTicket> GetFromDate(DateTime dateTime)
         {
             var result = _purchaseTicketRepository
                 .FindBy(p => p.DateOfPurchase.Date == dateTime.Date)
-                .AsEnumerable().First();
+                .AsEnumerable();
 
             return ConvertToReturn(result);
         }

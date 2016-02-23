@@ -16,8 +16,7 @@ namespace Mobile.Helper.Services.ServiceConfiguration
             BasicHttpBinding httpBinding = new BasicHttpBinding();
 
             CustomerOperationServiceClient =
-                new CustomerOperationServiceClient(httpBinding, EndPoints.CustomerOperation);
-
+                new CustomerOperationServiceClient(httpBinding, EndPoints.CustomerOperation);            
         }         
     }
 }

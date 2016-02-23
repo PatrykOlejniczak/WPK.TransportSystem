@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
@@ -10,15 +6,16 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Boost code generator.");
+
             var test = new BoostAccountCreator.BoostAccountCreatorServiceClient();
 
             for (int i = 0; i < 10; i++)
             {
                 var k = test.GetNewCodeFor(10.0);
 
-                Console.WriteLine(k);
+                Console.WriteLine("Code: " + k);
             }
-
 
             Console.ReadKey();
         }

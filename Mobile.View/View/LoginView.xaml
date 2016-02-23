@@ -17,14 +17,14 @@
           
         </ResourceDictionary>
     </Page.Resources>
-    
-    <Grid Background="#5CA595">
+
+    <Grid Background="#5CA595" MaxWidth="520">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MaxWidth="480"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Pivot Margin="10, 40, 0, 0"               
+            <Pivot Margin="10, 40, 10, 0"               
                    Grid.Column="0">
                 <PivotItem Header="login">
                     <Grid>
@@ -60,7 +60,7 @@
                 <PivotItem Header="register">
                     <Grid>
                         <StackPanel Margin="30">
-                            <TextBox Text="{Binding RegisterEmail}"
+                            <TextBox Text="{Binding RegisterEmail, Mode=TwoWay}"
                                      Margin="0, 50, 0, 10"
                                      Height="45"
                                      FontSize="25"/>

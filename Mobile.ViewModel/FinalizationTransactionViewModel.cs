@@ -11,27 +11,9 @@ namespace Mobile.ViewModel
 {
     public class FinalizationTransactionViewModel : ViewModelBase
     {
-        public IExpandedNavigation NavigationService { get; private set; }
-        public ICustomerOperationProvider CustomerOperation { get; private set; }
-        public IAccountManager AccountManager { get; private set; }
-
-        private Customer _customer;
-        public Customer Customer
-        {
-            get
-            {
-                return _customer;
-            }
-            private set
-            {
-                if (value != _customer)
-                {
-                    _customer = value;
-                    ChnageTicketOwner();
-                    RaisePropertyChanged();
-                }
-            }
-        }
+        private readonly IExpandedNavigation _navigationService;
+        private readonly ICustomerOperationProvider _customerOperation;
+        private readonly IAccountManager _accountManager;
 
         private Ticket _ticket;
         public Ticket Ticket
@@ -153,6 +135,20 @@ namespace Mobile.ViewModel
             }
         }
 
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                if (_isLoading != value)
+                {
+                    _isLoading = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         public ICommand AcceptTransaction { get; private set; }
 
         public FinalizationTransactionViewModel(
@@ -160,15 +156,12 @@ namespace Mobile.ViewModel
             ICustomerOperationProvider customerOperation, 
             IAccountManager accountManager)
         {
-            NavigationService = navigationService;
-            CustomerOperation = customerOperation;
-            AccountManager = accountManager;
+            _navigationService = navigationService;
+            _customerOperation = customerOperation;
+            _accountManager = accountManager;
 
             AcceptTransaction = 
                 new RelayCommand(ExecuteAcceptTransaction);
-
-            Messenger.Default.Register<CustomerStatus>(this, 
-                message => Customer = message.Customer);
 
             Messenger.Default.Register<PurchaseTicketStatus>(this,
                 message =>
@@ -195,15 +188,21 @@ namespace Mobile.ViewModel
                 else
                 {
                     PurchaseTicket.DiscountId = null;
-                }               
+                }
 
-                await CustomerOperation.CreateNewPurchaseTicket(PurchaseTicket, Count);
+                IsLoading = true;
 
-                NavigationService.NavigateTo("MainMenuView");
+                await _customerOperation.CreateNewPurchaseTicket(PurchaseTicket, Count);
+
+                _navigationService.NavigateTo("MainMenuView");
             }
             catch (Exception exception)
             {
                 ErrorMessage = exception.Message;
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 
@@ -215,12 +214,8 @@ namespace Mobile.ViewModel
 
         private void CalculateNewAccountBalance()
         {
-            BalanceAfterTransaction = Customer.AccountBallance - Price;
+            BalanceAfterTransaction = _accountManager.ActualLoggedUser.AccountBallance - Price;
         }
 
-        private void ChnageTicketOwner()
-        {
-            PurchaseTicket.CustomerId = Customer.Id;
-        }
     }
 }

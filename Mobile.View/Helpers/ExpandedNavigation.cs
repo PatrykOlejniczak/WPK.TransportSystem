@@ -18,9 +18,11 @@ namespace Mobile.View.Helpers
                 return false;
             }
         }
+
         public bool RemoveBackEntry()
         {
             var frame = GetMainFrame();
+
             if (frame.CanGoBack)
             {
                 frame.BackStack.RemoveAt(frame.BackStackDepth - 1);
@@ -29,6 +31,7 @@ namespace Mobile.View.Helpers
 
             return false;
         }
+
         private Frame GetMainFrame()
         {
             return (Frame)Window.Current.Content;

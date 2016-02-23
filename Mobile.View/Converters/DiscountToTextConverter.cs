@@ -7,9 +7,7 @@ namespace Mobile.View.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var id = value as string;
-
-            if(id != null)
+            if(value != null)
             {
                 return "discount";
             }

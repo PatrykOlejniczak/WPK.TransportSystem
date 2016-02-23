@@ -119,7 +119,7 @@ namespace Mobile.ViewModel
 
             if (string.IsNullOrEmpty(LoginErrorMessage))
             {
-                TryLogUser(parameter);
+                TryLogUser(LoginEmail, parameter);
             }
         }
 
@@ -141,7 +141,7 @@ namespace Mobile.ViewModel
                 RegexOptions.IgnoreCase);
         }
 
-        private async void TryLogUser(IPasswordGuardian parameter)
+        private async void TryLogUser(string email, IPasswordGuardian parameter)
         {
             var password = parameter.Password;
 
@@ -149,7 +149,7 @@ namespace Mobile.ViewModel
             {
                 IsLoading = true;
 
-                await _accountManager.LogUser(LoginEmail, password);
+                await _accountManager.LogUser(email, password);
 
                 ExecuteNavigateToMainMenu();
             }
@@ -185,7 +185,7 @@ namespace Mobile.ViewModel
 
                 await _accountManager.RegisterUser(RegisterEmail, password);
 
-                ExecuteNavigateToMainMenu();
+                TryLogUser(RegisterEmail, parameter);
             }
             catch (Exception exception)
             {

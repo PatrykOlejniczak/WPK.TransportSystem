@@ -7,7 +7,6 @@
         public int NumberOfVotes { get; set; }
         public bool IsDeleted { get; set; }
         public int QuestionnaireId { get; set; }
-        public virtual Questionnaire Questionnaire { get; set; }
-         
+        public virtual Questionnaire Questionnaire { get; set; }        
     }
 }
