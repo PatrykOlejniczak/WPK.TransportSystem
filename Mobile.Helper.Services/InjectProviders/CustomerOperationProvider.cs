@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using Mobile.Helper.Services.CustomerOperationService;
 using Mobile.Helper.Services.ServiceConfiguration;
 using Mobile.ViewModel.Helpers;
-using BoostAccount = Mobile.Model.BoostAccount;
-using PurchaseTicket = Mobile.Model.PurchaseTicket;
 
 namespace Mobile.Helper.Services.InjectProviders
 {
@@ -14,74 +12,67 @@ namespace Mobile.Helper.Services.InjectProviders
     {
         private readonly IAccountManager _accountManager;
         private readonly CustomerOperationServiceClient _customerOperationServiceClient;
-        private CustomerOperationServiceConfiguration config;
 
         public CustomerOperationProvider(IAccountManager accountManager)
         {
             _accountManager = accountManager;
-            config = new CustomerOperationServiceConfiguration(_accountManager);
+            var config = new CustomerOperationServiceConfiguration(_accountManager);
             
             _customerOperationServiceClient = config.CustomerOperationServiceClient;
         }
 
-        public async Task<ObservableCollection<BoostAccount>> GetAllBoostAccountAsync()
+        public async Task<ObservableCollection<Model.BoostAccount>> GetAllBoostAccountAsync()
         {
             var boostAccount = await _customerOperationServiceClient
-                .GetAllBoostAccountAsync("basia.kowalska@onet.eu", "kowalska");
+                .GetAllBoostAccountAsync(_accountManager.ActualLoggedUser.Email, _accountManager.ActualLoggedUser.Password);
 
-            AutoMapper.Mapper.CreateMap<BoostAccount, CustomerOperationService.BoostAccount>();
-            AutoMapper.Mapper.CreateMap<CustomerOperationService.BoostAccount, BoostAccount>();
+            AutoMapper.Mapper.CreateMap<Model.BoostAccount, BoostAccount>();
+            AutoMapper.Mapper.CreateMap<BoostAccount, Model.BoostAccount>();
 
-            return new ObservableCollection<BoostAccount>(AutoMapper.Mapper.Map<IEnumerable<BoostAccount>>(boostAccount));
+            return new ObservableCollection<Model.BoostAccount>(AutoMapper.Mapper.Map<IEnumerable<Model.BoostAccount>>(boostAccount));
         }
 
-        public async Task<ObservableCollection<PurchaseTicket>> GetAllPurchaseTicketAsync()
+        public async Task<ObservableCollection<Model.PurchaseTicket>> GetAllPurchaseTicketAsync()
         {
             var purchaseTickets = await _customerOperationServiceClient
-                                    .GetAllPurchaseTicketAsync("basia.kowalska@onet.eu", "kowalska");
+                                    .GetAllPurchaseTicketAsync(_accountManager.ActualLoggedUser.Email, _accountManager.ActualLoggedUser.Password);
 
-            AutoMapper.Mapper.CreateMap<PurchaseTicket, CustomerOperationService.ExpandedPurchaseTicket>();
-            AutoMapper.Mapper.CreateMap<CustomerOperationService.ExpandedPurchaseTicket, PurchaseTicket>();
+            AutoMapper.Mapper.CreateMap<Model.PurchaseTicket, ExpandedPurchaseTicket>();
+            AutoMapper.Mapper.CreateMap<ExpandedPurchaseTicket, Model.PurchaseTicket>();
        
-            return new ObservableCollection<PurchaseTicket>(AutoMapper.Mapper.Map<IEnumerable<PurchaseTicket>>(purchaseTickets.OrderByDescending(p => p.DateOfPurchase)));
+            return new ObservableCollection<Model.PurchaseTicket>(AutoMapper.Mapper.Map<IEnumerable<Model.PurchaseTicket>>(purchaseTickets.OrderByDescending(p => p.DateOfPurchase)));
         }
 
-        public async Task<ObservableCollection<PurchaseTicket>> GetActivePurchaseTicketsAsync()
+        public async Task<ObservableCollection<Model.PurchaseTicket>> GetActivePurchaseTicketsAsync()
         {
             var purchaseTickets = await _customerOperationServiceClient
-                        .GetActivePurchaseTicketAsync("basia.kowalska@onet.eu", "kowalska", "hababa");
+                        .GetActivePurchaseTicketAsync(_accountManager.ActualLoggedUser.Email, _accountManager.ActualLoggedUser.Password, "hababa");
 
-            AutoMapper.Mapper.CreateMap<PurchaseTicket, CustomerOperationService.ExpandedPurchaseTicket>();
-            AutoMapper.Mapper.CreateMap<CustomerOperationService.ExpandedPurchaseTicket, PurchaseTicket>();
+            AutoMapper.Mapper.CreateMap<Model.PurchaseTicket, ExpandedPurchaseTicket>();
+            AutoMapper.Mapper.CreateMap<ExpandedPurchaseTicket, Model.PurchaseTicket>();
 
-            var collection = new ObservableCollection<PurchaseTicket>(AutoMapper.Mapper.Map<IEnumerable<PurchaseTicket>>(purchaseTickets.OrderByDescending(p => p.DateOfPurchase)));
+            var collection = new ObservableCollection<Model.PurchaseTicket>(AutoMapper.Mapper.Map<IEnumerable<Model.PurchaseTicket>>(purchaseTickets.OrderByDescending(p => p.DateOfPurchase)));
             return collection;
         }
 
-        public Task UpdateCustomerEmail(string email)
+        public async Task CreateNewBoostAccount(string code)
         {
-            throw new System.NotImplementedException();
+            await _customerOperationServiceClient.CreateNewBoostAccountAsync(_accountManager.ActualLoggedUser.Email, _accountManager.ActualLoggedUser.Password, code);
         }
 
-        public async Task<bool> CreateNewBoostAccount(string code)
+        public async Task CreateNewPurchaseTicket(Model.PurchaseTicket purchaseTicket, int howManyTickets)
         {
-
-                await
-                    _customerOperationServiceClient.CreateNewBoostAccountAsync("basia.kowalska@onet.eu", "kowalska",
-                        code);
-
-            return true;
-        }
-
-        public async Task CreateNewPurchaseTicket(PurchaseTicket purchaseTicket, int howManyTickets)
-        {
-            AutoMapper.Mapper.CreateMap<PurchaseTicket, CustomerOperationService.PurchaseTicket>();
+            AutoMapper.Mapper.CreateMap<Model.PurchaseTicket, PurchaseTicket>();
 
             await _customerOperationServiceClient
                 .CreateNewPurchaseTicketAsync(
-                "basia.kowalska@onet.eu", "kowalska", 
-                AutoMapper.Mapper.Map<CustomerOperationService.PurchaseTicket>(purchaseTicket), 
+                _accountManager.ActualLoggedUser.Email, _accountManager.ActualLoggedUser.Password,
+                AutoMapper.Mapper.Map<PurchaseTicket>(purchaseTicket), 
                 howManyTickets);
+
+            await _accountManager.RefreshCustomerAccount();
+
+            await Task.Delay(1000);
         }
     }
 }

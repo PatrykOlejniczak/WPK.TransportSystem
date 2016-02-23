@@ -1,11 +1,7 @@
-﻿using System.Linq.Expressions;
-using System.ServiceModel;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Autofac;
 using GalaSoft.MvvmLight;
-using Mobile.Helper.Services.CustomerOperationService;
 using Mobile.Helper.Services.InjectProviders;
-using Mobile.Helper.Services.TicketService;
 using Mobile.View.Helpers;
 using Mobile.ViewModel;
 using Mobile.ViewModel.Helpers;
@@ -55,6 +51,7 @@ namespace Mobile.View.Config
             var builder = new ContainerBuilder();
 
             var navigationService = CreateNavigationService();
+
             builder.RegisterInstance(navigationService)
                 .As<IExpandedNavigation>();            
 
@@ -67,19 +64,10 @@ namespace Mobile.View.Config
             builder.RegisterType<AccountManager>()
                 .As<IAccountManager>().SingleInstance();
             builder.RegisterType<LineProvider>()
-                .As<ILineProvider>().SingleInstance();
+                .As<ILineProvider>();
             builder.RegisterType<DeviceManager>()
-                .As<IDeviceManager>().SingleInstance();
+                .As<IDeviceManager>();
 
-            if (ViewModelBase.IsInDesignModeStatic)
-            {
-
-            }
-            else
-            {
-
-            }
-            
             builder.RegisterType<BoostAccountViewModel>().SingleInstance();
             builder.RegisterType<ChooseTicketTypeViewModel>().SingleInstance();
             builder.RegisterType<LoginViewModel>().SingleInstance();
@@ -89,12 +77,14 @@ namespace Mobile.View.Config
             builder.RegisterType<BuyTicketCountViewModel>().SingleInstance();
             builder.RegisterType<FinalizationTransactionViewModel>().SingleInstance();
             builder.RegisterType<LoginPanelViewModel>().SingleInstance();
-            builder.RegisterType<LineDetailsViewModel>();
+            builder.RegisterType<LineDetailsViewModel>().SingleInstance();
 
             _container = builder.Build();
 
             var test = LoginPanel;
+            var test4 = BuyTicketCount;
             var test2 = FinalizationTransaction;
+            var test3 = BoostAccount;
         }
 
         private IExpandedNavigation CreateNavigationService()

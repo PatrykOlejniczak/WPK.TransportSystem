@@ -5,36 +5,17 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Mobile.Model;
 using Mobile.ViewModel.Helpers;
+using Mobile.ViewModel.Messages;
 
 namespace Mobile.ViewModel
 {
     public class FinalizationTransactionViewModel : ViewModelBase
     {
-        public IExpandedNavigation NavigationService { get; private set; }
-        public ICustomerOperationProvider CustomerOperation { get; private set; }
-
-        public IAccountManager AccountManager { get; private set; }
-
-        private Customer _customer;
-
-        public Customer Customer
-        {
-            get
-            {
-                return _customer;
-            }
-            private set
-            {
-                if (value != _customer)
-                {
-                    _customer = value;
-                }
-                RaisePropertyChanged();
-            }
-        }
+        private readonly IExpandedNavigation _navigationService;
+        private readonly ICustomerOperationProvider _customerOperation;
+        private readonly IAccountManager _accountManager;
 
         private Ticket _ticket;
-
         public Ticket Ticket
         {
             get
@@ -46,9 +27,9 @@ namespace Mobile.ViewModel
                 if (value != _ticket)
                 {
                     _ticket = value;
+                    CalculateActualTicketPrice();
+                    RaisePropertyChanged();
                 }
-                CalculateActualTicketPrice();
-                RaisePropertyChanged();
             }
         }
 
@@ -64,9 +45,27 @@ namespace Mobile.ViewModel
                 if (value != _count)
                 {
                     _count = value;
+                    CalculateActualTicketPrice();
+                    RaisePropertyChanged();
+                }                              
+            }
+        }
+
+        private bool _discount;
+        public bool Discount
+        {
+            get
+            {
+                return _discount;
+            }
+            set
+            {
+                if (value != _discount)
+                {
+                    _discount = value;
+                    CalculateActualTicketPrice();
+                    RaisePropertyChanged();
                 }
-                CalculateActualTicketPrice();
-                RaisePropertyChanged();
             }
         }
 
@@ -79,48 +78,74 @@ namespace Mobile.ViewModel
             }
             private set
             {
-                if (value != _price)
+                if (Math.Abs(value - _price) > 0.01)
                 {
                     _price = value;
-                }
-                RaisePropertyChanged();
+                    CalculateNewAccountBalance();
+                    RaisePropertyChanged();
+                }                
             }
         }
 
-        private double _ballanceAfterTransaction;
-
-        public double BallanceAfterTransaction
+        private double _balanceAfterTransaction;
+        public double BalanceAfterTransaction
         {
             get
             {
-                return _ballanceAfterTransaction;
+                return _balanceAfterTransaction;
             }
             private set
             {
-                if (value != _ballanceAfterTransaction)
+                if (Math.Abs(value - _balanceAfterTransaction) > 0.01)
                 {
-                    _ballanceAfterTransaction = value;
-                }
-                RaisePropertyChanged();
+                    _balanceAfterTransaction = value;
+                    RaisePropertyChanged();
+                }               
             }
         }
 
-        private bool _discount;
-
-        public bool Discount
+        private PurchaseTicket _purchaseTicket;
+        public PurchaseTicket PurchaseTicket
         {
             get
             {
-                return _discount;
+                return _purchaseTicket;
             }
             set
             {
-                if (value != _discount)
+                if (value != null)
                 {
-                    _discount = value;
+                    _purchaseTicket = value;
+                    RaisePropertyChanged();
                 }
-                CalculateActualTicketPrice();
-                RaisePropertyChanged();
+            }
+        }
+
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            private set
+            {
+                if (_errorMessage != value)
+                {
+                    _errorMessage = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                if (_isLoading != value)
+                {
+                    _isLoading = value;
+                    RaisePropertyChanged();
+                }
             }
         }
 
@@ -131,57 +156,66 @@ namespace Mobile.ViewModel
             ICustomerOperationProvider customerOperation, 
             IAccountManager accountManager)
         {
-            NavigationService = navigationService;
-            CustomerOperation = customerOperation;
-            AccountManager = accountManager;
+            _navigationService = navigationService;
+            _customerOperation = customerOperation;
+            _accountManager = accountManager;
 
-            AcceptTransaction = new RelayCommand(ExecuteAcceptTransaction);
+            AcceptTransaction = 
+                new RelayCommand(ExecuteAcceptTransaction);
 
-            Messenger.Default.Register<Ticket>(this, (action) => Ticket = action);
+            Messenger.Default.Register<PurchaseTicketStatus>(this,
+                message =>
+                {
+                    PurchaseTicket.TicketId = message.Ticket.Id;
+                    Ticket = message.Ticket;
+                    Count = message.TicketCount;
+                });
 
-            Messenger.Default.Register<int>(this, (action) => Count = action);
-
-            Messenger.Default.Register<Customer>(this, (action) => Customer = action);
+            PurchaseTicket = new PurchaseTicket()
+            {
+                DeviceId = "sampledeviceId",
+            };
         }
 
         private async void ExecuteAcceptTransaction()
         {
             try
             {
-                int? tempDiscount = null;
-
                 if (Discount)
                 {
-                    tempDiscount = 1;
+                    PurchaseTicket.DiscountId = 1;
                 }
-            
-                //TODO DISCOUNTS!!!
+                else
+                {
+                    PurchaseTicket.DiscountId = null;
+                }
 
-                await CustomerOperation.CreateNewPurchaseTicket(
-                    new PurchaseTicket()
-                    {
-                        CustomerId = Customer.Id,
-                        DateOfPurchase = DateTime.Now,
-                        DeviceId = "hababab",
-                        DiscountId = tempDiscount,
-                        TicketId = Ticket.Id
-                    }, Count);
-                await AccountManager.RefreshCustomerAccount();
-                Messenger.Default.Send((Customer)AccountManager.ActualLoggedUser);
-                NavigationService.NavigateTo("MainMenuView");
+                IsLoading = true;
+
+                await _customerOperation.CreateNewPurchaseTicket(PurchaseTicket, Count);
+
+                _navigationService.NavigateTo("MainMenuView");
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                
+                ErrorMessage = exception.Message;
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 
         private void CalculateActualTicketPrice()
         {
             var discount = Discount ? 0.5 : 1;
-
-            Price = Count*discount*Ticket.Price;
-            BallanceAfterTransaction = Customer.AccountBallance - Price;
+            Price = Count * discount * Ticket.Price;            
         }
+
+        private void CalculateNewAccountBalance()
+        {
+            BalanceAfterTransaction = _accountManager.ActualLoggedUser.AccountBallance - Price;
+        }
+
     }
 }

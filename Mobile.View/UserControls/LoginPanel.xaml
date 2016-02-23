@@ -18,12 +18,16 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <StackPanel>
-                    <TextBlock Text="Account ballance" FontSize="20"/>
+                    <TextBlock Text="Account balance" FontSize="20"/>
                     <TextBlock Text="{Binding Customer.AccountBallance}" FontSize="20"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1">
-                <Button Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White">
+                <Button Margin="5" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Right" 
+                        Background="White" 
+                        Command="{Binding LogOutCommand}">
                     <Image Source="../Images/logout.png"/>
                 </Button>
             </Grid>
