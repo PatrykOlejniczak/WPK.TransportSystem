@@ -233,16 +233,16 @@ namespace ManagingSystem.PurchaseTicketSecureService {
         System.Threading.Tasks.Task<ManagingSystem.PurchaseTicketSecureService.PurchaseTicket> GetByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPurchaseTicketSecureService/GetByCustomerId", ReplyAction="http://tempuri.org/IPurchaseTicketSecureService/GetByCustomerIdResponse")]
-        ManagingSystem.PurchaseTicketSecureService.PurchaseTicket GetByCustomerId(int customerId);
+        ManagingSystem.PurchaseTicketSecureService.PurchaseTicket[] GetByCustomerId(int customerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPurchaseTicketSecureService/GetByCustomerId", ReplyAction="http://tempuri.org/IPurchaseTicketSecureService/GetByCustomerIdResponse")]
-        System.Threading.Tasks.Task<ManagingSystem.PurchaseTicketSecureService.PurchaseTicket> GetByCustomerIdAsync(int customerId);
+        System.Threading.Tasks.Task<ManagingSystem.PurchaseTicketSecureService.PurchaseTicket[]> GetByCustomerIdAsync(int customerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPurchaseTicketSecureService/GetFromDate", ReplyAction="http://tempuri.org/IPurchaseTicketSecureService/GetFromDateResponse")]
-        ManagingSystem.PurchaseTicketSecureService.PurchaseTicket GetFromDate(System.DateTime dateTime);
+        ManagingSystem.PurchaseTicketSecureService.PurchaseTicket[] GetFromDate(System.DateTime dateTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPurchaseTicketSecureService/GetFromDate", ReplyAction="http://tempuri.org/IPurchaseTicketSecureService/GetFromDateResponse")]
-        System.Threading.Tasks.Task<ManagingSystem.PurchaseTicketSecureService.PurchaseTicket> GetFromDateAsync(System.DateTime dateTime);
+        System.Threading.Tasks.Task<ManagingSystem.PurchaseTicketSecureService.PurchaseTicket[]> GetFromDateAsync(System.DateTime dateTime);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -328,19 +328,19 @@ namespace ManagingSystem.PurchaseTicketSecureService {
             return base.Channel.GetByIdAsync(id);
         }
         
-        public ManagingSystem.PurchaseTicketSecureService.PurchaseTicket GetByCustomerId(int customerId) {
+        public ManagingSystem.PurchaseTicketSecureService.PurchaseTicket[] GetByCustomerId(int customerId) {
             return base.Channel.GetByCustomerId(customerId);
         }
         
-        public System.Threading.Tasks.Task<ManagingSystem.PurchaseTicketSecureService.PurchaseTicket> GetByCustomerIdAsync(int customerId) {
+        public System.Threading.Tasks.Task<ManagingSystem.PurchaseTicketSecureService.PurchaseTicket[]> GetByCustomerIdAsync(int customerId) {
             return base.Channel.GetByCustomerIdAsync(customerId);
         }
         
-        public ManagingSystem.PurchaseTicketSecureService.PurchaseTicket GetFromDate(System.DateTime dateTime) {
+        public ManagingSystem.PurchaseTicketSecureService.PurchaseTicket[] GetFromDate(System.DateTime dateTime) {
             return base.Channel.GetFromDate(dateTime);
         }
         
-        public System.Threading.Tasks.Task<ManagingSystem.PurchaseTicketSecureService.PurchaseTicket> GetFromDateAsync(System.DateTime dateTime) {
+        public System.Threading.Tasks.Task<ManagingSystem.PurchaseTicketSecureService.PurchaseTicket[]> GetFromDateAsync(System.DateTime dateTime) {
             return base.Channel.GetFromDateAsync(dateTime);
         }
     }

@@ -17,90 +17,6 @@
                 <RowDefinition Height="4*" />
             </Grid.RowDefinitions>
             <StackPanel
-                    Orientation="Horizontal"
-                    Margin="0"
-                    Grid.Row="0"
-                    HorizontalAlignment="Right">
-                <StackPanel
-                        Orientation="Vertical"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Margin="5">
-                    <Grid>
-                        <Ellipse
-                                Stroke="WhiteSmoke"
-                                StrokeThickness="2"
-                                Width="35"
-                                Height="35"></Ellipse>
-                        <Label
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Foreground="WhiteSmoke"
-                                FontSize="20"
-                                FontFamily="Segoe MDL2 Assets"
-                                Content="&#59213;"
-                                Margin="0"/>
-                    </Grid>
-                    <Label
-                            HorizontalAlignment="Center"
-                            FontSize="10"
-                            Foreground="WhiteSmoke"
-                            Content="usuń"/>
-                </StackPanel>
-                <StackPanel
-                        Orientation="Vertical"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Margin="5">
-                    <Grid
-                            Margin="0">
-                        <Ellipse
-                                Stroke="WhiteSmoke"
-                                StrokeThickness="2"
-                                Width="35"
-                                Height="35"></Ellipse>
-                        <Label
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Foreground="WhiteSmoke"
-                                FontSize="20"
-                                FontFamily="Segoe MDL2 Assets"
-                                Content="&#xE710;"/>
-                    </Grid>
-                    <Label
-                            HorizontalAlignment="Center"
-                            FontSize="10"
-                            Foreground="WhiteSmoke"
-                            Content="dodaj"/>
-                </StackPanel>
-                <StackPanel
-                        Orientation="Vertical"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Margin="5">
-                    <Grid
-                            Margin="0">
-                        <Ellipse
-                                Stroke="WhiteSmoke"
-                                StrokeThickness="2"
-                                Width="35"
-                                Height="35"></Ellipse>
-                        <Label
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Foreground="WhiteSmoke"
-                                FontSize="20"
-                                FontFamily="Segoe MDL2 Assets"
-                                Content="&#59151;"/>
-                    </Grid>
-                    <Label
-                            HorizontalAlignment="Center"
-                            FontSize="10"
-                            Foreground="WhiteSmoke"
-                            Content="Edytuj"/>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel
                 x:Name="NameAndSurname"
                 Orientation="Vertical"
                 Grid.Row="1"
@@ -206,11 +122,25 @@
                 <Label
                     Content="Historia zakupów biletów:"
                     FontSize="30"/>
-                <ListBox
-                    x:Name="TicketHistory"
+                <ListView
+                    BorderThickness="1,1,1,1"
+                    BorderBrush="Black"
                     Grid.Row="1"
-                    Background="Transparent"
-                    ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                        x:Name="TicketHistory"
+                        Background="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Label
+                                    Content="{Binding Type}"
+                                    FontSize="24"/>
+                                <Label
+                                    Content="{Binding Time}"
+                                    FontSize="24"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
         </Grid>
     </Grid>
