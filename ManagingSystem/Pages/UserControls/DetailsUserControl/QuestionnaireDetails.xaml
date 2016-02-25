@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ManagingSystem.Pages.UserControls.DetailsUserControl.BusScheduleDetails"
+﻿<UserControl x:Class="ManagingSystem.Pages.UserControls.DetailsUserControl.QuestionnaireDetails"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -114,28 +114,7 @@
                     Width="50"
                     Click="DeleteButton_Click"/>
             </StackPanel>
-            <StackPanel
-                Orientation="Horizontal"
-                Grid.Row="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left">
-                <Label
-                    Content="Numer pojazdu:"
-                    Foreground="WhiteSmoke"
-                    FontSize="24"/>
-                <TextBox
-                    Text=""
-                    VerticalAlignment="Center"
-                    Height="50"
-                    Grid.Row="0"
-                    TextWrapping="WrapWithOverflow"
-                    Padding="4"
-                    Width="275"
-                    IsEnabled="False"
-                    FontSize="28"
-                    x:Name="SelectedNewsTitle"/>
-            </StackPanel>
-
+            
         </Grid>
     </Grid>
 </UserControl>

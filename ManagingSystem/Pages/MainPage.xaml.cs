@@ -83,5 +83,11 @@ namespace ManagingSystem.Pages
             ucm.OpenQuestionnaire();
             this.MainContentControl.Content = ucm.Questionnaire;
         }
+
+        private void BusStopMainButton_Click(object sender, RoutedEventArgs e)
+        {
+            ucm.OpenBusStops();
+            this.MainContentControl.Content = ucm.BusStop;
+        }
     }
 }

@@ -98,6 +98,11 @@
                     Foreground="Red"
                     Style="{StaticResource ResourceKey=LeftButtonStyle}" />
                 <Button
+                    x:Name="BusStopMainButton"
+                    Content="Przystanki"
+                    Click="BusStopMainButton_Click"
+                    Style="{StaticResource ResourceKey=LeftButtonStyle}" />
+                <Button
                     x:Name="EmployeesMainButton"
                     Content="Pracownicy"
                     Click="EmployeesButton_Click"

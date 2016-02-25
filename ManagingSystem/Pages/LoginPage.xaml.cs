@@ -36,29 +36,29 @@ namespace ManagingSystem.Pages
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
-            //employeeAuthentication.ClientCredentials.UserName.UserName = "UserAccount1";
-            //employeeAuthentication.ClientCredentials.UserName.Password = "password1";
+            employeeAuthentication.ClientCredentials.UserName.UserName = "UserAccount1";
+            employeeAuthentication.ClientCredentials.UserName.Password = "password1";
 
-            //MainPage mp = new MainPage(employeeAuthentication.ClientCredentials);
-            //thisWindow.Content = mp;
+            MainPage mp = new MainPage(employeeAuthentication.ClientCredentials);
+            thisWindow.Content = mp;
 
-            try
-            {
-                employeeAuthentication.IsAccountExists(LoginTextBox.Text);
-                if (employeeAuthentication.IsCorrectCredentialsCorrect(LoginTextBox.Text, PasswordTextBox.Text))
-                {
-                    UserAccountSC.ClientCredentials.UserName.UserName = LoginTextBox.Text;
-                    UserAccountSC.ClientCredentials.UserName.Password = PasswordTextBox.Text;
-                    MainPage mainPage = new MainPage(UserAccountSC.ClientCredentials);
-                    thisWindow.Content = mainPage;
-                }
+            //try
+            //{
+            //    employeeAuthentication.IsAccountExists(LoginTextBox.Text);
+            //    if (employeeAuthentication.IsCorrectCredentialsCorrect(LoginTextBox.Text, PasswordTextBox.Text))
+            //    {
+            //        UserAccountSC.ClientCredentials.UserName.UserName = LoginTextBox.Text;
+            //        UserAccountSC.ClientCredentials.UserName.Password = PasswordTextBox.Text;
+            //        MainPage mainPage = new MainPage(UserAccountSC.ClientCredentials);
+            //        thisWindow.Content = mainPage;
+            //    }
 
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Informacja", MessageBoxButton.OK);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Informacja", MessageBoxButton.OK);
+            //}
 
 
 

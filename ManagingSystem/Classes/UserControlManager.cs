@@ -19,6 +19,7 @@ namespace ManagingSystem.Class
         public QuestionnaireUserControl Questionnaire { get; private set; }
         public TicketsControl Tickets { get; private set; }
         public CareerUserControl Career { get; private set; }
+        public BusStopControl BusStop { get; private set; }
 
         private ClientCredentials clientCredentials{ get; set; }
 
@@ -38,10 +39,9 @@ namespace ManagingSystem.Class
             this.clientCredentials = _clientCredentials;
         }
 
-        public void OpenSchedule() //EmptyDATABASE
+        public void OpenSchedule()
         {
-            BusSchedule = new BusSchedule();
-            BusSchedule.UpdateUserCredentials(clientCredentials);
+            BusSchedule = new BusSchedule(clientCredentials);
             BusSchedule.FillData();
         }
 
@@ -68,8 +68,7 @@ namespace ManagingSystem.Class
 
         public void OpenCareer()
         {
-            Career = new CareerUserControl();
-            Career.UpdateUserCredentials(clientCredentials);
+            Career = new CareerUserControl(clientCredentials);
             Career.FillData();
         }
 
@@ -92,6 +91,12 @@ namespace ManagingSystem.Class
             Clients = new ClientsControl();
             Clients.UpdateUserCredentials(clientCredentials);
             Clients.FillData();
+        }
+
+        public void OpenBusStops()
+        {
+            BusStop = new BusStopControl(clientCredentials);
+            BusStop.FillData();
         }
     }
 }

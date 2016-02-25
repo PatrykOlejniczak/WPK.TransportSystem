@@ -43,6 +43,7 @@
                     Grid.Column="5"
                     BorderBrush="Transparent"
                     Background="Transparent"
+                    Foreground="WhiteSmoke"
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="40"
                     Content="&#xE71E;"/>
@@ -59,7 +60,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label
-                            Content="{Binding Email}"
+                            Content="{Binding Question}"
                             FontSize="24"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

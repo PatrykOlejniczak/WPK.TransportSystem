@@ -41,13 +41,15 @@
                     FontSize="24"
                     />
                 <Button
+                    x:Name="SearchButton"
                     Grid.Column="5"
                     Foreground="WhiteSmoke"
                     BorderBrush="Transparent"
                     Background="Transparent"
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="40"
-                    Content="&#xE71E;"/>
+                    Content="&#xE71E;"
+                    Click="SearchButton_Click"/>
             </Grid>
             <ListBox
                 Grid.Row="1"

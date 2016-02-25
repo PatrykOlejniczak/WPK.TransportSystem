@@ -23,7 +23,8 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     /// </summary>
     public partial class EmployeeDetails : UserControl
     {
-        public EmployeeSecureServiceClient employeeService { get; set; }
+        private EmployeeSecureServiceClient employeeService { get; set; }
+
         Employee actualEmployee;
         bool isNewEmployeeEnable;
 
@@ -33,6 +34,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             InitializeComponent();
             isNewEmployeeEnable = true;
             employeeService = new EmployeeSecureServiceClient();
+            actualEmployee = new Employee();
 
             employeeService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
             employeeService.ClientCredentials.UserName.Password = cc.UserName.Password;
@@ -41,7 +43,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             EditButton.IsEnabled = false;
         }
 
-        public EmployeeDetails(ClientCredentials cc, Employee newEmployee)
+        public EmployeeDetails(ClientCredentials cc, Employee employee)
         {
             InitializeComponent();
             isNewEmployeeEnable = false;
@@ -51,7 +53,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             employeeService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
             employeeService.ClientCredentials.UserName.Password = cc.UserName.Password;
 
-            actualEmployee = newEmployee;
+            actualEmployee = employee;
             UpdateUserDetails();
         }
 
@@ -85,16 +87,16 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             actualEmployee.FirstName = SelectedUserName.Text;
-            actualEmployee.SecondName = SelectedUserSurname.Text;
             actualEmployee.Street = SelectedUserStreet.Text;
             actualEmployee.City = SelectedUserCity.Text;
             actualEmployee.LastName = SelectedUserSurname.Text;
             actualEmployee.Street = SelectedUserWorksite.Text;
+            actualEmployee.StartDate = DateTime.Now;
 
             if (isNewEmployeeEnable)
-                employeeService.Update(actualEmployee);
+                employeeService.Create(actualEmployee); //ERROR?!?!?!?
             else
-                employeeService.Create(actualEmployee);
+                employeeService.Update(actualEmployee);
         }
     }
 }

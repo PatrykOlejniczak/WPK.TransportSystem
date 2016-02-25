@@ -73,5 +73,45 @@ namespace ManagingSystem.Pages.UserControls
                 
             }
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+                NewsDetails newsDetails = new NewsDetails(NewsSecService.ClientCredentials);
+                this.NewsDetailsContentControl.Content = newsDetails;
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string searchedText = SearchTextBox.Text;
+            List<News> searchedCustomers = new List<News>();
+
+            for (int i = 0; i < newsArray.Length; i++)
+            {
+                if (CheckSearchedText(searchedText, newsArray[i]))
+                {
+                    searchedCustomers.Add(newsArray[i]);
+                }
+            }
+
+            NewsListBox.ItemsSource = searchedCustomers;
+        }
+
+        private bool CheckSearchedText(string text, News news)
+        {
+            try
+            {
+                for (int i = 0; i < text.Length; i++)
+                {
+                    if (text[i] != news.Title[i])
+                        return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
     }
 }

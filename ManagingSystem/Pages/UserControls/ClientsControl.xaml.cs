@@ -74,5 +74,39 @@ namespace ManagingSystem.Pages.UserControls
             customerArray = CustomerSecService.GetAll();
             ListBox.ItemsSource = customerArray;
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string searchedText = SearchTextBox.Text;
+            List<Customer> searchedCustomers = new List<Customer>();
+
+            for (int i = 0; i < customerArray.Length; i++)
+            {
+                if(CheckSearchedText(searchedText,customerArray[i]))
+                {
+                    searchedCustomers.Add(customerArray[i]);
+                }
+            }
+
+            ListBox.ItemsSource = searchedCustomers;
+        }
+
+        private bool CheckSearchedText(string text, Customer customer)
+        {
+            try
+            {
+                for (int i = 0; i < text.Length; i++)
+                {
+                    if (text[i] != customer.Email[i])
+                        return false;
+                }
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            
+        }
     }
 }

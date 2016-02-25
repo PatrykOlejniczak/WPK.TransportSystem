@@ -85,6 +85,9 @@
     <Compile Include="Pages\UserControls\BusSchedule.xaml.cs">
       <DependentUpon>BusSchedule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UserControls\BusStopControl.xaml.cs">
+      <DependentUpon>BusStopControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UserControls\CareerUserControl.xaml.cs">
       <DependentUpon>CareerUserControl.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,9 @@
     <Compile Include="Pages\UserControls\DetailsUserControl\BusScheduleDetails.xaml.cs">
       <DependentUpon>BusScheduleDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\BusStopDetails.xaml.cs">
+      <DependentUpon>BusStopDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UserControls\DetailsUserControl\CareerDetails.xaml.cs">
       <DependentUpon>CareerDetails.xaml</DependentUpon>
     </Compile>
@@ -102,6 +108,9 @@
     </Compile>
     <Compile Include="Pages\UserControls\DetailsUserControl\NewsDetails.xaml.cs">
       <DependentUpon>NewsDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\DetailsUserControl\QuestionnaireDetails.xaml.cs">
+      <DependentUpon>QuestionnaireDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserControls\DetailsUserControl\StatisticsDetails.xaml.cs">
       <DependentUpon>StatisticsDetails.xaml</DependentUpon>
@@ -122,6 +131,11 @@
       <DependentUpon>TicketsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service References\BusStopService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\BusStopTypeService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -239,6 +253,19 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\BusStopService\ManagingSystem.BusStopService.BusStop.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BusStopTypeService\BusStopManager.wsdl" />
+    <None Include="Service References\BusStopTypeService\BusStopTypeService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BusStopTypeService\BusStopTypeService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BusStopTypeService\BusStopTypeService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BusStopTypeService\ManagingSystem.BusStopTypeService.BusStop.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CustomerOperationService\CustomerOperationService.wsdl" />
@@ -422,6 +449,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\UserControls\BusStopControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\UserControls\CareerUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -431,6 +462,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\UserControls\DetailsUserControl\BusScheduleDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\BusStopDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -447,6 +482,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\UserControls\DetailsUserControl\NewsDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\DetailsUserControl\QuestionnaireDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -500,6 +539,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\BusStopService\" />
+    <WCFMetadataStorage Include="Service References\BusStopTypeService\" />
     <WCFMetadataStorage Include="Service References\CustomerOperationService\" />
     <WCFMetadataStorage Include="Service References\CustomerSecureService\" />
     <WCFMetadataStorage Include="Service References\DistanceBetweenStopsSerice\" />
@@ -688,6 +728,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\PurchaseTicketSecureService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopTypeService\BusStopTypeService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopTypeService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopTypeService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopTypeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

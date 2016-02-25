@@ -149,6 +149,8 @@
                 FontSize="24"
                 Grid.Row="2"
                 TextWrapping="WrapWithOverflow"
+                Width="auto"
+                Height="auto"
                 />
         </Grid>
     </Grid>

@@ -23,6 +23,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     /// </summary>
     public partial class NewsDetails : UserControl
     {
+
         public NewsSecureServiceClient newsService { get; set; }
         public News actualNews { get; set; }
         bool isNewEmployeeEnable;
@@ -34,9 +35,11 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             newsService = new NewsSecureServiceClient();
             newsService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
             newsService.ClientCredentials.UserName.Password = cc.UserName.Password;
+            actualNews = new News();
 
             OpenTextBoxes();
             isNewEmployeeEnable = true;
+            SaveButton.IsEnabled = true;
         }
 
         public NewsDetails(ClientCredentials cc, News _actualNews)
@@ -51,6 +54,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
 
             UpdateNewsDetails();
             isNewEmployeeEnable = false;
+            SaveButton.IsEnabled = false;
         }
 
         private void UpdateNewsDetails()
@@ -73,11 +77,14 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
         {
             actualNews.Content = SelectedNewsDescription.Text;
             actualNews.Title = SelectedNewsTitle.Text;
+            actualNews.CreateDate = DateTime.Now;
 
             if (isNewEmployeeEnable)
                 newsService.Create(actualNews);
             else
                 newsService.Update(actualNews);
+
+            this.DataContext = null;
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)

@@ -14,29 +14,32 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel.Description;
+using ManagingSystem.QuestionnaireService;
 
 namespace ManagingSystem.Pages.UserControls
 {
     /// <summary>
     /// Interaction logic for CareerUserControl.xaml
     /// </summary>
-    public partial class CareerUserControl : UserControl, IDetailsPage
+    public partial class CareerUserControl : UserControl
     {
-        
+        QuestionnaireServiceClient questionnaireService;
+        Questionnaire[] questionnaireArray;
 
-        public CareerUserControl()
+        public CareerUserControl(ClientCredentials clientCredentials)
         {
             InitializeComponent();
+
+            questionnaireService = new QuestionnaireServiceClient();
+            questionnaireService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
+            questionnaireService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
+
         }
 
         public void FillData()
         {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateUserCredentials(ClientCredentials cc)
-        {
-            throw new NotImplementedException();
+            questionnaireArray = questionnaireService.GetAll();
+            ListBox.ItemsSource = questionnaireArray;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
