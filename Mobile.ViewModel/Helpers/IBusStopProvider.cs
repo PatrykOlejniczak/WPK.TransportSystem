@@ -4,8 +4,8 @@ using Mobile.Model;
 
 namespace Mobile.ViewModel.Helpers
 {
-    public interface ILineProvider
+    public interface IBusStopProvider
     {
-        Task<ObservableCollection<Line>> GetAllAsync();
+        Task<ObservableCollection<BusStop>> GetAllOnLine(int lineId, bool direction);
     }
 }

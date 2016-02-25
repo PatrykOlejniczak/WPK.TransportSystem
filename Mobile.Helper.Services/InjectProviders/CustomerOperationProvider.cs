@@ -58,6 +58,8 @@ namespace Mobile.Helper.Services.InjectProviders
         public async Task CreateNewBoostAccount(string code)
         {
             await _customerOperationServiceClient.CreateNewBoostAccountAsync(_accountManager.ActualLoggedUser.Email, _accountManager.ActualLoggedUser.Password, code);
+
+            await _accountManager.RefreshCustomerAccount();
         }
 
         public async Task CreateNewPurchaseTicket(Model.PurchaseTicket purchaseTicket, int howManyTickets)

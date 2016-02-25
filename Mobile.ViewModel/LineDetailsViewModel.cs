@@ -1,22 +1,20 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Windows.Networking.Proximity;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Mobile.Model;
 using Mobile.ViewModel.Helpers;
+using Mobile.ViewModel.Messages;
 
 namespace Mobile.ViewModel
 {
     public class LineDetailsViewModel : ViewModelBase
     {
-        public ILineProvider LineProvider { get; private set; }
-        public IExpandedNavigation NavigationService { get; private set; }
-        public IDeviceManager DeviceManager { get; private set; }
+        private readonly IBusStopProvider _lineDetailsProvider;
+        private readonly IExpandedNavigation _navigationService;
 
-        public ICommand LoadCommand { get; private set; }
         public ICommand AddToFavouriteCommand { get; private set; }
         public ICommand ReturnTripCommand { get; private set; }
 
@@ -28,41 +26,61 @@ namespace Mobile.ViewModel
                 if (value != null)
                 {
                     _line = value;
-                }
-                RaisePropertyChanged();
+                    DownloadBusStops();
+                    RaisePropertyChanged();
+                }                
             }
         }
 
-        public NotifyTaskCompletion<ObservableCollection<BusStop>> BusStops
-        { 
-            get;
-            private set;
+        private BusStop _lastBusStop;
+        public BusStop LastBusStop
+        {
+            get { return _lastBusStop; }
+            private set
+            {
+                if (value != null)
+                {
+                    _lastBusStop = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
 
-        public LineDetailsViewModel(
-            ILineProvider lineProvider, IExpandedNavigation navigationService, IDeviceManager deviceManager)
+        private ObservableCollection<BusStop> _busStops;
+        public ObservableCollection<BusStop> BusStops
+        { 
+            get { return _busStops; }
+            private set
+            {
+                if (value != null && value != _busStops)
+                {
+                    _busStops = value;
+                    LastBusStop = value.Last();
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public LineDetailsViewModel(IExpandedNavigation navigationService,
+            IBusStopProvider lineDetailsProvider)
         {
-            LineProvider = lineProvider;
-            NavigationService = navigationService;
-            DeviceManager = deviceManager;
+            _navigationService = navigationService;
+            _lineDetailsProvider = lineDetailsProvider;
 
-            Messenger.Default.Register<Line>(this, (choosedLine) => Line = choosedLine);
+            Messenger.Default.Register<LineStatus>(this, (message) => Line = message.Line);
 
-            LoadCommand = new RelayCommand(LoadExecute);
             AddToFavouriteCommand = new RelayCommand(AddToFavourtieExecute);
             ReturnTripCommand = new RelayCommand(ReturnTripExecute);
         }
 
-        private void LoadExecute()
+        private async void DownloadBusStops()
         {
-             BusStops = 
-                new NotifyTaskCompletion<ObservableCollection<BusStop>>(LineProvider.GetAllBusStopOnLine(Line));
+            BusStops = await _lineDetailsProvider.GetAllOnLine(Line.Id, false);
         }
 
-        private void ReturnTripExecute()
+        private async void ReturnTripExecute()
         {
-            BusStops =
-                new NotifyTaskCompletion<ObservableCollection<BusStop>>(LineProvider.GetAllBusStopOnLine(Line));
+            //BusStops = await _lineDetailsProvider.GetAllOnLine(Line.Id, true);
         }
 
         private void AddToFavourtieExecute()

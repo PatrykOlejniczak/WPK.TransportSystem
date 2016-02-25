@@ -80,7 +80,7 @@ namespace Mobile.ViewModel
 
         private void ExecuteNavigateToTimetable()
         {
-            _navigationService.NavigateTo("LineDetailsView");
+            _navigationService.NavigateTo("ChooseLineView");
         }
 
         private void ExecuteNavigateToBuyTicket()

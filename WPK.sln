@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{F87DA4B2-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{35BF4BCC-9065-4E92-A971-5C0CA8F34BD4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C01E7761-DC39-4592-8A24-C14952436F9F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{D044B7D9-C868-41BE-B229-BD57F69A8F72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Entities", "Business.Entities\Business.Entities.csproj", "{0EB959DD-4FC2-432C-98C3-63326FE97CDA}"
@@ -34,6 +32,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Website", "Website", "{F12A894D-2817-477E-B56A-52314F2BE711}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.Helper.Services", "Mobile.Helper.Services\Mobile.Helper.Services.csproj", "{28D12F69-7BD2-4984-98C8-11900A3A8034}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02A0B492-B736-49F8-9A9E-6193DE0EEE77} = {02A0B492-B736-49F8-9A9E-6193DE0EEE77}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.Model", "Mobile.Model\Mobile.Model.csproj", "{ABB73171-BAE8-49F9-A2AE-46E27D195E6D}"
 EndProject

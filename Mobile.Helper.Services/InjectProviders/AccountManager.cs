@@ -20,7 +20,7 @@ namespace Mobile.Helper.Services.InjectProviders
             private set
             {
                 _actualLoggedUser = value;                
-                Messenger.Default.Send(new CustomerStatus(_actualLoggedUser));
+                Messenger.Default.Send(new CustomerStatus() { Customer = _actualLoggedUser });
             }
         }
 
