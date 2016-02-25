@@ -105,7 +105,7 @@
             </Grid>
         </Grid>
         <Grid x:Name="PopUpComplete"
-              Margin="20, 100, 20, 20"
+              Margin="0, 100, 0, 0"
               Visibility="{Binding IsCorrect, Converter={StaticResource BooleanToVisibilityConverter}}"
               Background="#5CA595">
             <StackPanel>

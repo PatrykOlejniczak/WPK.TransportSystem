@@ -12,5 +12,8 @@ namespace Mobile.Helper.Services.ServiceConfiguration
 
         public static EndpointAddress TicketService =
             new EndpointAddress("http://localhost:24462/Services/TicketService.svc/basicHttp");
+
+        public static EndpointAddress LineService =
+            new EndpointAddress("http://localhost:24462/Services/LineService.svc/basicHttp");
     }
 }

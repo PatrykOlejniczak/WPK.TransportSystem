@@ -62,7 +62,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
         {
             CustomerEmail.Content = customer.Email;
 
-            PurchaseTicket[] ticketList = ticketService.get
+            //PurchaseTicket[] ticketList = ticketService.get
         }
     }
 }

@@ -33,7 +33,7 @@
                        FontWeight="ExtraBold"
                        VerticalAlignment="Center"
                        FontSize="60"/>
-            <TextBlock Text="Franowo" 
+            <TextBlock Text="{Binding BusStops[0].Name}" 
                        VerticalAlignment="Center"
                        FontSize="35"/>
             <Image Source="../Assets/zmientrase.png" 
@@ -50,65 +50,8 @@
                 <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
                 <TextBlock Grid.Column="1" Text="Junikowo" Margin="20" FontSize="15"/>
             </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
-                <TextBlock Grid.Column="1" Text="Cmentarna" Margin="20" FontSize="15"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
-                <TextBlock Grid.Column="1" Text="Grotowska" Margin="20" FontSize="15"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
-                <TextBlock Grid.Column="1" Text="Węgorka" Margin="20" FontSize="15"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
-                <TextBlock Grid.Column="1" Text="INEA Stadion" Margin="20" FontSize="15"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
-                <TextBlock Grid.Column="1" Text="Smoluchowskiego" Margin="20" FontSize="15"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
-                <TextBlock Grid.Column="1" Text="Ostroga" Margin="20" FontSize="15"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
-                <TextBlock Grid.Column="1" Text="Grochowska" Margin="20" FontSize="15"/>
-            </Grid>
         </StackPanel>
         
-
         <Grid Background="#5CA595"
               Margin="20"
               Grid.Row="3"
@@ -117,7 +60,7 @@
                        Foreground="White"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
-                       Text="Junikowo"/>
+                       Text="{Binding LastBusStop.Name}"/>
         </Grid>
     </Grid>
 </Page>

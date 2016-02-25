@@ -135,6 +135,19 @@
     <None Include="Service References\CustomerOperationService\Mobile.Helper.Services.CustomerOperationService.ExpandedPurchaseTicket.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\LineService\LineManager.wsdl" />
+    <None Include="Service References\LineService\LineService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LineService\LineService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LineService\LineService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LineService\Mobile.Helper.Services.LineService.Line.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\TicketService\Mobile.Helper.Services.TicketService.Ticket.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -151,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InjectProviders\AccountManager.cs" />
+    <Compile Include="InjectProviders\BusStopProvider.cs" />
     <Compile Include="InjectProviders\CustomerOperationProvider.cs" />
     <Compile Include="InjectProviders\LineProvider.cs" />
     <Compile Include="InjectProviders\TicketProvider.cs" />
@@ -166,6 +180,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\LineService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\TicketService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -174,6 +193,7 @@
     <Compile Include="ServiceConfiguration\CustomerAuthenticationServiceConfiguration.cs" />
     <Compile Include="ServiceConfiguration\CustomerOperationServiceConfiguration.cs" />
     <Compile Include="ServiceConfiguration\EndPoints.cs" />
+    <Compile Include="ServiceConfiguration\LineServiceConfiguration.cs" />
     <Compile Include="ServiceConfiguration\TicketServiceConfiguration.cs" />
     <EmbeddedResource Include="Properties\Mobile.Helper.Services.rd.xml" />
   </ItemGroup>
@@ -183,6 +203,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CustomerAuthenticationService\" />
     <WCFMetadataStorage Include="Service References\CustomerOperationService\" />
+    <WCFMetadataStorage Include="Service References\LineService\" />
     <WCFMetadataStorage Include="Service References\TicketService\" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +257,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\CustomerAuthenticationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LineService\LineService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LineService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LineService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LineService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

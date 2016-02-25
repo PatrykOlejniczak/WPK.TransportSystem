@@ -112,6 +112,7 @@
     <Compile Include="Converters\NotifyTaskToVisibilityConverter.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Converters\StringToVisibilityConverter.cs" />
+    <Compile Include="Converters\TakeLastElementConverter.cs" />
     <Compile Include="Converters\TextInputToVisibilityConverter.cs" />
     <Compile Include="Helpers\DeviceManager.cs" />
     <Compile Include="Helpers\ExpandedNavigation.cs" />
@@ -127,6 +128,9 @@
     </Compile>
     <Compile Include="View\BuyTicketCountView.xaml.cs">
       <DependentUpon>BuyTicketCountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChooseLineView.xaml.cs">
+      <DependentUpon>ChooseLineView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ChooseTicketTypeView.xaml.cs">
       <DependentUpon>ChooseTicketTypeView.xaml</DependentUpon>
@@ -208,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BuyTicketCountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChooseLineView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

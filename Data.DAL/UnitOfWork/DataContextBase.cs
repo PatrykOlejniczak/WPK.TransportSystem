@@ -6,7 +6,7 @@ namespace Data.Core.UnitOfWork
 {
     public abstract class DataContextBase : DbContext, IUnitOfWork
     {
-        protected DataContextBase(string nameOrConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\macie\Documents\GitHub\WPK.TransportSystem\Host.WCF\App_Data\FullTestDataBase.mdf;Integrated Security=True;Connect Timeout=30")
+        protected DataContextBase(string nameOrConnectionString = "FullTestDataBase")
             : base(nameOrConnectionString)
         {
             Configuration.ProxyCreationEnabled = false;

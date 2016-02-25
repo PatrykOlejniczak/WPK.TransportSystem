@@ -1,6 +1,5 @@
 ﻿using Windows.UI.Xaml;
 using Autofac;
-using GalaSoft.MvvmLight;
 using Mobile.Helper.Services.InjectProviders;
 using Mobile.View.Helpers;
 using Mobile.ViewModel;
@@ -46,6 +45,9 @@ namespace Mobile.View.Config
         public TimetableViewModel Timetable
             => _container.Resolve<TimetableViewModel>();
 
+        public ChooseLineViewModel ChooseLine
+            => _container.Resolve<ChooseLineViewModel>();
+
         public ViewModelLocator()
         {
             var builder = new ContainerBuilder();
@@ -67,6 +69,8 @@ namespace Mobile.View.Config
                 .As<ILineProvider>();
             builder.RegisterType<DeviceManager>()
                 .As<IDeviceManager>();
+            builder.RegisterType<BusStopProvider>()
+                .As<IBusStopProvider>();
 
             builder.RegisterType<BoostAccountViewModel>().SingleInstance();
             builder.RegisterType<ChooseTicketTypeViewModel>().SingleInstance();
@@ -78,13 +82,15 @@ namespace Mobile.View.Config
             builder.RegisterType<FinalizationTransactionViewModel>().SingleInstance();
             builder.RegisterType<LoginPanelViewModel>().SingleInstance();
             builder.RegisterType<LineDetailsViewModel>().SingleInstance();
+            builder.RegisterType<ChooseLineViewModel>().SingleInstance();
 
             _container = builder.Build();
 
             var test = LoginPanel;
-            var test4 = BuyTicketCount;
+            var test1 = LineDetails;
             var test2 = FinalizationTransaction;
             var test3 = BoostAccount;
+            var test4 = BuyTicketCount;
         }
 
         private IExpandedNavigation CreateNavigationService()
@@ -100,6 +106,7 @@ namespace Mobile.View.Config
             navigationService.Configure("BuyTicketCountView", typeof(View.BuyTicketCountView));
             navigationService.Configure("FinalizationTransactionView", typeof(View.FinalizationTransactionView));
             navigationService.Configure("LineDetailsView", typeof(View.LineDetailsView));
+            navigationService.Configure("ChooseLineView", typeof(View.ChooseLineView));
 
             return navigationService;
         }
