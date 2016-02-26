@@ -24,8 +24,8 @@ namespace ManagingSystem.Pages.UserControls
     public partial class BusStopControl : UserControl
     {
         BusStopServiceClient BusStopService { get; set; }
-
-        BusStop[] busStopList;
+        BusStop[] busStopArray;
+        BusStopDetails busStopDetails;
 
         public BusStopControl(ClientCredentials clientCredentials)
         {
@@ -39,24 +39,63 @@ namespace ManagingSystem.Pages.UserControls
 
         public void FillData()
         {
-            busStopList = BusStopService.GetAll();
+            busStopArray = BusStopService.GetAll();
 
-            ListBox.ItemsSource = busStopList;
+            ListBox.ItemsSource = busStopArray;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            busStopDetails = new BusStopDetails(BusStopService.ClientCredentials, (BusStop)ListBox.SelectedItem);
+            busStopDetails.RefreshAll += BusStopDetails_RefreshAll;
+            this.RightContentControl.Content = busStopDetails;
+        }
 
+        private void BusStopDetails_RefreshAll(object sender, EventArgs e)
+        {
+            FillData();
+            this.RightContentControl.Content = null;
+            busStopDetails = null;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            BusStopDetails newBusStop = new BusStopDetails(BusStopService.ClientCredentials);
-            RightContentControl.Content = newBusStop;
+            busStopDetails = new BusStopDetails(BusStopService.ClientCredentials);
+            busStopDetails.RefreshAll += BusStopDetails_RefreshAll;
+            RightContentControl.Content = busStopDetails;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
+            string searchedText = SearchTextBox.Text;
+            List<BusStop> searchedCustomers = new List<BusStop>();
+
+            for (int i = 0; i < busStopArray.Length; i++)
+            {
+                if (CheckSearchedText(searchedText, busStopArray[i]))
+                {
+                    searchedCustomers.Add(busStopArray[i]);
+                }
+            }
+
+            ListBox.ItemsSource = searchedCustomers;
+        }
+
+        private bool CheckSearchedText(string text, BusStop busStop)
+        {
+            try
+            {
+                for (int i = 0; i < text.Length; i++)
+                {
+                    if (text[i] != busStop.Name[i])
+                        return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
 
         }
     }

@@ -13,7 +13,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="75" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="4*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="6*" />
             </Grid.RowDefinitions>
             <StackPanel
                     Orientation="Horizontal"
@@ -114,17 +115,20 @@
                     Width="50"
                     Click="DeleteButton_Click"/>
             </StackPanel>
-            <StackPanel
-                Orientation="Horizontal"
-                Grid.Row="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left">
+            <Grid
+                Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <Label
-                    Content="Numer pojazdu:"
+                    Content="Numer linii: "
                     Foreground="WhiteSmoke"
-                    FontSize="24"/>
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    FontSize="24"
+                    Grid.Column="0"/>
                 <TextBox
-                    Text=""
                     VerticalAlignment="Center"
                     Height="50"
                     Grid.Row="0"
@@ -133,9 +137,113 @@
                     Width="275"
                     IsEnabled="False"
                     FontSize="28"
-                    x:Name="SelectedNewsTitle"/>
-            </StackPanel>
-
+                    x:Name="LineNumberTextBox"
+                    Grid.Column="1"/>
+            </Grid>
+            <Grid
+                Grid.Row="2"
+                Background="#2D4D5E">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                        Content="Relacja: "
+                        Margin="5"
+                        FontSize="24"
+                    VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Foreground="WhiteSmoke"/>
+                <ComboBox
+                    x:Name="RelationTextBox"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                        Margin="5"
+                        FontSize="18"
+                    VerticalAlignment="Center"/>
+            </Grid>
+            <Grid
+                Grid.Row="3"
+                Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    FontSize="20"
+                    VerticalAlignment="Center"
+                    Content="Przystanki danej linii:"/>
+                <Label
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    FontSize="20"
+                    VerticalAlignment="Center"
+                    Content="Wszystkie przystanki:"/>
+                <ListView
+                    x:Name="ActualBusStops"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    IsEnabled="False"
+                    SelectionChanged="ActualBusStops_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Label
+                            Content="{Binding Name}"
+                            FontSize="14"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackPanel
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    VerticalAlignment="Center">
+                    <Button
+                        x:Name="ListUpBusStop"
+                        Content="Do góry"
+                        Margin="3"
+                        Height="50"
+                        Click="ListUpBusStop_Click"/>
+                    <Button
+                        x:Name="ListDownBusStop"
+                        Content="Na dół"
+                        Margin="3"
+                        Height="50"
+                        Click="ListDownBusStop_Click"/>
+                    <Button
+                        x:Name="ListAddBusStop"
+                        Content="Dodaj"
+                        Margin="3"
+                        Height="50"
+                        Click="ListAddBusStop_Click"/>
+                    <Button
+                        x:Name="ListDeleteBusStop"
+                        Content="Usuń"
+                        Margin="3"
+                        Height="50"
+                        Click="ListDeleteBusStop_Click"/>
+                </StackPanel>
+                <ListView
+                    x:Name="AllBusStops"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    IsEnabled="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Label
+                            Content="{Binding Name}"
+                            FontSize="14"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

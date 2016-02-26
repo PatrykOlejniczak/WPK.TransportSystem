@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5e48b6f0-dc54-4d49-9422-13139850e5f9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:24462/Services/LineService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LineService.disco" MetadataType="Disco" ID="ca0a5632-0831-4ce1-9e7f-98c246eba568" SourceId="1" SourceUrl="http://localhost:24462/Services/LineService.svc?disco" />
+    <MetadataFile FileName="LineService.xsd" MetadataType="Schema" ID="a223538e-8c53-4485-ad0c-a5753dec1109" SourceId="1" SourceUrl="http://localhost:24462/Services/LineService.svc?xsd=xsd1" />
+    <MetadataFile FileName="LineManager.wsdl" MetadataType="Wsdl" ID="1027f858-153f-4ec9-86bb-d97a395227ea" SourceId="1" SourceUrl="http://localhost:24462/Services/LineService.svc?wsdl" />
+    <MetadataFile FileName="LineService1.xsd" MetadataType="Schema" ID="db50d14f-4d5a-4a0b-aa6e-ce5e4b0770c0" SourceId="1" SourceUrl="http://localhost:24462/Services/LineService.svc?xsd=xsd2" />
+    <MetadataFile FileName="LineService2.xsd" MetadataType="Schema" ID="03fcabc5-7d2f-4931-8dbd-ed72e33a484e" SourceId="1" SourceUrl="http://localhost:24462/Services/LineService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

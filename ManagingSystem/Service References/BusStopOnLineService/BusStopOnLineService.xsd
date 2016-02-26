@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:24462/Services/BusStopTypeService.svc?xsd=xsd2" namespace="Wpk.Entities" />
+  <xs:import schemaLocation="http://localhost:24462/Services/BusStopOnLineService.svc?xsd=xsd2" namespace="Wpk.Entities" />
   <xs:element name="GetAllWithDeleted">
     <xs:complexType>
       <xs:sequence />
@@ -9,14 +9,14 @@
   <xs:element name="GetAllWithDeletedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="Wpk.Entities" minOccurs="0" name="GetAllWithDeletedResult" nillable="true" type="q1:ArrayOfBusStopType" />
+        <xs:element xmlns:q1="Wpk.Entities" minOccurs="0" name="GetAllWithDeletedResult" nillable="true" type="q1:ArrayOfBusStopOnLine" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Create">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="Wpk.Entities" minOccurs="0" name="busStopType" nillable="true" type="q2:BusStopType" />
+        <xs:element xmlns:q2="Wpk.Entities" minOccurs="0" name="busStopOnLine" nillable="true" type="q2:BusStopOnLine" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -28,7 +28,7 @@
   <xs:element name="Update">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="Wpk.Entities" minOccurs="0" name="busStopType" nillable="true" type="q3:BusStopType" />
+        <xs:element xmlns:q3="Wpk.Entities" minOccurs="0" name="busStopOnLine" nillable="true" type="q3:BusStopOnLine" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -69,7 +69,7 @@
   <xs:element name="GetAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="Wpk.Entities" minOccurs="0" name="GetAllResult" nillable="true" type="q4:ArrayOfBusStopType" />
+        <xs:element xmlns:q4="Wpk.Entities" minOccurs="0" name="GetAllResult" nillable="true" type="q4:ArrayOfBusStopOnLine" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -83,7 +83,7 @@
   <xs:element name="GetByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="Wpk.Entities" minOccurs="0" name="GetByIdResult" nillable="true" type="q5:BusStopType" />
+        <xs:element xmlns:q5="Wpk.Entities" minOccurs="0" name="GetByIdResult" nillable="true" type="q5:BusStopOnLine" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -28,6 +28,7 @@ namespace ManagingSystem.Pages.UserControls
         private NewsSecureServiceClient NewsSecService { get; set; }
         private NewsServiceClient NewsService { get; set; }
         private News[] newsArray;
+        private NewsDetails newsDetails;
 
         public NewsControl()
         {
@@ -35,6 +36,13 @@ namespace ManagingSystem.Pages.UserControls
 
             NewsSecService = new NewsSecureServiceClient();
             NewsService = new NewsServiceClient();
+        }
+
+        private void NewsDetails_RefreshList(object sender, EventArgs e)
+        {
+            FillNews();
+            NewsDetailsContentControl.Content = null;
+            newsDetails = null;
         }
 
         public void UpdateUserCredentials(ClientCredentials cc)
@@ -65,7 +73,8 @@ namespace ManagingSystem.Pages.UserControls
         {
             try
             {
-                NewsDetails newsDetails = new NewsDetails(NewsSecService.ClientCredentials, (News)NewsListBox.SelectedItem);
+                newsDetails = new NewsDetails(NewsSecService.ClientCredentials, (News)NewsListBox.SelectedItem);
+                newsDetails.RefreshAll += NewsDetails_RefreshList;
                 this.NewsDetailsContentControl.Content = newsDetails;
             }
             catch(Exception ex)
@@ -76,8 +85,9 @@ namespace ManagingSystem.Pages.UserControls
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-                NewsDetails newsDetails = new NewsDetails(NewsSecService.ClientCredentials);
-                this.NewsDetailsContentControl.Content = newsDetails;
+            newsDetails = new NewsDetails(NewsSecService.ClientCredentials);
+            newsDetails.RefreshAll += NewsDetails_RefreshList;
+            this.NewsDetailsContentControl.Content = newsDetails;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)

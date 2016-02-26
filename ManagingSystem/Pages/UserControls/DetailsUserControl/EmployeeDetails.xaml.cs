@@ -23,6 +23,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     /// </summary>
     public partial class EmployeeDetails : UserControl
     {
+        public event EventHandler RefreshAll;
         private EmployeeSecureServiceClient employeeService { get; set; }
 
         Employee actualEmployee;
@@ -94,9 +95,11 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             actualEmployee.StartDate = DateTime.Now;
 
             if (isNewEmployeeEnable)
-                employeeService.Create(actualEmployee); //ERROR?!?!?!?
+                employeeService.Create(actualEmployee);
             else
                 employeeService.Update(actualEmployee);
+
+            RefreshAll(this, new EventArgs());
         }
     }
 }

@@ -135,7 +135,6 @@
                     x:Name="NameTextBox"
                     Margin="20 50"
                     FontSize="24"
-                    Text="[Street]"
                     VerticalAlignment="Center"
                     IsEnabled="False"
                     />
@@ -160,7 +159,6 @@
                     VerticalAlignment="Center"
                     Margin="20 50"
                     FontSize="24"
-                    Text="[Street]"
                     IsEnabled="False"
                     />
             </Grid>
@@ -178,13 +176,20 @@
                     Margin="20"
                     FontSize="24"/>
                 <ComboBox
-                    x:Name="BusStopTypeListView"
+                    x:Name="BusStopTypeComboBox"
                     VerticalAlignment="Center"
                     Grid.Column="1"
                     Margin="35"
                     FontSize="24"
-                    IsEditable="False"
-                    />
+                    IsEnabled="False"
+                    >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label
+                                Content="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </Grid>
         </Grid>
     </Grid>

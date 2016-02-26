@@ -15,15 +15,12 @@ namespace ManagingSystem.BusStopTypeService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BusStop", Namespace="Wpk.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BusStopType", Namespace="Wpk.Entities")]
     [System.SerializableAttribute()]
-    public partial class BusStop : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class BusStopType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BusStopTypeIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> IdField;
@@ -34,9 +31,6 @@ namespace ManagingSystem.BusStopTypeService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StreetField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -44,19 +38,6 @@ namespace ManagingSystem.BusStopTypeService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BusStopTypeId {
-            get {
-                return this.BusStopTypeIdField;
-            }
-            set {
-                if ((this.BusStopTypeIdField.Equals(value) != true)) {
-                    this.BusStopTypeIdField = value;
-                    this.RaisePropertyChanged("BusStopTypeId");
-                }
             }
         }
         
@@ -99,19 +80,6 @@ namespace ManagingSystem.BusStopTypeService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Street {
-            get {
-                return this.StreetField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StreetField, value) != true)) {
-                    this.StreetField = value;
-                    this.RaisePropertyChanged("Street");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -123,89 +91,89 @@ namespace ManagingSystem.BusStopTypeService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BusStopTypeService.IBusStopSecureService")]
-    public interface IBusStopSecureService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BusStopTypeService.IBusStopTypeSecureService")]
+    public interface IBusStopTypeSecureService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopSecureService/GetAllWithDeleted", ReplyAction="http://tempuri.org/IBusStopSecureService/GetAllWithDeletedResponse")]
-        ManagingSystem.BusStopTypeService.BusStop[] GetAllWithDeleted();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeSecureService/GetAllWithDeleted", ReplyAction="http://tempuri.org/IBusStopTypeSecureService/GetAllWithDeletedResponse")]
+        ManagingSystem.BusStopTypeService.BusStopType[] GetAllWithDeleted();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopSecureService/GetAllWithDeleted", ReplyAction="http://tempuri.org/IBusStopSecureService/GetAllWithDeletedResponse")]
-        System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStop[]> GetAllWithDeletedAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeSecureService/GetAllWithDeleted", ReplyAction="http://tempuri.org/IBusStopTypeSecureService/GetAllWithDeletedResponse")]
+        System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStopType[]> GetAllWithDeletedAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopSecureService/Create", ReplyAction="http://tempuri.org/IBusStopSecureService/CreateResponse")]
-        void Create(ManagingSystem.BusStopTypeService.BusStop busStop);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeSecureService/Create", ReplyAction="http://tempuri.org/IBusStopTypeSecureService/CreateResponse")]
+        void Create(ManagingSystem.BusStopTypeService.BusStopType busStopType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopSecureService/Create", ReplyAction="http://tempuri.org/IBusStopSecureService/CreateResponse")]
-        System.Threading.Tasks.Task CreateAsync(ManagingSystem.BusStopTypeService.BusStop busStop);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeSecureService/Create", ReplyAction="http://tempuri.org/IBusStopTypeSecureService/CreateResponse")]
+        System.Threading.Tasks.Task CreateAsync(ManagingSystem.BusStopTypeService.BusStopType busStopType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopSecureService/Update", ReplyAction="http://tempuri.org/IBusStopSecureService/UpdateResponse")]
-        void Update(ManagingSystem.BusStopTypeService.BusStop busStop);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeSecureService/Update", ReplyAction="http://tempuri.org/IBusStopTypeSecureService/UpdateResponse")]
+        void Update(ManagingSystem.BusStopTypeService.BusStopType busStopType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopSecureService/Update", ReplyAction="http://tempuri.org/IBusStopSecureService/UpdateResponse")]
-        System.Threading.Tasks.Task UpdateAsync(ManagingSystem.BusStopTypeService.BusStop busStop);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeSecureService/Update", ReplyAction="http://tempuri.org/IBusStopTypeSecureService/UpdateResponse")]
+        System.Threading.Tasks.Task UpdateAsync(ManagingSystem.BusStopTypeService.BusStopType busStopType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopSecureService/DeleteById", ReplyAction="http://tempuri.org/IBusStopSecureService/DeleteByIdResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeSecureService/DeleteById", ReplyAction="http://tempuri.org/IBusStopTypeSecureService/DeleteByIdResponse")]
         void DeleteById(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopSecureService/DeleteById", ReplyAction="http://tempuri.org/IBusStopSecureService/DeleteByIdResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeSecureService/DeleteById", ReplyAction="http://tempuri.org/IBusStopTypeSecureService/DeleteByIdResponse")]
         System.Threading.Tasks.Task DeleteByIdAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopSecureService/UndeleteById", ReplyAction="http://tempuri.org/IBusStopSecureService/UndeleteByIdResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeSecureService/UndeleteById", ReplyAction="http://tempuri.org/IBusStopTypeSecureService/UndeleteByIdResponse")]
         void UndeleteById(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopSecureService/UndeleteById", ReplyAction="http://tempuri.org/IBusStopSecureService/UndeleteByIdResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeSecureService/UndeleteById", ReplyAction="http://tempuri.org/IBusStopTypeSecureService/UndeleteByIdResponse")]
         System.Threading.Tasks.Task UndeleteByIdAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IBusStopSecureServiceChannel : ManagingSystem.BusStopTypeService.IBusStopSecureService, System.ServiceModel.IClientChannel {
+    public interface IBusStopTypeSecureServiceChannel : ManagingSystem.BusStopTypeService.IBusStopTypeSecureService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class BusStopSecureServiceClient : System.ServiceModel.ClientBase<ManagingSystem.BusStopTypeService.IBusStopSecureService>, ManagingSystem.BusStopTypeService.IBusStopSecureService {
+    public partial class BusStopTypeSecureServiceClient : System.ServiceModel.ClientBase<ManagingSystem.BusStopTypeService.IBusStopTypeSecureService>, ManagingSystem.BusStopTypeService.IBusStopTypeSecureService {
         
-        public BusStopSecureServiceClient() {
+        public BusStopTypeSecureServiceClient() {
         }
         
-        public BusStopSecureServiceClient(string endpointConfigurationName) : 
+        public BusStopTypeSecureServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public BusStopSecureServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public BusStopTypeSecureServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public BusStopSecureServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public BusStopTypeSecureServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public BusStopSecureServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public BusStopTypeSecureServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        public ManagingSystem.BusStopTypeService.BusStop[] GetAllWithDeleted() {
+        public ManagingSystem.BusStopTypeService.BusStopType[] GetAllWithDeleted() {
             return base.Channel.GetAllWithDeleted();
         }
         
-        public System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStop[]> GetAllWithDeletedAsync() {
+        public System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStopType[]> GetAllWithDeletedAsync() {
             return base.Channel.GetAllWithDeletedAsync();
         }
         
-        public void Create(ManagingSystem.BusStopTypeService.BusStop busStop) {
-            base.Channel.Create(busStop);
+        public void Create(ManagingSystem.BusStopTypeService.BusStopType busStopType) {
+            base.Channel.Create(busStopType);
         }
         
-        public System.Threading.Tasks.Task CreateAsync(ManagingSystem.BusStopTypeService.BusStop busStop) {
-            return base.Channel.CreateAsync(busStop);
+        public System.Threading.Tasks.Task CreateAsync(ManagingSystem.BusStopTypeService.BusStopType busStopType) {
+            return base.Channel.CreateAsync(busStopType);
         }
         
-        public void Update(ManagingSystem.BusStopTypeService.BusStop busStop) {
-            base.Channel.Update(busStop);
+        public void Update(ManagingSystem.BusStopTypeService.BusStopType busStopType) {
+            base.Channel.Update(busStopType);
         }
         
-        public System.Threading.Tasks.Task UpdateAsync(ManagingSystem.BusStopTypeService.BusStop busStop) {
-            return base.Channel.UpdateAsync(busStop);
+        public System.Threading.Tasks.Task UpdateAsync(ManagingSystem.BusStopTypeService.BusStopType busStopType) {
+            return base.Channel.UpdateAsync(busStopType);
         }
         
         public void DeleteById(int id) {
@@ -226,62 +194,62 @@ namespace ManagingSystem.BusStopTypeService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BusStopTypeService.IBusStopService")]
-    public interface IBusStopService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BusStopTypeService.IBusStopTypeService")]
+    public interface IBusStopTypeService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopService/GetAll", ReplyAction="http://tempuri.org/IBusStopService/GetAllResponse")]
-        ManagingSystem.BusStopTypeService.BusStop[] GetAll();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeService/GetAll", ReplyAction="http://tempuri.org/IBusStopTypeService/GetAllResponse")]
+        ManagingSystem.BusStopTypeService.BusStopType[] GetAll();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopService/GetAll", ReplyAction="http://tempuri.org/IBusStopService/GetAllResponse")]
-        System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStop[]> GetAllAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeService/GetAll", ReplyAction="http://tempuri.org/IBusStopTypeService/GetAllResponse")]
+        System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStopType[]> GetAllAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopService/GetById", ReplyAction="http://tempuri.org/IBusStopService/GetByIdResponse")]
-        ManagingSystem.BusStopTypeService.BusStop GetById(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeService/GetById", ReplyAction="http://tempuri.org/IBusStopTypeService/GetByIdResponse")]
+        ManagingSystem.BusStopTypeService.BusStopType GetById(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopService/GetById", ReplyAction="http://tempuri.org/IBusStopService/GetByIdResponse")]
-        System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStop> GetByIdAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBusStopTypeService/GetById", ReplyAction="http://tempuri.org/IBusStopTypeService/GetByIdResponse")]
+        System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStopType> GetByIdAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IBusStopServiceChannel : ManagingSystem.BusStopTypeService.IBusStopService, System.ServiceModel.IClientChannel {
+    public interface IBusStopTypeServiceChannel : ManagingSystem.BusStopTypeService.IBusStopTypeService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class BusStopServiceClient : System.ServiceModel.ClientBase<ManagingSystem.BusStopTypeService.IBusStopService>, ManagingSystem.BusStopTypeService.IBusStopService {
+    public partial class BusStopTypeServiceClient : System.ServiceModel.ClientBase<ManagingSystem.BusStopTypeService.IBusStopTypeService>, ManagingSystem.BusStopTypeService.IBusStopTypeService {
         
-        public BusStopServiceClient() {
+        public BusStopTypeServiceClient() {
         }
         
-        public BusStopServiceClient(string endpointConfigurationName) : 
+        public BusStopTypeServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public BusStopServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public BusStopTypeServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public BusStopServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public BusStopTypeServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public BusStopServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public BusStopTypeServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        public ManagingSystem.BusStopTypeService.BusStop[] GetAll() {
+        public ManagingSystem.BusStopTypeService.BusStopType[] GetAll() {
             return base.Channel.GetAll();
         }
         
-        public System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStop[]> GetAllAsync() {
+        public System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStopType[]> GetAllAsync() {
             return base.Channel.GetAllAsync();
         }
         
-        public ManagingSystem.BusStopTypeService.BusStop GetById(int id) {
+        public ManagingSystem.BusStopTypeService.BusStopType GetById(int id) {
             return base.Channel.GetById(id);
         }
         
-        public System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStop> GetByIdAsync(int id) {
+        public System.Threading.Tasks.Task<ManagingSystem.BusStopTypeService.BusStopType> GetByIdAsync(int id) {
             return base.Channel.GetByIdAsync(id);
         }
     }

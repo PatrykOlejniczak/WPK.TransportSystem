@@ -95,7 +95,6 @@
                     x:Name="ScheduleMainButton"
                     Content="Rozkłady"
                     Click="ScheduleButton_Click"
-                    Foreground="Red"
                     Style="{StaticResource ResourceKey=LeftButtonStyle}" />
                 <Button
                     x:Name="BusStopMainButton"

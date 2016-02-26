@@ -13,7 +13,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="75" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="4*" />
             </Grid.RowDefinitions>
             <StackPanel
                     Orientation="Horizontal"
@@ -102,19 +101,80 @@
                     x:Name="SaveButton"
                     Content="Save"
                     Width="50"
-                    Click="SaveButton_Click"/>
+                    Click="SaveButton_Click"
+                    IsEnabled="False"/>
                 <Button
                     x:Name="EditButton"
                     Content="Edit"
                     Width="50"
-                    Click="EditButton_Click"/>
+                    Click="EditButton_Click"
+                    IsEnabled="False"/>
                 <Button
                     x:Name="DeleteButton"
                     Content="Delete"
                     Width="50"
-                    Click="DeleteButton_Click"/>
+                    Click="DeleteButton_Click"
+                    IsEnabled="False"/>
             </StackPanel>
-            
+            <Grid
+                Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Label
+                        Content="Pytanie do ankiety:"
+                        VerticalAlignment="Center"
+                        FontSize="30"
+                    Grid.Row="0"/>
+                    <TextBox
+                        x:Name="QuestionTextBox"
+                        Margin="10"
+                        FontSize="24"
+                        Grid.Row="1"/>
+                <Grid
+                    Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Content="Data Rozpoczęcia:"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontSize="30"
+                        Margin="10"
+                        Grid.Row="0"
+                        Grid.Column="0"/>
+                    <Calendar
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        x:Name="StartCalendar"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        >
+                    </Calendar>
+                    <Label
+                        Content="Data zakończenia:"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontSize="30"
+                        Margin="10"
+                        Grid.Row="0"
+                        Grid.Column="1"/>
+                    <Calendar
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        x:Name="EndCalendar"
+                        Grid.Row="2"
+                        Grid.Column="1"/>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

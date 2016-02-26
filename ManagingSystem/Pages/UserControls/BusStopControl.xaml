@@ -68,7 +68,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label
-                            Content="{Binding Title}"
+                            Content="{Binding Name}"
                             FontSize="24"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

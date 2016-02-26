@@ -81,8 +81,7 @@ namespace ManagingSystem.Class
 
         public void OpenQuestionnaire()
         {
-            Questionnaire = new QuestionnaireUserControl();
-            Questionnaire.UpdateUserCredentials(clientCredentials);
+            Questionnaire = new QuestionnaireUserControl(clientCredentials);
             Questionnaire.FillData();
         }
 

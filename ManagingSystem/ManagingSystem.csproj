@@ -130,6 +130,16 @@
     <Compile Include="Pages\UserControls\TicketsControl.xaml.cs">
       <DependentUpon>TicketsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service References\AnswerOptionService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\BusStopOnLineService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\BusStopService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -161,6 +171,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\EmployeeSecureService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\LineService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -242,6 +257,32 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\AnswerOptionService\AnswerOptionManager.wsdl" />
+    <None Include="Service References\AnswerOptionService\AnswerOptionService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AnswerOptionService\AnswerOptionService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AnswerOptionService\AnswerOptionService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AnswerOptionService\ManagingSystem.AnswerOptionService.AnswerOption.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BusStopOnLineService\BusStopOnLineManager.wsdl" />
+    <None Include="Service References\BusStopOnLineService\BusStopOnLineService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BusStopOnLineService\BusStopOnLineService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BusStopOnLineService\BusStopOnLineService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BusStopOnLineService\ManagingSystem.BusStopOnLineService.BusStopOnLine.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\BusStopService\BusStopManager.wsdl" />
     <None Include="Service References\BusStopService\BusStopService.xsd">
       <SubType>Designer</SubType>
@@ -265,7 +306,7 @@
     <None Include="Service References\BusStopTypeService\BusStopTypeService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\BusStopTypeService\ManagingSystem.BusStopTypeService.BusStop.datasource">
+    <None Include="Service References\BusStopTypeService\ManagingSystem.BusStopTypeService.BusStopType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CustomerOperationService\CustomerOperationService.wsdl" />
@@ -328,6 +369,19 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\EmployeeSecureService\ManagingSystem.EmployeeSecureService.Employee.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LineService\LineManager.wsdl" />
+    <None Include="Service References\LineService\LineService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LineService\LineService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LineService\LineService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LineService\ManagingSystem.LineService.Line.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\NewsService\ManagingSystem.NewsService.News.datasource">
@@ -538,6 +592,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AnswerOptionService\" />
+    <WCFMetadataStorage Include="Service References\BusStopOnLineService\" />
     <WCFMetadataStorage Include="Service References\BusStopService\" />
     <WCFMetadataStorage Include="Service References\BusStopTypeService\" />
     <WCFMetadataStorage Include="Service References\CustomerOperationService\" />
@@ -545,6 +601,7 @@
     <WCFMetadataStorage Include="Service References\DistanceBetweenStopsSerice\" />
     <WCFMetadataStorage Include="Service References\EmployeeAuthenticationService\" />
     <WCFMetadataStorage Include="Service References\EmployeeSecureService\" />
+    <WCFMetadataStorage Include="Service References\LineService\" />
     <WCFMetadataStorage Include="Service References\NewsService\" />
     <WCFMetadataStorage Include="Service References\PurchaseTicketSecureService\" />
     <WCFMetadataStorage Include="Service References\QuestionnaireService\" />
@@ -743,6 +800,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\BusStopTypeService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopOnLineService\BusStopOnLineService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopOnLineService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopOnLineService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BusStopOnLineService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LineService\LineService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LineService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LineService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LineService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AnswerOptionService\AnswerOptionService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AnswerOptionService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AnswerOptionService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AnswerOptionService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

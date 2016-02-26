@@ -23,9 +23,9 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     /// </summary>
     public partial class NewsDetails : UserControl
     {
-
-        public NewsSecureServiceClient newsService { get; set; }
-        public News actualNews { get; set; }
+        public event EventHandler RefreshAll;
+        private NewsSecureServiceClient newsService { get; set; }
+        private News actualNews { get; set; }
         bool isNewEmployeeEnable;
 
         public NewsDetails(ClientCredentials cc)
@@ -78,6 +78,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             actualNews.Content = SelectedNewsDescription.Text;
             actualNews.Title = SelectedNewsTitle.Text;
             actualNews.CreateDate = DateTime.Now;
+            actualNews.EmployeeId = 1;
 
             if (isNewEmployeeEnable)
                 newsService.Create(actualNews);
@@ -85,6 +86,8 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
                 newsService.Update(actualNews);
 
             this.DataContext = null;
+
+            RefreshAll(this, new EventArgs());
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -95,6 +98,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             newsService.DeleteById(actualNews.Id.Value);
+            RefreshAll(this, new EventArgs());
         }
     }
 }

@@ -43,15 +43,17 @@
                     Margin="0 15"
                     VerticalAlignment="Center"
                     Padding="10"
-                    FontSize="24"
-                    />
+                    FontSize="24"/>
                 <Button
+                    x:Name="SearchButton"
                     Grid.Column="5"
                     BorderBrush="Transparent"
                     Background="Transparent"
                     FontFamily="Segoe MDL2 Assets"
+                    Foreground="WhiteSmoke"
                     FontSize="40"
-                    Content="&#xE71E;"/>
+                    Content="&#xE71E;"
+                    Click="SearchButton_Click"/>
             </Grid>
             <ListBox
                 Grid.Row="1"
@@ -65,7 +67,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label
-                            Content="{Binding Email}"
+                            Content="{Binding Name}"
                             FontSize="24"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

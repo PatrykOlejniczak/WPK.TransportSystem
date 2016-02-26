@@ -12,28 +12,29 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ServiceModel.Description;
 using ManagingSystem.QuestionnaireService;
+using ManagingSystem.Pages.UserControls.DetailsUserControl;
 
 namespace ManagingSystem.Pages.UserControls
 {
     /// <summary>
     /// Interaction logic for SurverUserControl.xaml
     /// </summary>
-    public partial class QuestionnaireUserControl : UserControl, IDetailsPage
+    public partial class QuestionnaireUserControl : UserControl
     {
-        QuestionnaireServiceClient questionnaireService { get; set; }
-        QuestionnaireSecureServiceClient questionnaireSecureService { get; set; }
-        Questionnaire[] questionnaireList;
-        //QuestionnaireDetails questionnaireDetails;
 
-        public QuestionnaireUserControl()
+        QuestionnaireServiceClient questionnaireService { get; set; }
+        Questionnaire[] questionnaireList;
+        QuestionnaireDetails questionnaireDetails;
+
+        public QuestionnaireUserControl(ClientCredentials cc)
         {
             InitializeComponent();
 
             questionnaireService = new QuestionnaireServiceClient();
-            questionnaireSecureService = new QuestionnaireSecureServiceClient();
+            questionnaireService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
+            questionnaireService.ClientCredentials.UserName.Password = cc.UserName.Password;
         }
 
         public void FillData()
@@ -49,21 +50,58 @@ namespace ManagingSystem.Pages.UserControls
             }
         }
 
-        public void UpdateUserCredentials(ClientCredentials cc)
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            questionnaireDetails = new QuestionnaireDetails(questionnaireService.ClientCredentials, (Questionnaire)ListBox.SelectedItem);
+            questionnaireDetails.RefreshAll += QuestionnaireDetails_RefreshAll;
+            DetailsContentControl.Content = questionnaireDetails;
+        }
+
+        private void QuestionnaireDetails_RefreshAll(object sender, EventArgs e)
+        {
+            FillData();
+            this.DetailsContentControl.Content = null;
+            questionnaireDetails = null;
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            questionnaireDetails = new QuestionnaireDetails(questionnaireService.ClientCredentials);
+            questionnaireDetails.RefreshAll += QuestionnaireDetails_RefreshAll;
+            DetailsContentControl.Content = questionnaireDetails;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string searchedText = SearchTextBox.Text;
+            List<Questionnaire> searchedCustomers = new List<Questionnaire>();
+
+            for (int i = 0; i < questionnaireList.Length; i++)
+            {
+                if (CheckSearchedText(searchedText, questionnaireList[i]))
+                {
+                    searchedCustomers.Add(questionnaireList[i]);
+                }
+            }
+
+            ListBox.ItemsSource = searchedCustomers;
+        }
+
+        private bool CheckSearchedText(string text, Questionnaire questionnaire)
         {
             try
             {
-                questionnaireService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
-                questionnaireService.ClientCredentials.UserName.Password = cc.UserName.Password;
+                for (int i = 0; i < text.Length; i++)
+                {
+                    if (text[i] != questionnaire.Question[i])
+                        return false;
+                }
+                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
+                return false;
             }
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
         }
     }

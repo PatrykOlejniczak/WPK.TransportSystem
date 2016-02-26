@@ -69,7 +69,15 @@ namespace ManagingSystem.Pages.UserControls
         private void EmployeesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             employeeDetails = new EmployeeDetails(employeeService.ClientCredentials,(Employee)EmployeesListBox.SelectedItem);
+            employeeDetails.RefreshAll += EmployeeDetails_RefreshAll;
             this.EmployeeDetailsContentControl.Content = employeeDetails;
+        }
+
+        private void EmployeeDetails_RefreshAll(object sender, EventArgs e)
+        {
+            FillData();
+            EmployeeDetailsContentControl.Content = null;
+            employeeDetails = null;
         }
 
         private string[] SplitText(string text)
@@ -142,8 +150,9 @@ namespace ManagingSystem.Pages.UserControls
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            EmployeeDetails newEmployee = new EmployeeDetails(employeeService.ClientCredentials);
-            this.EmployeeDetailsContentControl.Content = newEmployee;
+            employeeDetails = new EmployeeDetails(employeeService.ClientCredentials);
+            employeeDetails.RefreshAll += EmployeeDetails_RefreshAll;
+            this.EmployeeDetailsContentControl.Content = employeeDetails;
         }
     }
 }

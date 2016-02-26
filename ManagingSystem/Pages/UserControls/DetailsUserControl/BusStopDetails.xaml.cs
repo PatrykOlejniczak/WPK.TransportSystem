@@ -23,70 +23,109 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     /// </summary>
     public partial class BusStopDetails : UserControl
     {
-        public BusStopService.BusStopServiceClient busStopService;
-        public BusStopService.BusStopSecureServiceClient busStopSecureService;
-        public BusStopTypeService.BusStopServiceClient busStopTypeService;
-        public BusStopTypeService.BusStopSecureServiceClient busStopTypeSecureService;
-        public BusStopService.BusStop ActualBusStop { get; set; }
+        public event EventHandler RefreshAll;
+        BusStopServiceClient busStopService;
+        BusStopSecureServiceClient busStopSecureService;
+        BusStopTypeServiceClient busStopTypeService;
+        BusStopTypeSecureServiceClient busStopTypeSecureService;
+        BusStop ActualBusStop { get; set; }
+
+        bool IsAddingNewObject;
         public BusStopDetails(ClientCredentials clientCredentials)
         {
             InitializeComponent();
-            ActualBusStop = new BusStopService.BusStop();
+            ActualBusStop = new BusStop();
 
-            busStopService = new BusStopService.BusStopServiceClient();
+            busStopService = new BusStopServiceClient();
 
-            busStopSecureService = new BusStopService.BusStopSecureServiceClient();
+            busStopSecureService = new BusStopSecureServiceClient();
             busStopSecureService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
             busStopSecureService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
 
-            busStopTypeService = new BusStopTypeService.BusStopServiceClient();
+            busStopTypeService = new BusStopTypeServiceClient();
             busStopTypeService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
             busStopTypeService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
 
-            busStopTypeSecureService = new BusStopTypeService.BusStopSecureServiceClient();
+            busStopTypeSecureService = new BusStopTypeSecureServiceClient();
             busStopTypeSecureService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
             busStopTypeSecureService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
 
+            BusStopTypeComboBox.ItemsSource = busStopTypeService.GetAll();
 
             OpenAllTextBoxes();
             EditButton.IsEnabled = false;
             DeleteButton.IsEnabled = false;
+
+            IsAddingNewObject = true;
         }
 
-        public BusStopDetails(ClientCredentials clientCredentials, BusStopService.BusStop busStop)
+        public BusStopDetails(ClientCredentials clientCredentials, BusStop busStop)
         {
             InitializeComponent();
             ActualBusStop = busStop;
 
-            busStopService = new BusStopService.BusStopServiceClient();
+            busStopService = new BusStopServiceClient();
 
-            busStopSecureService = new BusStopService.BusStopSecureServiceClient();
+            busStopSecureService = new BusStopSecureServiceClient();
             busStopSecureService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
             busStopSecureService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
 
-            busStopTypeService = new BusStopTypeService.BusStopServiceClient();
+            busStopTypeService = new BusStopTypeServiceClient();
+            busStopTypeService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
+            busStopTypeService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
+
+            busStopTypeSecureService = new BusStopTypeSecureServiceClient();
+            busStopTypeSecureService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
+            busStopTypeSecureService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
+
+            BusStopTypeComboBox.ItemsSource = busStopTypeService.GetAll();
+            FillData();
+        }
+
+        private void FillData()
+        {
+            NameTextBox.Text = ActualBusStop.Name;
+            StreetTextBox.Text = ActualBusStop.Street;
+
+            foreach(BusStopType item in BusStopTypeComboBox.Items)
+            {
+                if (ActualBusStop.BusStopTypeId == item.Id)
+                    BusStopTypeComboBox.SelectedItem = item;
+            }
         }
 
         private void OpenAllTextBoxes()
         {
             NameTextBox.IsEnabled = true;
             StreetTextBox.IsEnabled = true;
-            BusStopTypeListView.IsEnabled = true;
+            BusStopTypeComboBox.IsEnabled = true;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            ActualBusStop.Name = NameTextBox.Text;
 
+            BusStopType SelectedBusStopType = (BusStopType)BusStopTypeComboBox.SelectedItem;
+            ActualBusStop.BusStopTypeId = SelectedBusStopType.Id.Value;
+            ActualBusStop.Street = StreetTextBox.Text;
+
+            if (IsAddingNewObject)
+                busStopSecureService.Create(ActualBusStop);
+            else
+                busStopSecureService.Update(ActualBusStop);
+
+            RefreshAll(this, new EventArgs());
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-
+            OpenAllTextBoxes();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            busStopSecureService.DeleteById(ActualBusStop.Id.Value);
+            RefreshAll(this, new EventArgs());
         }
     }
 }
