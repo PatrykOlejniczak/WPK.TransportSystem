@@ -38,7 +38,10 @@ namespace Mobile.ViewModel
             {
                 _selectedLine = value;
                 RaisePropertyChanged();
-                NavigateToLineDetails.Execute(null);
+                if (_selectedLine != null)
+                {
+                    NavigateToLineDetails.Execute(null);
+                }
             }
         }
 
@@ -67,6 +70,7 @@ namespace Mobile.ViewModel
         private void ExecuteNavigateToLineDetails()
         {
             SendMessage();
+            _selectedLine = null;
             _navigationService.NavigateTo("LineDetailsView");
         }
 

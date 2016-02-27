@@ -10,7 +10,11 @@
     xmlns:userControls="using:Mobile.View.UserControls"
     mc:Ignorable="d"
     DataContext="{Binding MainMenu, Source={StaticResource ViewModelLocator}}">
-
+    
+    <Page.Resources>
+        
+    </Page.Resources>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" MaxWidth="480">
         <StackPanel>
         <StackPanel Margin="20">

@@ -25,7 +25,7 @@
             <Image Source="../Assets/tramwaj.png" 
                    Height="60" 
                    Margin="20"/>
-            <TextBlock Text="16" 
+            <TextBlock Text="{Binding Line.Name}" 
                        VerticalAlignment="Center"
                        FontSize="35"/>
             <TextBlock Text="→" 
@@ -36,31 +36,76 @@
             <TextBlock Text="{Binding BusStops[0].Name}" 
                        VerticalAlignment="Center"
                        FontSize="35"/>
-            <Image Source="../Assets/zmientrase.png" 
-                   Height="40" 
-                   Margin="10"/>
         </StackPanel>
-
-        <StackPanel Grid.Row="2" Margin="20, 0, 0, 0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
-                <TextBlock Grid.Column="1" Text="Junikowo" Margin="20" FontSize="15"/>
-            </Grid>
-        </StackPanel>
-        
-        <Grid Background="#5CA595"
-              Margin="20"
-              Grid.Row="3"
-              Height="70">
-            <TextBlock FontSize="40"
-                       Foreground="White"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Text="{Binding LastBusStop.Name}"/>
+        <Grid Grid.Row="2">
+            <ListView
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"                                           
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Center"
+                ItemsSource="{Binding BusStops}"
+                SelectedItem="{Binding SelectedBusStop, Mode=TwoWay}"
+                SelectionMode="Single">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Grid>
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal"/>
+                                            </VisualStateGroup>
+                                            <VisualStateGroup x:Name="SelectionStates">
+                                                <VisualState x:Name="Unselected"/>
+                                                <VisualState x:Name="SelectedUnfocused"/>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Border x:Name="myback" Background="Transparent">
+                                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="20" FontSize="15"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
+
+        <Button Command="{Binding ReturnTripCommand}" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                Grid.Row="3"
+                Margin="20"
+                Height="70">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="#5CA595"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch">
+                    <TextBlock FontSize="40"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Text="{Binding LastBusStop.Name}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Page>

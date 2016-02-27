@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace Mobile.Model
+﻿namespace Mobile.Model
 {
     public class Line
     {
         public int Id { get; set; }
-        public string Name { get; set; }    
+        public string Name { get; set; } 
+        public bool Direction { get; set; }   
     }
 }

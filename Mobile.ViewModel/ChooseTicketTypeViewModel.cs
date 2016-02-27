@@ -54,7 +54,10 @@ namespace Mobile.ViewModel
             {
                 _selectedTicket = value;                
                 RaisePropertyChanged();
-                NavigateToBuyTicketCount.Execute(null);
+                if (_seasonTickets != null)
+                {
+                    NavigateToBuyTicketCount.Execute(null);
+                }
             }
         }
 
@@ -91,6 +94,7 @@ namespace Mobile.ViewModel
         private void ExecuteNavigateToBuyTicketCount()
         {
             SendMessage();
+            _selectedTicket = null;
             NavigationService.NavigateTo("BuyTicketCountView");
         }
 

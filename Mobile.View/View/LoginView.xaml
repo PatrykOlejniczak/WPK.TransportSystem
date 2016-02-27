@@ -14,7 +14,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Styles/CustomPivotHeaderStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-          
         </ResourceDictionary>
     </Page.Resources>
 
@@ -78,18 +77,6 @@
                                     Foreground="White"
                                     Command="{Binding RegisterUser}"
                                     CommandParameter="{Binding ElementName=RegisterPasswordBox}">
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <TextBlock Text="{TemplateBinding Content}" />
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                            <Button Content="forgot your password?"
-                                    FontWeight="Light"
-                                    FontSize="28"
-                                    Margin="0, 100, 0, 0"
-                                    Foreground="White"
-                                    Command="{Binding NavigateToMainMenu}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
                                         <TextBlock Text="{TemplateBinding Content}" />

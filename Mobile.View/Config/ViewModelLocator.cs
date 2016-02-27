@@ -91,6 +91,7 @@ namespace Mobile.View.Config
             var test2 = FinalizationTransaction;
             var test3 = BoostAccount;
             var test4 = BuyTicketCount;
+            var test5 = Timetable;
         }
 
         private IExpandedNavigation CreateNavigationService()

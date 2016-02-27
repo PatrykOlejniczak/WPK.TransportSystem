@@ -14,6 +14,7 @@ namespace Mobile.ViewModel
     {
         private readonly IBusStopProvider _lineDetailsProvider;
         private readonly IExpandedNavigation _navigationService;
+        private bool _returnTrip;
 
         public ICommand AddToFavouriteCommand { get; private set; }
         public ICommand ReturnTripCommand { get; private set; }
@@ -61,6 +62,24 @@ namespace Mobile.ViewModel
             }
         }
 
+        private BusStop _selectedBusStop;
+        public BusStop SelectedBusStop
+        {
+            get { return _selectedBusStop; }
+            set
+            {
+                if (value != _selectedBusStop)
+                {
+                    _selectedBusStop = value;
+                    if (value != null)
+                    {
+                        NavigateToTimetable();
+                    }
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         public LineDetailsViewModel(IExpandedNavigation navigationService,
             IBusStopProvider lineDetailsProvider)
         {
@@ -73,14 +92,28 @@ namespace Mobile.ViewModel
             ReturnTripCommand = new RelayCommand(ReturnTripExecute);
         }
 
+        private void NavigateToTimetable()
+        {
+            Messenger.Default.Send(new TimetableStatus()
+            {
+                Line = Line,
+                StartBusStop = BusStops.First(),
+                LastBusStop = BusStops.Last(),
+                ActualBusStop = SelectedBusStop
+            });
+
+            _navigationService.NavigateTo("TimetableView");
+        }
+
         private async void DownloadBusStops()
         {
-            BusStops = await _lineDetailsProvider.GetAllOnLine(Line.Id, false);
+            BusStops = await _lineDetailsProvider.GetAllOnLine(Line.Id, _returnTrip);
         }
 
         private async void ReturnTripExecute()
         {
-            //BusStops = await _lineDetailsProvider.GetAllOnLine(Line.Id, true);
+            _returnTrip = !_returnTrip;
+            BusStops = await _lineDetailsProvider.GetAllOnLine(Line.Id, _returnTrip);
         }
 
         private void AddToFavourtieExecute()

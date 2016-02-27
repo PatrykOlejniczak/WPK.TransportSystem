@@ -16,6 +16,9 @@
         <converters:StringFormatConverter x:Key="StringFormatConverter"/>
         <converters:EmptyListToVisibityConverter x:Key="EmptyListToVisibilityConverter"/>
         <converters:TakeLastElementConverter x:Key="TakeLastElementConverter"/>
+        <converters:IndexFromCollectionConverter x:Key="IndexFromCollectionConverter"/>
+        <converters:HoutFromTimeSpanConverter x:Key="HoutFromTimeSpanConverter"/>
+        <converters:MinutesFromTimeSpanConverter x:Key="MinutesFromTimeSpanConverter"/>
         
     </Application.Resources>
 

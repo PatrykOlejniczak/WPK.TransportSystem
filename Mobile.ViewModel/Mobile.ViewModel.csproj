@@ -131,6 +131,7 @@
     <Compile Include="Messages\CustomerStatus.cs" />
     <Compile Include="Messages\LineStatus.cs" />
     <Compile Include="Messages\PurchaseTicketStatus.cs" />
+    <Compile Include="Messages\TimetableStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseHistoryViewModel.cs" />
     <Compile Include="TimetableViewModel.cs" />

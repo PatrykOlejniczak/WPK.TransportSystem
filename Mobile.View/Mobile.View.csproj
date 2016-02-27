@@ -108,7 +108,10 @@
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\DiscountToTextConverter.cs" />
     <Compile Include="Converters\EmptyListToVisibityConverter.cs" />
+    <Compile Include="Converters\HoutFromTimeSpanConverter.cs" />
+    <Compile Include="Converters\IndexFromCollectionConverter.cs" />
     <Compile Include="Converters\ListElementToBackground.cs" />
+    <Compile Include="Converters\MinutesFromTimeSpanConverter.cs" />
     <Compile Include="Converters\NotifyTaskToVisibilityConverter.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Converters\StringToVisibilityConverter.cs" />
