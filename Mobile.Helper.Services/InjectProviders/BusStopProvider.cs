@@ -1,32 +1,43 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Mobile.Model;
+using Mobile.Helper.Services.BusStopOnLineService;
+using Mobile.Helper.Services.BusStopService;
 using Mobile.ViewModel.Helpers;
+using BusStop = Mobile.Model.BusStop;
 
 namespace Mobile.Helper.Services.InjectProviders
 {
     public class BusStopProvider : IBusStopProvider
     {
+        private readonly BusStopServiceClient _busStopClient;
+        private readonly BusStopOnLineServiceClient _busStopOnLineClient;
+
+        public BusStopProvider()
+        {
+            _busStopClient = new BusStopServiceClient();
+            _busStopOnLineClient = new BusStopOnLineServiceClient();
+        }
+
         public async Task<ObservableCollection<BusStop>> GetAllOnLine(int lineId, bool direction)
         {
-            var test = new ObservableCollection<BusStop>()
-            {
-                new BusStop() { IsFavorite = true,  Name = "Jezioraka", NumberOnLine = 0 },
-                new BusStop() { IsFavorite = false, Name = "Władysława", NumberOnLine = 1 },
-                new BusStop() { IsFavorite = false, Name = "Czesława", NumberOnLine = 2 },
-                new BusStop() { IsFavorite = false, Name = "Marcina", NumberOnLine = 3 },
-                new BusStop() { IsFavorite = true,  Name = "Tomka", NumberOnLine = 4 },
-                new BusStop() { IsFavorite = false, Name = "Bolka", NumberOnLine = 5 },
-                new BusStop() { IsFavorite = false, Name = "Agenta", NumberOnLine = 6 }
-            };
+            var busStops = await _busStopOnLineClient.GetAllAsync();
+            List<BusStopService.BusStop> returnValue = new List<BusStopService.BusStop>();
 
-            if (direction)
+            foreach (var busStopOnLine in busStops)
             {
-                var k = test.OrderByDescending(b => b.NumberOnLine);
-                return new ObservableCollection<BusStop>(k);
+                if (busStopOnLine.Direction == direction && busStopOnLine.LineId == lineId)
+                {
+                    returnValue.Add(await _busStopClient.GetByIdAsync(busStopOnLine.BusStopId));
+                }
             }
-            return test;
+
+            AutoMapper.Mapper.CreateMap<BusStopService.BusStop, BusStop>();
+            AutoMapper.Mapper.CreateMap<BusStop, BusStopService.BusStop>();
+            var converted = AutoMapper.Mapper.Map<IEnumerable<BusStop>>(returnValue);
+
+            return new ObservableCollection<BusStop>(converted);
         }
     }
 }

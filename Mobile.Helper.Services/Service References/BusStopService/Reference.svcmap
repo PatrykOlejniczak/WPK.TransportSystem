@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="163d7827-57f2-42e9-84a9-b20feebfbaaf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:24462/Services/BusStopService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BusStopService.disco" MetadataType="Disco" ID="9e5ebed6-5035-4acc-96d2-b7cf40505d83" SourceId="1" SourceUrl="http://localhost:24462/Services/BusStopService.svc?disco" />
+    <MetadataFile FileName="BusStopService.xsd" MetadataType="Schema" ID="ad37e4af-bc5d-4936-b779-403ec285b8d7" SourceId="1" SourceUrl="http://localhost:24462/Services/BusStopService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BusStopService1.xsd" MetadataType="Schema" ID="12c681bc-b7e0-4a1f-a9c4-a99ae4559f99" SourceId="1" SourceUrl="http://localhost:24462/Services/BusStopService.svc?xsd=xsd2" />
+    <MetadataFile FileName="BusStopManager.wsdl" MetadataType="Wsdl" ID="139b9918-07bc-4e51-a42a-3fb591380a33" SourceId="1" SourceUrl="http://localhost:24462/Services/BusStopService.svc?wsdl" />
+    <MetadataFile FileName="BusStopService2.xsd" MetadataType="Schema" ID="3552dade-6d3f-465c-b409-495d71a218df" SourceId="1" SourceUrl="http://localhost:24462/Services/BusStopService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
