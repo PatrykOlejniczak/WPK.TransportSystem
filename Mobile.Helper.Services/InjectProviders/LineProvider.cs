@@ -19,16 +19,7 @@ namespace Mobile.Helper.Services.InjectProviders
 
         public async Task<ObservableCollection<Line>> GetAllAsync()
         {
-            //var f = await _client.GetAllAsync();
-
-            var f =new ObservableCollection<LineService.Line>()
-            {
-                new LineService.Line() { Id = 0, IsDeleted = false, Name = "12"},
-                new LineService.Line() { Id = 1, IsDeleted = false, Name = "14"},
-                new LineService.Line() { Id = 2, IsDeleted = false, Name = "15"},
-                new LineService.Line() { Id = 3, IsDeleted = false, Name = "16"},
-                new LineService.Line() { Id = 4, IsDeleted = false, Name = "18"}
-            };
+            var f = await _client.GetAllAsync();
 
             AutoMapper.Mapper.CreateMap<LineService.Line, Line>();
             AutoMapper.Mapper.CreateMap<Line, LineService.Line>();

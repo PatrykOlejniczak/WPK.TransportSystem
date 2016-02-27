@@ -10,11 +10,7 @@
     xmlns:userControls="using:Mobile.View.UserControls"
     mc:Ignorable="d"
     DataContext="{Binding MainMenu, Source={StaticResource ViewModelLocator}}">
-    
-    <Page.Resources>
-        
-    </Page.Resources>
-    
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" MaxWidth="480">
         <StackPanel>
         <StackPanel Margin="20">
@@ -88,8 +84,7 @@
                 </Button>
                 <Button HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        Background="#5CA595"
-                        
+                        Background="#5CA595"                     
                         Grid.Column="1"
                         Margin="5"
                         Grid.Row="1"
@@ -134,6 +129,7 @@
                     <ListView                   
                         ItemsSource="{Binding ActivePurchaseTickets}"
                         SelectionMode="None"
+                        IsHitTestVisible="False"
                         ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>

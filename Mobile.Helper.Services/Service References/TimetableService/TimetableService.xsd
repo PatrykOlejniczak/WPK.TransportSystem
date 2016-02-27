@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="Wpk.Entities" elementFormDefault="qualified" targetNamespace="Wpk.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:24462/Services/TimetableService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfTimetable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Timetable" nillable="true" type="tns:Timetable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTimetable" nillable="true" type="tns:ArrayOfTimetable" />
+  <xs:complexType name="Timetable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BusStopOnLineId" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartureTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Timetable" nillable="true" type="tns:Timetable" />
+</xs:schema>

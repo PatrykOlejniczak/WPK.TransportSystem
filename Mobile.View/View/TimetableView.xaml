@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:Mobile.View.UserControls"
+    xmlns:interop="using:Windows.UI.Xaml.Interop"
     mc:Ignorable="d"
     DataContext="{Binding Timetable, Source={StaticResource ViewModelLocator}}">
 
@@ -48,23 +49,29 @@
             <GridView
                 ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                 IsHitTestVisible="False"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Stretch"
-                ItemsSource="{Binding Timetable}">
+                ItemsSource="{Binding NotEmptyTimetable}">
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Vertical" 
-                                    HorizontalAlignment="Left"/>
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left">
+                        </StackPanel>
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Left">
+                        <Grid HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Converter={StaticResource HoutFromTimeSpanConverter}}" 
-                                       Grid.Column="0"
+                                       Grid.Column="0"                                      
+                                       VerticalAlignment="Center"
+                                       Margin="0, 0, 0, 10"
                                        TextAlignment="Left"
                                        FontSize="20" 
                                        FontWeight="Bold"/>
@@ -73,21 +80,21 @@
                                 IsHitTestVisible="False"
                                 ScrollViewer.VerticalScrollBarVisibility="Hidden"                                           
                                 HorizontalContentAlignment="Stretch"
-                                VerticalContentAlignment="Center"
+                                VerticalAlignment="Center"
                                 ItemsSource="{Binding}">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal"/>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"/>
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                                 <GridView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid>
+                                        <Grid VerticalAlignment="Center">
                                             <TextBlock Text="{Binding Converter={StaticResource MinutesFromTimeSpanConverter}}" 
-                                                       Margin="5, 5, 0, 0" 
+                                                       Margin="5, 0, 0, 0" 
+                                                       VerticalAlignment="Center"
                                                        TextAlignment="Left"
-                                                       FontSize="20" 
-                                                       FontWeight="Bold"/>
+                                                       FontSize="20"/>
                                         </Grid>
                                     </DataTemplate>
                                 </GridView.ItemTemplate>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Mobile.Model;
@@ -69,7 +70,10 @@ namespace Mobile.ViewModel
         private ObservableCollection<ObservableCollection<TimeSpan>> _timetable;
         public ObservableCollection<ObservableCollection<TimeSpan>> Timetable
         {
-            get { return _timetable; }
+            get
+            {
+                return _timetable;
+            }
             private set
             {
                 if (Timetable != value)
@@ -78,10 +82,31 @@ namespace Mobile.ViewModel
                     RaisePropertyChanged();
                 }
             }
-        }  
+        }
 
-        private readonly ITimetableProvider _timetableProvider;
-        
+        public ObservableCollection<ObservableCollection<TimeSpan>> NotEmptyTimetable
+        {
+            get
+            {
+                if (_timetable != null)
+                {
+                    var notEmptyCollections = new ObservableCollection<ObservableCollection<TimeSpan>>();
+
+                    foreach (var timetable in _timetable)
+                    {
+                        if (timetable.Count > 0)
+                        {
+                            notEmptyCollections.Add(timetable);
+                        }
+                    }
+
+                    return notEmptyCollections;
+                }
+                return _timetable;
+            }
+        }
+
+        private readonly ITimetableProvider _timetableProvider;        
 
         public TimetableViewModel(ITimetableProvider timetableProvider)
         {
