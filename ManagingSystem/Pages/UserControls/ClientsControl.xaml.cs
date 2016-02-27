@@ -32,7 +32,6 @@ namespace ManagingSystem.Pages.UserControls
         public ClientsControl()
         {
             InitializeComponent();
-
             CustomerSecService = new CustomerSecureServiceClient();
             CustomerOperationService = new CustomerOperationServiceClient();
 

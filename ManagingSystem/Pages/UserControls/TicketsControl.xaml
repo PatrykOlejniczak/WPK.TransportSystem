@@ -30,6 +30,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Margin="5"
+                    x:Name="AddButton"
+                    Content="Dodaj"
+                    Click="AddButton_Click"/>
                 <ComboBox
                     x:Name="TicketTypesComboBox"
                     Grid.Column="1"

@@ -1,4 +1,6 @@
 ﻿using ManagingSystem.CustomerSecureService;
+using ManagingSystem.Model;
+using ManagingSystem.TicketTypeService;
 using ManagingSystem.PurchaseTicketSecureService;
 using System;
 using System.Collections.Generic;
@@ -26,12 +28,15 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     {
         private CustomerSecureServiceClient customerService { get; set; }
         private PurchaseTicketSecureServiceClient ticketService { get; set; }
+        private TicketTypeServiceClient ticketTypeService {get; set;}
         private Customer customer{ get; set; }
 
         public CustomerDetails(ClientCredentials clientCredentials)
         {
             InitializeComponent();
-
+            customerService = new CustomerSecureServiceClient();
+            ticketService = new PurchaseTicketSecureServiceClient();
+            ticketTypeService = new TicketTypeServiceClient();
             customerService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
             customerService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
 
@@ -41,7 +46,9 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
         public CustomerDetails(Customer _customer, ClientCredentials clientCredentials)
         {
             InitializeComponent();
-
+            customerService = new CustomerSecureServiceClient();
+            ticketService = new PurchaseTicketSecureServiceClient();
+            ticketTypeService = new TicketTypeServiceClient();
             customerService.ClientCredentials.UserName.UserName = clientCredentials.UserName.UserName;
             customerService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
 
@@ -62,7 +69,14 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
         {
             CustomerEmail.Content = customer.Email;
 
-            //PurchaseTicket[] ticketList = ticketService.get
+            PurchaseTicket[] ticketList = ticketService.GetByCustomerId(customer.Id.Value);
+            List<TicketInfo> customerTickets = new List<TicketInfo>();
+
+            foreach (var item in ticketList)
+            {
+                TicketType tempTicketType = ticketTypeService.GetById(item.TicketId);
+                customerTickets.Add(new TicketInfo() { Type = tempTicketType.Name, Time = item.DateOfPurchase });
+            }
         }
     }
 }

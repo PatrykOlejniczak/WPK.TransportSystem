@@ -24,7 +24,7 @@
                     Margin="0"
                     Grid.Row="0"
                     HorizontalAlignment="Right">
-                <StackPanel
+                <!--<StackPanel
                         Orientation="Vertical"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -101,7 +101,22 @@
                             FontSize="10"
                             Foreground="WhiteSmoke"
                             Content="Edytuj"/>
-                </StackPanel>
+                </StackPanel>-->
+                <Button
+                    x:Name="SaveButton"
+                    Content="Save"
+                    Width="50"
+                    Click="SaveButton_Click"/>
+                <Button
+                    x:Name="EditButton"
+                    Content="Edit"
+                    Width="50"
+                    Click="EditButton_Click"/>
+                <Button
+                    x:Name="DeleteButton"
+                    Content="Delete"
+                    Width="50"
+                    Click="DeleteButton_Click"/>
             </StackPanel>
             <StackPanel
                 Margin="0 0 0 0"
@@ -128,11 +143,13 @@
                     <StackPanel
                         Orientation="Horizontal"
                         Grid.Row="0">
-                        <TextBlock
+                        <TextBox
                             Text="TicketName"
                             FontSize="18"
                             Margin="5"
-                            x:Name="SelectedTicketName"/>
+                            x:Name="SelectedTicketName"
+                            Width="250"
+                            IsEnabled="False"/>
                     </StackPanel>
                     <Label
                         HorizontalContentAlignment="Left"
@@ -159,11 +176,12 @@
                         VerticalAlignment="Center"
                         FontSize="18"
                         Content="Cena:"/>
-                <TextBlock
+                <TextBox
                         x:Name="SelectedTicketPrice"
-                        Foreground="WhiteSmoke"
                         VerticalAlignment="Center"
-                        FontSize="24"/>
+                        FontSize="24"
+                    Width="100"
+                    IsEnabled="False"/>
             </StackPanel>
             <StackPanel
                     Grid.Row="3"
@@ -180,11 +198,12 @@
                         VerticalAlignment="Center"
                         FontSize="18"
                         Content="Ulga:"/>
-                <TextBlock
+                <TextBox
                         x:Name="SelectedTicketRelief"
-                        Foreground="WhiteSmoke"
                         VerticalAlignment="Center"
-                        FontSize="24"/>
+                        FontSize="24"
+                    Width="100"
+                    IsEnabled="False"/>
             </StackPanel>
             <StackPanel
                     Grid.Row="4"
@@ -202,12 +221,43 @@
                         Foreground="WhiteSmoke"
                         VerticalAlignment="Center"
                         FontSize="18"
-                        Content="Długość:"/>
-                <TextBlock
+                        Content="Długość(dni.hh:mm:ss):"/>
+                <TextBox
                         x:Name="SelectedTicketDuration"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                    Width="200"
+                    IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel
+                    Grid.Row="5"
+                    Orientation="Horizontal">
+                <Label
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Foreground="WhiteSmoke"
+                        FontSize="24"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE8BF;"
+                        Margin="35 0"/>
+                <Label
                         Foreground="WhiteSmoke"
                         VerticalAlignment="Center"
-                        FontSize="24"/>
+                        FontSize="18"
+                        Content="Typ biletu:"/>
+                <ComboBox
+                        x:Name="SelectedTicketType"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                    Width="200"
+                    IsEnabled="False">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label
+                                Content="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
         </Grid>
     </Grid>

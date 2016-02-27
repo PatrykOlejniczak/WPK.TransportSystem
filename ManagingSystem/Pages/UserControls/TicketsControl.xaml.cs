@@ -28,6 +28,8 @@ namespace ManagingSystem.Pages.UserControls
         private TicketServiceClient TicketService { get; set; }
         private TicketType[] ticketTypeArray;
         private Ticket[] ticketsArray;
+        private TicketDetails ticketDetails;
+        private TicketType selectedTicketType;
 
         public TicketsControl()
         {
@@ -72,20 +74,30 @@ namespace ManagingSystem.Pages.UserControls
 
         private void TicketTypesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TicketType selectedTicketType = (TicketType)TicketTypesComboBox.SelectedItem;
-            var TicketsByType = from ticket in ticketsArray
-                                where ticket.TicketTypeId == selectedTicketType.Id
-                                select ticket;
-            TicketsListBox.ItemsSource = TicketsByType;
+            if(selectedTicketType == null)
+            {
+                selectedTicketType = (TicketType)TicketTypesComboBox.SelectedItem;
+            }            
+            List<Ticket> ticketsByType = new List<Ticket>();
+
+            foreach (var item in ticketsArray)
+            {
+                if(item.TicketTypeId == selectedTicketType.Id)
+                {
+                    ticketsByType.Add(item);
+                }
+            }
+
+            TicketsListBox.ItemsSource = ticketsByType;
         }
 
         private void TicketsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                TicketDetails ticketDetails = new TicketDetails();
+                ticketDetails = new TicketDetails(TicketService.ClientCredentials, (Ticket)TicketsListBox.SelectedItem);
+                ticketDetails.RefreshAll += TicketDetails_RefreshAll;
                 this.TicketDetailsContentControl.Content = ticketDetails;
-                ticketDetails.SetActualTicket((Ticket)TicketsListBox.SelectedItem);
             }
             catch(Exception ex)
             {
@@ -94,9 +106,25 @@ namespace ManagingSystem.Pages.UserControls
             
         }
 
+        private void TicketDetails_RefreshAll(object sender, EventArgs e)
+        {
+            FillData();
+            TicketDetailsContentControl.Content = null;
+            ticketDetails = null;
+        }
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                ticketDetails = new TicketDetails(TicketService.ClientCredentials);
+                ticketDetails.RefreshAll += TicketDetails_RefreshAll;
+                this.TicketDetailsContentControl.Content = ticketDetails;
+            }
+            catch (Exception ex)
+            {
 
+            }
         }
     }
 }
