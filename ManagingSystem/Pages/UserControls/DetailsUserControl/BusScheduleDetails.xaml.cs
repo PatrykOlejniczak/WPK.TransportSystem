@@ -151,6 +151,25 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
                 newBusStopOnLine.BusStopId = busStop.Id.Value;
                 BusStopOnLineSecureService.Create(newBusStopOnLine);
             }
+            //TEST
+            foreach (BusStop busStop in ActualBusStops.Items)
+            {
+                BusStopOnLine newBusStopOnLine = new BusStopOnLine();
+                newBusStopOnLine.LineId = id;
+                newBusStopOnLine.NumberStopOnLine = ActualBusStops.Items.IndexOf(busStop) + 1;
+
+                if (RelationTextBox.SelectedIndex == 1)
+                {
+                    newBusStopOnLine.Direction = true;
+                }
+                else
+                {
+                    newBusStopOnLine.Direction = false;
+                }
+
+                newBusStopOnLine.BusStopId = busStop.Id.Value;
+                BusStopOnLineSecureService.Create(newBusStopOnLine);
+            }
         }
 
         private void DeleteBusStopsOnLine(BusStopOnLine[] bsol)
