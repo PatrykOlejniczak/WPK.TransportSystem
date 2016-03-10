@@ -61,16 +61,19 @@ namespace ManagingSystem.Pages.UserControls
         }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
+                //MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
             }
 
 }
 
         private void EmployeesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            employeeDetails = new EmployeeDetails(employeeService.ClientCredentials,(Employee)EmployeesListBox.SelectedItem);
-            employeeDetails.RefreshAll += EmployeeDetails_RefreshAll;
-            this.EmployeeDetailsContentControl.Content = employeeDetails;
+            if(EmployeesListBox.SelectedItem != null)
+            {
+                employeeDetails = new EmployeeDetails(employeeService.ClientCredentials, (Employee)EmployeesListBox.SelectedItem);
+                employeeDetails.RefreshAll += EmployeeDetails_RefreshAll;
+                this.EmployeeDetailsContentControl.Content = employeeDetails;
+            }
         }
 
         private void EmployeeDetails_RefreshAll(object sender, EventArgs e)
@@ -144,6 +147,7 @@ namespace ManagingSystem.Pages.UserControls
             }
             else
             {
+                FillData();
                 FocusManager.SetFocusedElement(TopEmployeesButtons, SearchTextBox);
             }
         }

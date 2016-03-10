@@ -42,16 +42,21 @@ namespace ManagingSystem.Pages.UserControls
             try
             {
                 LineArray = LineService.GetAll();
+                ListBox.ItemsSource = "";
                 ListBox.ItemsSource = LineArray;
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
+                ListBox.ItemsSource = LineArray;
             }
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if(ListBox.SelectedItem != null)
+            {
+
+            }
             BusStopDetails = new BusScheduleDetails(LineService.ClientCredentials, (Line)ListBox.SelectedItem);
             BusStopDetails.RefreshAll += BusStopDetails_RefreshAll;
             this.DetailsContentControl.Content = BusStopDetails;
@@ -59,9 +64,9 @@ namespace ManagingSystem.Pages.UserControls
 
         private void BusStopDetails_RefreshAll(object sender, EventArgs e)
         {
-            FillData();
-            this.DetailsContentControl.Content = null;
-            BusStopDetails = null;
+                FillData();
+                this.DetailsContentControl.Content = null;
+                BusStopDetails = null;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ManagingSystem.EmployeeSecureService;
 using ManagingSystem.Interface;
 using System.ServiceModel.Description;
+using ManagingSystem.UserAccountService;
 
 namespace ManagingSystem.Pages.UserControls.DetailsUserControl
 {
@@ -25,20 +26,25 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
     {
         public event EventHandler RefreshAll;
         private EmployeeSecureServiceClient employeeService { get; set; }
+        private UserAccountSecureServiceClient UserAccountSecureService { get; set; }
 
         Employee actualEmployee;
         bool isNewEmployeeEnable;
-
+        bool UserAccountCreated;
         //Add new Employee.
         public EmployeeDetails(ClientCredentials cc)
         {
             InitializeComponent();
             isNewEmployeeEnable = true;
             employeeService = new EmployeeSecureServiceClient();
+            UserAccountSecureService = new UserAccountSecureServiceClient();
             actualEmployee = new Employee();
 
             employeeService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
             employeeService.ClientCredentials.UserName.Password = cc.UserName.Password;
+
+            UserAccountSecureService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
+            UserAccountSecureService.ClientCredentials.UserName.Password = cc.UserName.Password;
 
             OpenAllTextBoxes();
             EditButton.IsEnabled = false;
@@ -49,13 +55,16 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             InitializeComponent();
             isNewEmployeeEnable = false;
             SaveButton.IsEnabled = false;
+            UserAccountSecureService = new UserAccountSecureServiceClient();
             employeeService = new EmployeeSecureServiceClient();
 
             employeeService.ClientCredentials.UserName.UserName = cc.UserName.UserName;
             employeeService.ClientCredentials.UserName.Password = cc.UserName.Password;
 
+            //CreateNewUserAccount.IsEnabled = true;
             actualEmployee = employee;
             UpdateUserDetails();
+            //GetUserAccount(actualEmployee.Id.Value);
         }
 
         private void OpenAllTextBoxes()
@@ -83,6 +92,8 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             OpenAllTextBoxes();
             SaveButton.IsEnabled = true;
             EditButton.IsEnabled = false;
+            //LoginNameUA.IsEnabled = true;
+            //PasswordUA.IsEnabled = true;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -99,7 +110,50 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             else
                 employeeService.Update(actualEmployee);
 
+            //if(CreateNewUserAccount.IsChecked.Value)
+            //{
+            //    if(!UserAccountCreated)
+            //    {
+            //        CreateUserAccount(LoginNameUA.Text, PasswordUA.Text);
+            //    }
+            //}
+
             RefreshAll(this, new EventArgs());
         }
+
+        //private void GetUserAccount(int employeeId)
+        //{
+        //    try
+        //    {
+        //        UserAccount userAccount = UserAccountSecureService.GetByEmployeeId(employeeId);
+        //        if (userAccount != null)
+        //        {
+        //            LoginNameUA.Text = userAccount.Login;
+        //            UserAccountCreated = true;
+        //        }
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        UserAccountCreated = false;
+        //    }
+        //}
+
+        //private void CreateUserAccount(string login, string password)
+        //{
+        //    if(login.Length != 0 || password.Length != 0)
+        //    {
+        //        UserAccount newUserAccount = new UserAccount();
+        //        newUserAccount.Login = login;
+        //        newUserAccount.HashPassword = password;
+        //        newUserAccount.EmployeeId = actualEmployee.Id.Value;
+
+        //        UserAccountSecureService.Create(newUserAccount);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Uzupełnij dane do logowania.", "Błąd", MessageBoxButton.OK);
+        //    }
+            
+        //}
     }
 }

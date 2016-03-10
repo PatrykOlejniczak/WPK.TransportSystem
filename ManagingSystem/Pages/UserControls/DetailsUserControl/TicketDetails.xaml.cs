@@ -45,6 +45,10 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             SelectedTicketType.ItemsSource = ticketTypes;
 
             IsNewObject = true;
+
+            SaveButton.IsEnabled = true;
+            EditButton.IsEnabled = false;
+            DeleteButton.IsEnabled = false;
         }
 
         public TicketDetails(ClientCredentials clientCredentials, Ticket SelectedTicket)
@@ -59,6 +63,10 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             actualTicket = SelectedTicket;
             UpdateTicketDetails();
             IsNewObject = false;
+
+            SaveButton.IsEnabled = false;
+            EditButton.IsEnabled = true;
+            DeleteButton.IsEnabled = true;
         }
 
         private void UpdateTicketDetails()
@@ -123,6 +131,9 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             UnlockTextBoxes();
+            SaveButton.IsEnabled = true;
+            EditButton.IsEnabled = false;
+            DeleteButton.IsEnabled = false;
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

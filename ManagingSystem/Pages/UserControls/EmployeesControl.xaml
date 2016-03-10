@@ -66,9 +66,15 @@
                 VerticalAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label
-                            Content="{Binding FirstName}"
-                            FontSize="24"/>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Label
+                                Content="{Binding FirstName}"
+                                FontSize="24"/>
+                            <Label
+                                Content="{Binding LastName}"
+                                FontSize="24"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

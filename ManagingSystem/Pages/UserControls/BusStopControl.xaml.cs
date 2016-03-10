@@ -46,9 +46,12 @@ namespace ManagingSystem.Pages.UserControls
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            busStopDetails = new BusStopDetails(BusStopService.ClientCredentials, (BusStop)ListBox.SelectedItem);
-            busStopDetails.RefreshAll += BusStopDetails_RefreshAll;
-            this.RightContentControl.Content = busStopDetails;
+            if(ListBox.SelectedItem != null)
+            {
+                busStopDetails = new BusStopDetails(BusStopService.ClientCredentials, (BusStop)ListBox.SelectedItem);
+                busStopDetails.RefreshAll += BusStopDetails_RefreshAll;
+                this.RightContentControl.Content = busStopDetails;
+            }
         }
 
         private void BusStopDetails_RefreshAll(object sender, EventArgs e)

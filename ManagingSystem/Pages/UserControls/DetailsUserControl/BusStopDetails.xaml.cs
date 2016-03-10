@@ -53,6 +53,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             BusStopTypeComboBox.ItemsSource = busStopTypeService.GetAll();
 
             OpenAllTextBoxes();
+            SaveButton.IsEnabled = true;
             EditButton.IsEnabled = false;
             DeleteButton.IsEnabled = false;
 
@@ -80,6 +81,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
 
             BusStopTypeComboBox.ItemsSource = busStopTypeService.GetAll();
             FillData();
+            SaveButton.IsEnabled = false;
         }
 
         private void FillData()
@@ -120,6 +122,10 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             OpenAllTextBoxes();
+
+            SaveButton.IsEnabled = true;
+            EditButton.IsEnabled = false;
+            DeleteButton.IsEnabled = false;
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

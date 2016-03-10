@@ -106,22 +106,10 @@
                     Content="Pracownicy"
                     Click="EmployeesButton_Click"
                     Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
-                <!--<Button
-                    x:Name="StatisticsMainButton"
-                    Foreground="Red"
-                    Content="Statystyki"
-                    Click="StatisticsMainButton_Click"
-                    Style="{StaticResource ResourceKey=LeftButtonStyle}"/>-->
                 <Button
                     x:Name="ClientsMainButton"
                     Content="Klienci"
                     Click="ClientsMainButton_Click"
-                    Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
-                <Button 
-                    x:Name="CareerMainButton"
-                    Content="Kariera"
-                    Foreground="Red"
-                    Click="CareerMainButton_Click"
                     Style="{StaticResource ResourceKey=LeftButtonStyle}"/>
                 <Button
                     x:Name="QuestionnaireMainButton"

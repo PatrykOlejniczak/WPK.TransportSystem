@@ -73,7 +73,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
             BusStopOnLineSecureService.ClientCredentials.UserName.Password = clientCredentials.UserName.Password;
 
             this.SelectedLine = line;
-            SelectedBSOL = GetbyLineId(line.Id.Value, BusStopOnLineService.GetAll());
+            SelectedBSOL = GetbyLineId(line.Id.Value, BusStopOnLineService.GetAll().Where(bsol=>bsol.Direction==true).ToArray());
 
             LineNumberTextBox.Text = line.Name;
 
@@ -151,7 +151,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
                 newBusStopOnLine.BusStopId = busStop.Id.Value;
                 BusStopOnLineSecureService.Create(newBusStopOnLine);
             }
-            //TEST
+
             foreach (BusStop busStop in ActualBusStops.Items)
             {
                 BusStopOnLine newBusStopOnLine = new BusStopOnLine();
@@ -199,6 +199,7 @@ namespace ManagingSystem.Pages.UserControls.DetailsUserControl
                 LineSecureService.Update(SelectedLine);
             }
             RefreshAll(this, new EventArgs());
+            
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)

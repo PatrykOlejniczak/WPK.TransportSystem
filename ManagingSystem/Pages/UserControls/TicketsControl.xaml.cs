@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ManagingSystem.TicketTypeService;
 using ManagingSystem.TicketService;
+using ManagingSystem.UserAccountService;
 using ManagingSystem.Pages.UserControls.DetailsUserControl;
 using System.ServiceModel.Description;
 
@@ -30,7 +31,7 @@ namespace ManagingSystem.Pages.UserControls
         private Ticket[] ticketsArray;
         private TicketDetails ticketDetails;
         private TicketType selectedTicketType;
-
+        private bool IsUpdating = false;
         public TicketsControl()
         {
             InitializeComponent();
@@ -64,7 +65,9 @@ namespace ManagingSystem.Pages.UserControls
         private void FillTicketTypes()
         {
             ticketTypeArray = TicketTypeService.GetAll();
+            TicketTypesComboBox.ItemsSource = null;
             TicketTypesComboBox.ItemsSource = ticketTypeArray;
+            
         }
 
         private void FillTickets()
@@ -74,21 +77,21 @@ namespace ManagingSystem.Pages.UserControls
 
         private void TicketTypesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(selectedTicketType == null)
+            if(!IsUpdating)
             {
                 selectedTicketType = (TicketType)TicketTypesComboBox.SelectedItem;
-            }            
-            List<Ticket> ticketsByType = new List<Ticket>();
+                List<Ticket> ticketsByType = new List<Ticket>();
 
-            foreach (var item in ticketsArray)
-            {
-                if(item.TicketTypeId == selectedTicketType.Id)
+                foreach (var item in ticketsArray)
                 {
-                    ticketsByType.Add(item);
+                    if (item.TicketTypeId == selectedTicketType.Id)
+                    {
+                        ticketsByType.Add(item);
+                    }
                 }
-            }
 
-            TicketsListBox.ItemsSource = ticketsByType;
+                TicketsListBox.ItemsSource = ticketsByType;
+            }
         }
 
         private void TicketsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,9 +111,11 @@ namespace ManagingSystem.Pages.UserControls
 
         private void TicketDetails_RefreshAll(object sender, EventArgs e)
         {
+            IsUpdating = true;
             FillData();
             TicketDetailsContentControl.Content = null;
             ticketDetails = null;
+            IsUpdating = false;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

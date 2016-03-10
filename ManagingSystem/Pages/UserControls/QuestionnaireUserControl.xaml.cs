@@ -46,7 +46,7 @@ namespace ManagingSystem.Pages.UserControls
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Wystąpił błąd", MessageBoxButton.OK);
+                
             }
         }
 

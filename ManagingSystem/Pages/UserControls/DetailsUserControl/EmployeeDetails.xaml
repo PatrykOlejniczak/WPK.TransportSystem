@@ -268,7 +268,7 @@
                         FontSize="20"/>-->
                 </Grid>
             </StackPanel>
-            <StackPanel
+            <!--<StackPanel
                 Orientation="Horizontal"
                 Grid.Row="5"
                 Grid.RowSpan="2"
@@ -283,44 +283,36 @@
                         Margin="35"/>
                 <StackPanel
                     Orientation="Vertical">
+                    <CheckBox
+                        x:Name="CreateNewUserAccount"
+                        Content="Czy chcesz utworzyć konto pracownikowi?"
+                        Margin="0 5"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"
+                        IsEnabled="False"/>
                     <Label
                         Margin="0 5"
                         Foreground="WhiteSmoke"
                         FontSize="18"
-                        Content="Uprawnienia:"/>
-                    <ListBox
-                        Background="Transparent"
-                        Margin="0 15 0 0">
-                        <CheckBox
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="18"
-                            x:Name="AktualnosciCheckBox">
-                            <ListBoxItem
-                                Foreground="WhiteSmoke"
-                                FontSize="18"
-                                Content="Aktualności"/>
-                        </CheckBox>
-                        <CheckBox
-                            Foreground="WhiteSmoke"
-                            FontSize="18"
-                            x:Name="RozkladyCheckBox">
-                            <ListBoxItem
-                                FontSize="18"
-                                Content="Rozkłady"/>
-                        </CheckBox>
-                        <CheckBox
-                            FontSize="18"
-                            x:Name="PracownicyCheckBox">
-                            <ListBoxItem
-                                Foreground="WhiteSmoke"
-                                FontSize="18"
-                                Content="Pracownicy"/>
-                        </CheckBox>
-
-                    </ListBox>
+                        Content="Konto Pracownika:"/>
+                    <Label
+                        Content="Login:"
+                        Margin="0 5"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"/>
+                    <TextBox
+                        x:Name="LoginNameUA"
+                        IsEnabled="False"/>
+                    <Label
+                        Content="Hasło:"
+                        Margin="0 5"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"/>
+                    <TextBox
+                        x:Name="PasswordUA"
+                        IsEnabled="False"/>
                 </StackPanel>
-            </StackPanel>
+            </StackPanel>-->
         </Grid>
     </Grid>
 </UserControl>
