@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AnswerOptionManager" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_IAnswerOptionSecureService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10 />
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss10>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:24462/Services/AnswerOptionService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:24462/Services/AnswerOptionService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:24462/Services/AnswerOptionService.svc?xsd=xsd2" namespace="Wpk.Entities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAnswerOptionSecureService_GetAllWithDeleted_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWithDeleted" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionSecureService_GetAllWithDeleted_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWithDeletedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionSecureService_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionSecureService_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionSecureService_Update_InputMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionSecureService_Update_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionSecureService_DeleteById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteById" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionSecureService_DeleteById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionSecureService_UndeleteById_InputMessage">
+    <wsdl:part name="parameters" element="tns:UndeleteById" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionSecureService_UndeleteById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UndeleteByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionService_GetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAll" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionService_GetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionService_GetByQuestionnaireId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByQuestionnaireId" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionService_GetByQuestionnaireId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByQuestionnaireIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionService_GetById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetById" />
+  </wsdl:message>
+  <wsdl:message name="IAnswerOptionService_GetById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAnswerOptionSecureService">
+    <wsdl:operation name="GetAllWithDeleted">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnswerOptionSecureService/GetAllWithDeleted" message="tns:IAnswerOptionSecureService_GetAllWithDeleted_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnswerOptionSecureService/GetAllWithDeletedResponse" message="tns:IAnswerOptionSecureService_GetAllWithDeleted_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnswerOptionSecureService/Create" message="tns:IAnswerOptionSecureService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnswerOptionSecureService/CreateResponse" message="tns:IAnswerOptionSecureService_Create_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnswerOptionSecureService/Update" message="tns:IAnswerOptionSecureService_Update_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnswerOptionSecureService/UpdateResponse" message="tns:IAnswerOptionSecureService_Update_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnswerOptionSecureService/DeleteById" message="tns:IAnswerOptionSecureService_DeleteById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnswerOptionSecureService/DeleteByIdResponse" message="tns:IAnswerOptionSecureService_DeleteById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UndeleteById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnswerOptionSecureService/UndeleteById" message="tns:IAnswerOptionSecureService_UndeleteById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnswerOptionSecureService/UndeleteByIdResponse" message="tns:IAnswerOptionSecureService_UndeleteById_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IAnswerOptionService">
+    <wsdl:operation name="GetAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnswerOptionService/GetAll" message="tns:IAnswerOptionService_GetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnswerOptionService/GetAllResponse" message="tns:IAnswerOptionService_GetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByQuestionnaireId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnswerOptionService/GetByQuestionnaireId" message="tns:IAnswerOptionService_GetByQuestionnaireId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnswerOptionService/GetByQuestionnaireIdResponse" message="tns:IAnswerOptionService_GetByQuestionnaireId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnswerOptionService/GetById" message="tns:IAnswerOptionService_GetById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnswerOptionService/GetByIdResponse" message="tns:IAnswerOptionService_GetById_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAnswerOptionSecureService" type="tns:IAnswerOptionSecureService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IAnswerOptionSecureService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllWithDeleted">
+      <soap:operation soapAction="http://tempuri.org/IAnswerOptionSecureService/GetAllWithDeleted" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap:operation soapAction="http://tempuri.org/IAnswerOptionSecureService/Create" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap:operation soapAction="http://tempuri.org/IAnswerOptionSecureService/Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteById">
+      <soap:operation soapAction="http://tempuri.org/IAnswerOptionSecureService/DeleteById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UndeleteById">
+      <soap:operation soapAction="http://tempuri.org/IAnswerOptionSecureService/UndeleteById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IAnswerOptionService" type="tns:IAnswerOptionService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAll">
+      <soap:operation soapAction="http://tempuri.org/IAnswerOptionService/GetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByQuestionnaireId">
+      <soap:operation soapAction="http://tempuri.org/IAnswerOptionService/GetByQuestionnaireId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetById">
+      <soap:operation soapAction="http://tempuri.org/IAnswerOptionService/GetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AnswerOptionManager">
+    <wsdl:port name="BasicHttpBinding_IAnswerOptionSecureService" binding="tns:BasicHttpBinding_IAnswerOptionSecureService">
+      <soap:address location="https://localhost:44300/Services/AnswerOptionService.svc/secure" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IAnswerOptionService" binding="tns:BasicHttpBinding_IAnswerOptionService">
+      <soap:address location="http://localhost:24462/Services/AnswerOptionService.svc/basicHttp" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

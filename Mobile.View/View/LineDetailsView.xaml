@@ -1,0 +1,111 @@
+﻿<Page
+    x:Class="Mobile.View.View.LineDetailsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Mobile.View.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:Mobile.View.UserControls"
+    mc:Ignorable="d"
+    DataContext="{Binding LineDetails, Source={StaticResource ViewModelLocator}}">
+
+    <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+           Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <userControls:LoginPanel Grid.Row="0"/>
+
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal">
+            <Image Source="../Assets/tramwaj.png" 
+                   Height="60" 
+                   Margin="20"/>
+            <TextBlock Text="{Binding Line.Name}" 
+                       VerticalAlignment="Center"
+                       FontSize="35"/>
+            <TextBlock Text="→" 
+                       Margin="0, 0, 0, 10"
+                       FontWeight="ExtraBold"
+                       VerticalAlignment="Center"
+                       FontSize="60"/>
+            <TextBlock Text="{Binding BusStops[0].Name}" 
+                       VerticalAlignment="Center"
+                       FontSize="35"/>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <ListView
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"                                           
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Center"
+                ItemsSource="{Binding BusStops}"
+                SelectedItem="{Binding SelectedBusStop, Mode=TwoWay}"
+                SelectionMode="Single">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Grid>
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal"/>
+                                            </VisualStateGroup>
+                                            <VisualStateGroup x:Name="SelectionStates">
+                                                <VisualState x:Name="Unselected"/>
+                                                <VisualState x:Name="SelectedUnfocused"/>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Border x:Name="myback" Background="Transparent">
+                                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="20, 0, 0, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="../Assets/ulubionedodaj.png"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="20" FontSize="15"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Button Command="{Binding ReturnTripCommand}" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                Grid.Row="3"
+                Margin="20"
+                Height="70">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="#5CA595"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch">
+                    <TextBlock FontSize="40"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Text="{Binding LastBusStop.Name}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</Page>

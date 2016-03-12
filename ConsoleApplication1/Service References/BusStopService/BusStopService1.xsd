@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="Wpk.Entities" elementFormDefault="qualified" targetNamespace="Wpk.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="BusStop">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BusStopTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Street" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BusStop" nillable="true" type="tns:BusStop" />
+  <xs:complexType name="ArrayOfBusStop">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BusStop" nillable="true" type="tns:BusStop" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBusStop" nillable="true" type="tns:ArrayOfBusStop" />
+</xs:schema>

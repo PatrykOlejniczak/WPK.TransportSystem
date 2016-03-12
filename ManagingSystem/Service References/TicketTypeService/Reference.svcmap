@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a6b1c583-26d7-44a6-820c-bfa26506c281" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:24462/Services/TicketTypeService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TicketTypeService.disco" MetadataType="Disco" ID="13cdda0d-a97c-47e8-afec-43403890d934" SourceId="1" SourceUrl="http://localhost:24462/Services/TicketTypeService.svc?disco" />
+    <MetadataFile FileName="TicketTypeService.xsd" MetadataType="Schema" ID="71e1caaa-87f7-4590-9abd-8b6e89e4d310" SourceId="1" SourceUrl="http://localhost:24462/Services/TicketTypeService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TicketTypeService1.xsd" MetadataType="Schema" ID="ab2df864-edcd-480d-b648-c79bdf0ac02b" SourceId="1" SourceUrl="http://localhost:24462/Services/TicketTypeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TicketTypeService2.xsd" MetadataType="Schema" ID="39b8aeee-ce80-4dc5-b9f1-372453596f7d" SourceId="1" SourceUrl="http://localhost:24462/Services/TicketTypeService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TicketTypeManager.wsdl" MetadataType="Wsdl" ID="dda5fe4c-e478-4e3d-b5db-04ca1352f3d8" SourceId="1" SourceUrl="http://localhost:24462/Services/TicketTypeService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

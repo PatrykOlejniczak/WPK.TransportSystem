@@ -186,8 +186,7 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 
 # SQL Server files
-*.mdf
-*.ldf
+
 
 # Business Intelligence projects
 *.rdl.data
@@ -210,3 +209,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+Host.WCF/App_Data/FullTestDataBase.mdf
+Host.WCF/App_Data/FullTestDataBase.mdf

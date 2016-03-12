@@ -1,0 +1,264 @@
+﻿<UserControl x:Class="ManagingSystem.Pages.UserControls.DetailsUserControl.TicketDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagingSystem.Pages.UserControls.DetailsUserControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="666"
+             Background="#9EACB2">
+    <Grid
+        Margin="25">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                    Orientation="Horizontal"
+                    Margin="0"
+                    Grid.Row="0"
+                    HorizontalAlignment="Right">
+                <!--<StackPanel
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="5">
+                    <Grid>
+                        <Ellipse
+                                Stroke="WhiteSmoke"
+                                StrokeThickness="2"
+                                Width="35"
+                                Height="35"></Ellipse>
+                        <Label
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Foreground="WhiteSmoke"
+                                FontSize="20"
+                                FontFamily="Segoe MDL2 Assets"
+                                Content="&#59213;"
+                                Margin="0"/>
+                    </Grid>
+                    <Label
+                            HorizontalAlignment="Center"
+                            FontSize="10"
+                            Foreground="WhiteSmoke"
+                            Content="usuń"/>
+                </StackPanel>
+                <StackPanel
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="5">
+                    <Grid
+                            Margin="0">
+                        <Ellipse
+                                Stroke="WhiteSmoke"
+                                StrokeThickness="2"
+                                Width="35"
+                                Height="35"></Ellipse>
+                        <Label
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Foreground="WhiteSmoke"
+                                FontSize="20"
+                                FontFamily="Segoe MDL2 Assets"
+                                Content="&#xE710;"/>
+                    </Grid>
+                    <Label
+                            HorizontalAlignment="Center"
+                            FontSize="10"
+                            Foreground="WhiteSmoke"
+                            Content="dodaj"/>
+                </StackPanel>
+                <StackPanel
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="5">
+                    <Grid
+                            Margin="0">
+                        <Ellipse
+                                Stroke="WhiteSmoke"
+                                StrokeThickness="2"
+                                Width="35"
+                                Height="35"></Ellipse>
+                        <Label
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Foreground="WhiteSmoke"
+                                FontSize="20"
+                                FontFamily="Segoe MDL2 Assets"
+                                Content="&#59151;"/>
+                    </Grid>
+                    <Label
+                            HorizontalAlignment="Center"
+                            FontSize="10"
+                            Foreground="WhiteSmoke"
+                            Content="Edytuj"/>
+                </StackPanel>-->
+                <Button
+                    x:Name="SaveButton"
+                    Content="Save"
+                    Width="50"
+                    Click="SaveButton_Click"/>
+                <Button
+                    x:Name="EditButton"
+                    Content="Edit"
+                    Width="50"
+                    Click="EditButton_Click"/>
+                <Button
+                    x:Name="DeleteButton"
+                    Content="Delete"
+                    Width="50"
+                    Click="DeleteButton_Click"/>
+            </StackPanel>
+            <StackPanel
+                Margin="0 0 0 0"
+                Orientation="Horizontal"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left">
+                <Label
+                    Padding="30"
+                    Foreground="WhiteSmoke"
+                    Background="#2D4D5E"
+                    FontSize="52"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Segoe MDL2 Assets"
+                    Content="&#xE90D;"/>
+                <Grid
+                    Margin="25 0 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Grid.Row="0">
+                        <TextBox
+                            Text="TicketName"
+                            FontSize="18"
+                            Margin="5"
+                            x:Name="SelectedTicketName"
+                            Width="250"
+                            IsEnabled="False"/>
+                    </StackPanel>
+                    <Label
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        Grid.Row="1"
+                        Content="Informacje"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel
+                    Grid.Row="2"
+                    Orientation="Horizontal"
+                    Background="#2D4D5E">
+                <Label
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Foreground="WhiteSmoke"
+                        FontSize="24"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE723;"
+                        Margin="35 0"/>
+                <Label
+                        Foreground="WhiteSmoke"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Content="Cena:"/>
+                <TextBox
+                        x:Name="SelectedTicketPrice"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                    Width="100"
+                    IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel
+                    Grid.Row="3"
+                    Orientation="Horizontal">
+                <Label
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Foreground="WhiteSmoke"
+                        FontSize="24"
+                        Content="%"
+                        Margin="35 0"/>
+                <Label
+                        Foreground="WhiteSmoke"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Content="Ulga:"/>
+                <TextBox
+                        x:Name="SelectedTicketRelief"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                    Width="100"
+                    IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel
+                    Grid.Row="4"
+                    Orientation="Horizontal"
+                    Background="#2D4D5E">
+                <Label
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Foreground="WhiteSmoke"
+                        FontSize="24"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE8BF;"
+                        Margin="35 0"/>
+                <Label
+                        Foreground="WhiteSmoke"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Content="Długość(dni.hh:mm:ss):"/>
+                <TextBox
+                        x:Name="SelectedTicketDuration"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                    Width="200"
+                    IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel
+                    Grid.Row="5"
+                    Orientation="Horizontal">
+                <Label
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Foreground="WhiteSmoke"
+                        FontSize="24"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE8BF;"
+                        Margin="35 0"/>
+                <Label
+                        Foreground="WhiteSmoke"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Content="Typ biletu:"/>
+                <ComboBox
+                        x:Name="SelectedTicketType"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                    Width="200"
+                    IsEnabled="False">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label
+                                Content="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

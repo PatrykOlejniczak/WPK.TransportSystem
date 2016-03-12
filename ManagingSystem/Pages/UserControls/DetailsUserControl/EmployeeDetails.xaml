@@ -1,0 +1,318 @@
+﻿<UserControl x:Class="ManagingSystem.Pages.UserControls.DetailsUserControl.EmployeeDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagingSystem.Pages.UserControls.DetailsUserControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="666"
+             Background="#9EACB2"
+             >
+    <Grid
+        Margin="25">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                    Orientation="Horizontal"
+                    Margin="0"
+                    Grid.Row="0"
+                    HorizontalAlignment="Right">
+                <!--<StackPanel
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="5">
+                    <Grid>
+                        <Ellipse
+                                Stroke="WhiteSmoke"
+                                StrokeThickness="2"
+                                Width="35"
+                                Height="35"></Ellipse>
+                        <Label
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Foreground="WhiteSmoke"
+                                FontSize="20"
+                                FontFamily="Segoe MDL2 Assets"
+                                Content="&#59213;"
+                                Margin="0"/>
+                    </Grid>
+                    <Label
+                            HorizontalAlignment="Center"
+                            FontSize="10"
+                            Foreground="WhiteSmoke"
+                            Content="usuń"/>
+                </StackPanel>
+                <StackPanel
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="5">
+                    <Grid
+                            Margin="0">
+                        <Ellipse
+                                Stroke="WhiteSmoke"
+                                StrokeThickness="2"
+                                Width="35"
+                                Height="35"></Ellipse>
+                        <Label
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Foreground="WhiteSmoke"
+                                FontSize="20"
+                                FontFamily="Segoe MDL2 Assets"
+                                Content="&#xE710;"/>
+                    </Grid>
+
+                    <Label
+                            HorizontalAlignment="Center"
+                            FontSize="10"
+                            Foreground="WhiteSmoke"
+                            Content="dodaj"/>
+                </StackPanel>
+                <StackPanel
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="5">
+                    <Grid
+                            Margin="0">
+                        <Ellipse
+                                Stroke="WhiteSmoke"
+                                StrokeThickness="2"
+                                Width="35"
+                                Height="35"></Ellipse>
+                        <Label
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Foreground="WhiteSmoke"
+                                FontSize="20"
+                                FontFamily="Segoe MDL2 Assets"
+                                Content="&#59151;"/>
+                    </Grid>
+                    <Label
+                            HorizontalAlignment="Center"
+                            FontSize="10"
+                            Foreground="WhiteSmoke"
+                            Content="Edytuj"/>
+                </StackPanel>-->
+                <Button
+                    x:Name="SaveButton"
+                    Content="Zapisz"
+                    Click="SaveButton_Click"/>
+                <Button
+                    x:Name="EditButton"
+                    Content="Edytuj"
+                    Click="EditButton_Click"/>
+            </StackPanel>
+            <StackPanel
+                Orientation="Horizontal"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left">
+                <Grid
+                    Margin="25 0 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Grid.Row="0">
+                        <!--<TextBlock
+                            Text="FirstName"
+                            FontSize="18"
+                            Margin="5"
+                            x:Name="SelectedUserName" />
+                        <TextBlock
+                            Text="SecondName"
+                            FontSize="18"
+                            Margin="5"
+                            x:Name="SelectedUserSecondName" />
+                        <TextBlock
+                            Text="LastName"
+                            FontSize="18"
+                            Margin="5"
+                            x:Name="SelectedUserSurname"/>-->
+                        <TextBox
+                            x:Name="SelectedUserName"
+                            Text="Imię"
+                            Width="125"
+                            FontSize="18"
+                            Margin="5"
+                            IsEnabled="False"/>
+                        <TextBox
+                            x:Name="SelectedUserSurname"
+                            Text="Nazwisko"
+                            Width="125"
+                            FontSize="18"
+                            Margin="5"
+                            IsEnabled="False"/>
+                    </StackPanel>
+                    <Label
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        Grid.Row="1"
+                        Content="Informacje"/>
+                    <!--<Button
+                        HorizontalAlignment="Left"
+                        Width="150"
+                        Grid.Row="2"
+                        Content="Pokaż grafik pracy"/>-->
+                </Grid>
+            </StackPanel>
+            <StackPanel
+                    Grid.Row="2"
+                    Orientation="Horizontal"
+                    Background="#2D4D5E">
+                <Label
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Foreground="WhiteSmoke"
+                        FontSize="24"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE723;"
+                        Margin="35 0"/>
+                <Label
+                        Foreground="WhiteSmoke"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        Content="Stanowisko pracy:"/>
+                <TextBox
+                    Width="150"
+                    IsEnabled="False"
+                        x:Name="SelectedUserWorksite"
+                        VerticalAlignment="Center"
+                        FontSize="24"/>
+            </StackPanel>
+            <!-- Stanowisko pracy-->
+            <StackPanel
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Orientation="Horizontal"
+                Background="Transparent">
+                <Label
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        Foreground="WhiteSmoke"
+                        FontSize="24"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE717;"
+                        Margin="35"/>
+                <Grid
+                    Width="350"
+                    Margin="0 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0"
+                        Margin="0 15"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"
+                        Content="Dane teleadresowe:"/>
+                    <TextBlock
+                        Margin="0 15"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"
+                        Text="Miasto:"
+                        Grid.Row="1"
+                        Grid.Column="0"/>
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0 15"
+                        IsEnabled="False"
+                        x:Name="SelectedUserCity"
+                        FontSize="20"/>
+                    <TextBlock
+                        Margin="0 15"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"
+                        Text="Ulica:"
+                        Grid.Row="2"
+                        Grid.Column="0"/>
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="0 15"
+                        IsEnabled="False"
+                        x:Name="SelectedUserStreet"
+                        FontSize="20"/>
+                    <!--<Label
+                        Margin="0 15"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"
+                        Content="Email:"/>
+                    <TextBlock
+                        x:Name="SelectedUserEmail"
+                        Foreground="WhiteSmoke"
+                        FontSize="20"/>-->
+                </Grid>
+            </StackPanel>
+            <!--<StackPanel
+                Orientation="Horizontal"
+                Grid.Row="5"
+                Grid.RowSpan="2"
+                Background="#2D4D5E">
+                <Label
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        Foreground="WhiteSmoke"
+                        FontSize="24"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE8D7;"
+                        Margin="35"/>
+                <StackPanel
+                    Orientation="Vertical">
+                    <CheckBox
+                        x:Name="CreateNewUserAccount"
+                        Content="Czy chcesz utworzyć konto pracownikowi?"
+                        Margin="0 5"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"
+                        IsEnabled="False"/>
+                    <Label
+                        Margin="0 5"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"
+                        Content="Konto Pracownika:"/>
+                    <Label
+                        Content="Login:"
+                        Margin="0 5"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"/>
+                    <TextBox
+                        x:Name="LoginNameUA"
+                        IsEnabled="False"/>
+                    <Label
+                        Content="Hasło:"
+                        Margin="0 5"
+                        Foreground="WhiteSmoke"
+                        FontSize="18"/>
+                    <TextBox
+                        x:Name="PasswordUA"
+                        IsEnabled="False"/>
+                </StackPanel>
+            </StackPanel>-->
+        </Grid>
+    </Grid>
+</UserControl>

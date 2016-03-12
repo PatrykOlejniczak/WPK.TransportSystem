@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{827A0CF8-322D-424B-A9CC-A018BF9979C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Data.Core</RootNamespace>
+    <AssemblyName>Data.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converters\DurationToTimeSpanConverter.cs" />
+    <Compile Include="Converters\TimeSpanToDurationConverter.cs" />
+    <Compile Include="Migrations\201601151328451_CreateDataBase.cs" />
+    <Compile Include="Migrations\201601151328451_CreateDataBase.Designer.cs">
+      <DependentUpon>201601151328451_CreateDataBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Seed\ISeedMethod.cs" />
+    <Compile Include="Migrations\Seed\SeedAnswerOption.cs" />
+    <Compile Include="Migrations\Seed\SeedBoostAccount.cs" />
+    <Compile Include="Migrations\Seed\SeedCustomer.cs" />
+    <Compile Include="Migrations\Seed\SeedDiscount.cs" />
+    <Compile Include="Migrations\Seed\SeedNews.cs" />
+    <Compile Include="Migrations\Seed\SeedPurchaseTicket.cs" />
+    <Compile Include="Migrations\Seed\SeedQuestionnaire.cs" />
+    <Compile Include="Migrations\Seed\SeedTicket.cs" />
+    <Compile Include="Migrations\Seed\SeedTicketType.cs" />
+    <Compile Include="Migrations\Seed\SeedUserAccount.cs" />
+    <Compile Include="Migrations\Seed\SeedEmployee.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="UnitOfWork\Configuration\AnswerOptionConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\BoostAccountConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\BusStopConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\BusStopOnLineConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\BusStopTypeConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\CustomerConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\DiscountConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\DistanceBetweenStopsConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\EmployeeConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\LineConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\NewsConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\PhotoConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\PurchaseTicketConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\QuestionnaireConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\TicketConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\TicketTypeConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\TimetableConfiguration.cs" />
+    <Compile Include="UnitOfWork\Configuration\UserAccountConfiguration.cs" />
+    <Compile Include="UnitOfWork\DataContext.cs" />
+    <Compile Include="UnitOfWork\DataContextBase.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Common\Core.Common.csproj">
+      <Project>{5142b00f-4fe0-4052-8f6a-a3737d6a1975}</Project>
+      <Name>Core.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Entities\Data.Entities.csproj">
+      <Project>{281f416a-4daf-483c-9432-a81203c73c4a}</Project>
+      <Name>Data.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601151328451_CreateDataBase.resx">
+      <DependentUpon>201601151328451_CreateDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

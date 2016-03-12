@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BoostAccountManager" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_IBoostAccountSecureService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10 />
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss10>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:24462/Services/BoostAccountCreatorService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:24462/Services/BoostAccountCreatorService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:24462/Services/BoostAccountCreatorService.svc?xsd=xsd2" namespace="Wpk.Entities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBoostAccountCreatorService_GetNewCodeFor_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNewCodeFor" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountCreatorService_GetNewCodeFor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNewCodeForResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAll" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetLastest_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastest" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetLastest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetActivatedAfterDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivatedAfterDate" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetActivatedAfterDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivatedAfterDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetActivatedToDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivatedToDate" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetActivatedToDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivatedToDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetWithUsedCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWithUsedCode" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetWithUsedCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWithUsedCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetWithNotUsedCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWithNotUsedCode" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetWithNotUsedCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWithNotUsedCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetGeneratedAfterDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneratedAfterDate" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetGeneratedAfterDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneratedAfterDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetGeneratedToDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneratedToDate" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetGeneratedToDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneratedToDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetWhereAmountMoreThan_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWhereAmountMoreThan" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetWhereAmountMoreThan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWhereAmountMoreThanResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetWhereAmountLessThan_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWhereAmountLessThan" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetWhereAmountLessThan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWhereAmountLessThanResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetById" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetByCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IBoostAccountSecureService_GetByCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCustomerResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBoostAccountCreatorService">
+    <wsdl:operation name="GetNewCodeFor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountCreatorService/GetNewCodeFor" message="tns:IBoostAccountCreatorService_GetNewCodeFor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountCreatorService/GetNewCodeForResponse" message="tns:IBoostAccountCreatorService_GetNewCodeFor_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IBoostAccountSecureService">
+    <wsdl:operation name="GetAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetAll" message="tns:IBoostAccountSecureService_GetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetAllResponse" message="tns:IBoostAccountSecureService_GetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetLastest" message="tns:IBoostAccountSecureService_GetLastest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetLastestResponse" message="tns:IBoostAccountSecureService_GetLastest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivatedAfterDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetActivatedAfterDate" message="tns:IBoostAccountSecureService_GetActivatedAfterDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetActivatedAfterDateResponse" message="tns:IBoostAccountSecureService_GetActivatedAfterDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivatedToDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetActivatedToDate" message="tns:IBoostAccountSecureService_GetActivatedToDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetActivatedToDateResponse" message="tns:IBoostAccountSecureService_GetActivatedToDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWithUsedCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetWithUsedCode" message="tns:IBoostAccountSecureService_GetWithUsedCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetWithUsedCodeResponse" message="tns:IBoostAccountSecureService_GetWithUsedCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWithNotUsedCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetWithNotUsedCode" message="tns:IBoostAccountSecureService_GetWithNotUsedCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetWithNotUsedCodeResponse" message="tns:IBoostAccountSecureService_GetWithNotUsedCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneratedAfterDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetGeneratedAfterDate" message="tns:IBoostAccountSecureService_GetGeneratedAfterDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetGeneratedAfterDateResponse" message="tns:IBoostAccountSecureService_GetGeneratedAfterDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneratedToDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetGeneratedToDate" message="tns:IBoostAccountSecureService_GetGeneratedToDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetGeneratedToDateResponse" message="tns:IBoostAccountSecureService_GetGeneratedToDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWhereAmountMoreThan">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetWhereAmountMoreThan" message="tns:IBoostAccountSecureService_GetWhereAmountMoreThan_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetWhereAmountMoreThanResponse" message="tns:IBoostAccountSecureService_GetWhereAmountMoreThan_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWhereAmountLessThan">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetWhereAmountLessThan" message="tns:IBoostAccountSecureService_GetWhereAmountLessThan_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetWhereAmountLessThanResponse" message="tns:IBoostAccountSecureService_GetWhereAmountLessThan_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetById" message="tns:IBoostAccountSecureService_GetById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetByIdResponse" message="tns:IBoostAccountSecureService_GetById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetByCustomer" message="tns:IBoostAccountSecureService_GetByCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBoostAccountSecureService/GetByCustomerResponse" message="tns:IBoostAccountSecureService_GetByCustomer_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBoostAccountCreatorService" type="tns:IBoostAccountCreatorService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetNewCodeFor">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountCreatorService/GetNewCodeFor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IBoostAccountSecureService" type="tns:IBoostAccountSecureService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IBoostAccountSecureService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAll">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastest">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetLastest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivatedAfterDate">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetActivatedAfterDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivatedToDate">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetActivatedToDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWithUsedCode">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetWithUsedCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWithNotUsedCode">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetWithNotUsedCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneratedAfterDate">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetGeneratedAfterDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneratedToDate">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetGeneratedToDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWhereAmountMoreThan">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetWhereAmountMoreThan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWhereAmountLessThan">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetWhereAmountLessThan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetById">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCustomer">
+      <soap:operation soapAction="http://tempuri.org/IBoostAccountSecureService/GetByCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BoostAccountManager">
+    <wsdl:port name="BasicHttpBinding_IBoostAccountCreatorService" binding="tns:BasicHttpBinding_IBoostAccountCreatorService">
+      <soap:address location="http://localhost:24462/Services/BoostAccountCreatorService.svc/basicHttp" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IBoostAccountSecureService" binding="tns:BasicHttpBinding_IBoostAccountSecureService">
+      <soap:address location="https://localhost:44300/Services/BoostAccountCreatorService.svc/secure" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

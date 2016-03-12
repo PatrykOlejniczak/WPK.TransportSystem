@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="Wpk.Entities" elementFormDefault="qualified" targetNamespace="Wpk.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfBoostAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BoostAccount" nillable="true" type="tns:BoostAccount" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBoostAccount" nillable="true" type="tns:ArrayOfBoostAccount" />
+  <xs:complexType name="BoostAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:double" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DateOfBoost" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GeneratedDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoostAccount" nillable="true" type="tns:BoostAccount" />
+  <xs:complexType name="ArrayOfExpandedPurchaseTicket">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExpandedPurchaseTicket" nillable="true" type="tns:ExpandedPurchaseTicket" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExpandedPurchaseTicket" nillable="true" type="tns:ArrayOfExpandedPurchaseTicket" />
+  <xs:complexType name="ExpandedPurchaseTicket">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PurchaseTicket">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TicketName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ExpandedPurchaseTicket" nillable="true" type="tns:ExpandedPurchaseTicket" />
+  <xs:complexType name="PurchaseTicket">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="DateOfPurchase" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeviceId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DiscountId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DocumentIdentificationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstNameTicketOwner" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="LastNameTicketOwner" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TicketId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PurchaseTicket" nillable="true" type="tns:PurchaseTicket" />
+  <xs:complexType name="ArrayOfPurchaseTicket">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PurchaseTicket" nillable="true" type="tns:PurchaseTicket" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPurchaseTicket" nillable="true" type="tns:ArrayOfPurchaseTicket" />
+</xs:schema>
