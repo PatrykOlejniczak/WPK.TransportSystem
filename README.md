@@ -12,3 +12,5 @@ stronie oraz w aplikacji mobilnej.
 Aplikacja mobilna - jest kierowana do klientów. Jej kluczową funkcjonalnością jest 
 możliwość szybkiego zakupu biletów. Oferuje wsparcie dla pasażerów poprzez dostęp do 
 rozkłądów jazdy, wyznaczanie tras podróży oraz odnajdywanie aktulanej lokalizacji.
+
+<img src="https://github.com/PatrykOlejniczak/WPK.TransportSystem/blob/master/2b.jpg"  width="200" height="400" />
